@@ -9,24 +9,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Stake.us inspired palette — deep navy + teal accents
+        // Professional dark gray palette
         navy: {
-          950: "#071018",
-          900: "#0D1B25",
-          800: "#0F1923",
-          700: "#1A2C38",
-          600: "#213743",
-          500: "#2F4553",
-          400: "#3D5564",
-          300: "#557086",
-          200: "#7B98A9",
-          100: "#B1C5D0",
+          950: "#141418",
+          900: "#1C1C22",
+          800: "#232329",
+          700: "#2C2C34",
+          600: "#3A3A44",
+          500: "#4A4A56",
+          400: "#62626E",
+          300: "#85858F",
+          200: "#A8A8B0",
+          100: "#CCCCD2",
         },
         accent: {
-          DEFAULT: "#00E701",
-          light: "#1FFF20",
-          dark: "#00C301",
-          glow: "rgba(0, 231, 1, 0.15)",
+          DEFAULT: "#6366F1",
+          light: "#818CF8",
+          dark: "#4F46E5",
+          glow: "rgba(99, 102, 241, 0.15)",
         },
         brand: {
           gold: "#F59E0B",
