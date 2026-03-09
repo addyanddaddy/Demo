@@ -185,7 +185,6 @@ model User {
 
   accounts          Account[]
   roleProfiles      RoleProfile[]
-  sentEndorsements  Endorsement[]      @relation("EndorsementFrom")
   auditEvents       AuditEvent[]
   createdRequisitions Requisition[]    @relation("RequisitionCreator")
   createdBreakdowns Breakdown[]        @relation("BreakdownCreator")
@@ -295,6 +294,7 @@ model RoleProfile {
   projectAssignments ProjectAssignment[]
   applications      Application[]
   availability      Availability[]
+  givenEndorsements    Endorsement[]   @relation("EndorsementFrom")
   receivedEndorsements Endorsement[]   @relation("EndorsementTo")
   sentSubmissions   Submission[]
   workedWithA       WorkedWithEdge[]   @relation("WorkedWithA")
