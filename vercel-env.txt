@@ -1,0 +1,4 @@
+DATABASE_URL="postgresql://neondb_owner:npg_C9vRHLpomVJ0@ep-silent-sound-adysi03b-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+NEXTAUTH_URL="https://talenthub.vercel.app"
+NEXTAUTH_SECRET="frameone-prod-secret-2026-xyz"
+NEXT_PUBLIC_APP_URL="https://talenthub.vercel.app"
