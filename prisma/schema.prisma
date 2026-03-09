@@ -1,0 +1,753 @@
+// FrameOne / TalentHub — Entertainment Industry Platform
+// Prisma Schema — PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────────
+
+enum AccountType {
+  INDIVIDUAL
+  COMPANY
+  AGENCY
+}
+
+enum MembershipTier {
+  FREE
+  PRO_SUPPLY
+  HIRING_PRO
+  DEPARTMENT_HEAD
+  AGENCY_STUDIO
+}
+
+enum MembershipStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+  TRIALING
+}
+
+enum RoleLevel {
+  TRAINEE
+  ASSISTANT
+  KEY
+  HOD
+  PRINCIPAL
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum ProjectFormat {
+  FEATURE
+  EPISODIC
+  SHORT
+  COMMERCIAL
+  MUSIC_VIDEO
+  DOCUMENTARY
+  WEB_SERIES
+  THEATER
+}
+
+enum ProjectStage {
+  DEVELOPMENT
+  PRE_PRODUCTION
+  PRODUCTION
+  POST_PRODUCTION
+  DISTRIBUTION
+}
+
+enum ProjectVisibility {
+  PRIVATE
+  INVITE_ONLY
+  PUBLIC
+}
+
+enum RequisitionStatus {
+  DRAFT
+  OPEN
+  FILLED
+  CANCELLED
+}
+
+enum ApplicationStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  SHORTLISTED
+  REJECTED
+  WITHDRAWN
+}
+
+enum OfferStatus {
+  PENDING
+  COUNTERED
+  ACCEPTED
+  DECLINED
+  EXPIRED
+}
+
+enum ApprovalState {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum AssignmentStatus {
+  ACTIVE
+  COMPLETED
+  TERMINATED
+}
+
+enum AvailabilityStatus {
+  AVAILABLE
+  SOFT_HOLD
+  FIRM_HOLD
+  BOOKED
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  PAID
+  DISPUTED
+  CANCELLED
+}
+
+enum PayoutStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum BreakdownStatus {
+  OPEN
+  CLOSED
+  FILLED
+}
+
+enum SubmissionStatus {
+  SUBMITTED
+  VIEWED
+  SHORTLISTED
+  REJECTED
+  BOOKED
+}
+
+enum AuditionType {
+  IN_PERSON
+  SELF_TAPE
+  VIRTUAL
+}
+
+enum DocumentConfidentiality {
+  PUBLIC
+  PROJECT_MEMBERS
+  RESTRICTED
+  TOP_SECRET
+}
+
+enum EndorsementType {
+  SKILL
+  PROFESSIONALISM
+  RELIABILITY
+  CREATIVITY
+  LEADERSHIP
+}
+
+// ─────────────────────────────────────────────────
+// IDENTITY LAYER
+// ─────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  passwordHash  String
+  name          String
+  avatarUrl     String?
+  phone         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts          Account[]
+  roleProfiles      RoleProfile[]
+  sentEndorsements  Endorsement[]      @relation("EndorsementFrom")
+  auditEvents       AuditEvent[]
+  createdRequisitions Requisition[]    @relation("RequisitionCreator")
+  createdBreakdowns Breakdown[]        @relation("BreakdownCreator")
+  submittedInvoices Invoice[]          @relation("InvoiceSubmitter")
+  approvedInvoices  Invoice[]          @relation("InvoiceApprover")
+  uploadedDocuments Document[]
+
+  @@index([email])
+}
+
+model Account {
+  id                String      @id @default(cuid())
+  type              AccountType @default(INDIVIDUAL)
+  name              String
+  billingOwnerUserId String
+  stripeCustomerId  String?
+  stripeAccountId   String?     // Stripe Connect account for payouts
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  billingOwner User         @relation(fields: [billingOwnerUserId], references: [id])
+  memberships  Membership[]
+  projects     Project[]
+  invoices     Invoice[]    @relation("VendorInvoices")
+  payouts      Payout[]
+
+  @@index([billingOwnerUserId])
+}
+
+model Membership {
+  id                  String           @id @default(cuid())
+  accountId           String
+  tier                MembershipTier   @default(FREE)
+  status              MembershipStatus @default(ACTIVE)
+  stripeSubscriptionId String?
+  currentPeriodStart  DateTime?
+  currentPeriodEnd    DateTime?
+  entitlements        Json?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  account Account @relation(fields: [accountId], references: [id])
+
+  @@index([accountId])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────
+// ROLE SYSTEM
+// ─────────────────────────────────────────────────
+
+model TaxonomyGroup {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  roles Role[]
+
+  @@index([slug])
+}
+
+model Role {
+  id              String    @id @default(cuid())
+  taxonomyGroupId String
+  name            String
+  slug            String    @unique
+  description     String?
+  level           RoleLevel @default(KEY)
+  isVendorRole    Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+
+  taxonomyGroup TaxonomyGroup   @relation(fields: [taxonomyGroupId], references: [id])
+  roleProfiles  RoleProfile[]
+  requisitions  Requisition[]
+  assignments   ProjectAssignment[]
+
+  @@index([taxonomyGroupId])
+  @@index([slug])
+}
+
+model RoleProfile {
+  id                 String             @id @default(cuid())
+  userId             String
+  roleId             String
+  displayName        String
+  bio                String?
+  city               String?
+  region             String?
+  country            String?
+  portfolioUrl       String?
+  reelUrl            String?
+  resumeUrl          String?
+  verificationStatus VerificationStatus @default(UNVERIFIED)
+  unionStatus        String?
+  yearsExperience    Int?
+  isPublic           Boolean            @default(true)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  user              User               @relation(fields: [userId], references: [id])
+  role              Role               @relation(fields: [roleId], references: [id])
+  profileFields     RoleProfileField[]
+  projectMembers    ProjectMember[]
+  projectAssignments ProjectAssignment[]
+  applications      Application[]
+  availability      Availability[]
+  receivedEndorsements Endorsement[]   @relation("EndorsementTo")
+  sentSubmissions   Submission[]
+  workedWithA       WorkedWithEdge[]   @relation("WorkedWithA")
+  workedWithB       WorkedWithEdge[]   @relation("WorkedWithB")
+  documentAccess    DocumentAccess[]
+  shortlistEntries  ShortlistEntry[]
+
+  @@unique([userId, roleId])
+  @@index([userId])
+  @@index([roleId])
+  @@index([city, region, country])
+  @@index([verificationStatus])
+}
+
+model RoleProfileField {
+  id            String   @id @default(cuid())
+  roleProfileId String
+  fieldKey      String
+  fieldValue    String
+  visibility    String   @default("PUBLIC")
+  createdAt     DateTime @default(now())
+
+  roleProfile RoleProfile @relation(fields: [roleProfileId], references: [id], onDelete: Cascade)
+
+  @@index([roleProfileId])
+}
+
+// ─────────────────────────────────────────────────
+// PROJECTS LAYER
+// ─────────────────────────────────────────────────
+
+model Project {
+  id              String            @id @default(cuid())
+  ownerAccountId  String
+  title           String
+  logline         String?
+  format          ProjectFormat     @default(FEATURE)
+  stage           ProjectStage      @default(DEVELOPMENT)
+  budgetBandMin   Decimal?
+  budgetBandMax   Decimal?
+  startDate       DateTime?
+  endDate         DateTime?
+  locations       Json?             // Array of { city, region, country }
+  visibility      ProjectVisibility @default(PRIVATE)
+  imageUrl        String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  ownerAccount Account             @relation(fields: [ownerAccountId], references: [id])
+  members      ProjectMember[]
+  requisitions Requisition[]
+  assignments  ProjectAssignment[]
+  breakdowns   Breakdown[]
+  invoices     Invoice[]
+  documents    Document[]
+  workedWithEdges WorkedWithEdge[]
+  endorsements Endorsement[]
+
+  @@index([ownerAccountId])
+  @@index([stage])
+  @@index([visibility])
+}
+
+model ProjectMember {
+  id             String   @id @default(cuid())
+  projectId      String
+  roleProfileId  String
+  permissionSet  Json?    // { canView, canEdit, canManage }
+  authorityFlags Json?    // { canHire, canApproveOffers, canApproveInvoices, canManageDocs }
+  invitedBy      String?
+  joinedAt       DateTime @default(now())
+  createdAt      DateTime @default(now())
+
+  project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  roleProfile RoleProfile @relation(fields: [roleProfileId], references: [id])
+
+  @@unique([projectId, roleProfileId])
+  @@index([projectId])
+  @@index([roleProfileId])
+}
+
+model Requisition {
+  id           String            @id @default(cuid())
+  projectId    String
+  roleId       String
+  department   String
+  level        RoleLevel         @default(KEY)
+  title        String
+  description  String
+  rateMin      Decimal?
+  rateMax      Decimal?
+  rateType     String            @default("DAILY") // HOURLY, DAILY, WEEKLY, FLAT
+  startDate    DateTime?
+  endDate      DateTime?
+  locations    Json?
+  requirements Json?
+  status       RequisitionStatus @default(DRAFT)
+  createdById  String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  project      Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  role         Role          @relation(fields: [roleId], references: [id])
+  createdBy    User          @relation("RequisitionCreator", fields: [createdById], references: [id])
+  applications Application[]
+
+  @@index([projectId, status])
+  @@index([roleId])
+  @@index([status])
+}
+
+model Application {
+  id            String            @id @default(cuid())
+  requisitionId String
+  roleProfileId String
+  coverNote     String?
+  materialsRefs Json?             // Array of URLs
+  status        ApplicationStatus @default(SUBMITTED)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  requisition Requisition @relation(fields: [requisitionId], references: [id], onDelete: Cascade)
+  roleProfile RoleProfile @relation(fields: [roleProfileId], references: [id])
+  offers      Offer[]
+
+  @@unique([requisitionId, roleProfileId])
+  @@index([requisitionId])
+  @@index([roleProfileId])
+  @@index([status])
+}
+
+model Offer {
+  id            String        @id @default(cuid())
+  applicationId String
+  terms         Json?
+  proposedRate  Decimal
+  rateType      String        @default("DAILY")
+  approvalState ApprovalState @default(PENDING)
+  approverIds   Json?         // Array of user IDs who need to approve
+  approvedBy    Json?         // Array of user IDs who have approved
+  counterTerms  Json?
+  status        OfferStatus   @default(PENDING)
+  expiresAt     DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId])
+  @@index([status])
+}
+
+model ProjectAssignment {
+  id            String           @id @default(cuid())
+  projectId     String
+  roleProfileId String
+  roleId        String
+  agreedRate    Decimal?
+  rateType      String?
+  startDate     DateTime?
+  endDate       DateTime?
+  status        AssignmentStatus @default(ACTIVE)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  roleProfile RoleProfile @relation(fields: [roleProfileId], references: [id])
+  role        Role        @relation(fields: [roleId], references: [id])
+  credits     Credit[]
+
+  @@unique([projectId, roleProfileId])
+  @@index([projectId, status])
+  @@index([roleProfileId])
+}
+
+model Credit {
+  id                String             @id @default(cuid())
+  assignmentId      String
+  creditName        String
+  billingOrder      Int?
+  characterName     String?
+  verificationState VerificationStatus @default(UNVERIFIED)
+  createdAt         DateTime           @default(now())
+
+  assignment ProjectAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+
+  @@index([assignmentId])
+}
+
+// ─────────────────────────────────────────────────
+// TRUST NETWORK
+// ─────────────────────────────────────────────────
+
+model WorkedWithEdge {
+  id             String   @id @default(cuid())
+  projectId      String
+  roleProfileAId String
+  roleProfileBId String
+  roleContextA   String   // e.g. "Director"
+  roleContextB   String   // e.g. "DP"
+  startDate      DateTime?
+  endDate        DateTime?
+  createdAt      DateTime @default(now())
+
+  project      Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  roleProfileA RoleProfile @relation("WorkedWithA", fields: [roleProfileAId], references: [id])
+  roleProfileB RoleProfile @relation("WorkedWithB", fields: [roleProfileBId], references: [id])
+
+  @@unique([projectId, roleProfileAId, roleProfileBId])
+  @@index([roleProfileAId])
+  @@index([roleProfileBId])
+}
+
+model Endorsement {
+  id                String          @id @default(cuid())
+  fromRoleProfileId String
+  toRoleProfileId   String
+  projectId         String?
+  type              EndorsementType
+  text              String?
+  rating            Int?            // 1-5
+  createdAt         DateTime        @default(now())
+
+  fromRoleProfile RoleProfile @relation("EndorsementFrom", fields: [fromRoleProfileId], references: [id])
+  toRoleProfile   RoleProfile @relation("EndorsementTo", fields: [toRoleProfileId], references: [id])
+  project         Project?    @relation(fields: [projectId], references: [id])
+
+  @@index([fromRoleProfileId])
+  @@index([toRoleProfileId])
+  @@index([projectId])
+}
+
+model Availability {
+  id            String             @id @default(cuid())
+  roleProfileId String
+  startDate     DateTime
+  endDate       DateTime
+  status        AvailabilityStatus @default(AVAILABLE)
+  geoCity       String?
+  geoRegion     String?
+  geoCountry    String?
+  geoRadius     Int?               // miles
+  notes         String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  roleProfile RoleProfile @relation(fields: [roleProfileId], references: [id], onDelete: Cascade)
+
+  @@index([roleProfileId])
+  @@index([startDate, endDate])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────
+// CASTING WORKFLOW
+// ─────────────────────────────────────────────────
+
+model Breakdown {
+  id                 String          @id @default(cuid())
+  projectId          String
+  roleName           String
+  description        String
+  ageRange           String?
+  gender             String?
+  ethnicity          String?
+  unionStatus        String?
+  compensation       String?
+  submissionDeadline DateTime?
+  requirements       Json?
+  status             BreakdownStatus @default(OPEN)
+  createdById        String
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  project          Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdBy        User             @relation("BreakdownCreator", fields: [createdById], references: [id])
+  submissions      Submission[]
+  auditions        Audition[]
+  shortlistEntries ShortlistEntry[]
+
+  @@index([projectId, status])
+  @@index([status])
+}
+
+model Submission {
+  id            String           @id @default(cuid())
+  breakdownId   String
+  roleProfileId String
+  materialsRefs Json?
+  coverNote     String?
+  status        SubmissionStatus @default(SUBMITTED)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  breakdown   Breakdown        @relation(fields: [breakdownId], references: [id], onDelete: Cascade)
+  roleProfile RoleProfile      @relation(fields: [roleProfileId], references: [id])
+  auditions   Audition[]
+  shortlists  ShortlistEntry[]
+
+  @@unique([breakdownId, roleProfileId])
+  @@index([breakdownId])
+  @@index([roleProfileId])
+}
+
+model Audition {
+  id           String       @id @default(cuid())
+  breakdownId  String
+  submissionId String
+  type         AuditionType @default(IN_PERSON)
+  scheduledAt  DateTime
+  location     String?
+  virtualLink  String?
+  notes        String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  breakdown  Breakdown  @relation(fields: [breakdownId], references: [id], onDelete: Cascade)
+  submission Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([breakdownId])
+  @@index([submissionId])
+}
+
+model ShortlistEntry {
+  id            String              @id @default(cuid())
+  breakdownId   String
+  submissionId  String
+  roleProfileId String
+  rank          Int
+  holdStatus    AvailabilityStatus?
+  notes         String?
+  createdAt     DateTime            @default(now())
+
+  breakdown   Breakdown   @relation(fields: [breakdownId], references: [id], onDelete: Cascade)
+  submission  Submission  @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  roleProfile RoleProfile @relation(fields: [roleProfileId], references: [id])
+
+  @@index([breakdownId])
+  @@index([submissionId])
+}
+
+// ─────────────────────────────────────────────────
+// PAYMENTS (TWO LANES)
+// ─────────────────────────────────────────────────
+
+model Invoice {
+  id                String        @id @default(cuid())
+  projectId         String
+  vendorAccountId   String
+  submittedByUserId String
+  lineItems         Json          // Array of { description, quantity, unitPrice, amount }
+  amount            Decimal
+  currency          String        @default("USD")
+  status            InvoiceStatus @default(DRAFT)
+  approvalState     ApprovalState @default(PENDING)
+  approvedByUserId  String?
+  approvedAt        DateTime?
+  notes             String?
+  dueDate           DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  vendorAccount Account  @relation("VendorInvoices", fields: [vendorAccountId], references: [id])
+  submittedBy   User     @relation("InvoiceSubmitter", fields: [submittedByUserId], references: [id])
+  approvedBy    User?    @relation("InvoiceApprover", fields: [approvedByUserId], references: [id])
+  payouts       Payout[]
+
+  @@index([projectId, status])
+  @@index([vendorAccountId])
+  @@index([status])
+}
+
+model Payout {
+  id                 String       @id @default(cuid())
+  recipientAccountId String
+  invoiceId          String?
+  amount             Decimal
+  currency           String       @default("USD")
+  status             PayoutStatus @default(PENDING)
+  stripeTransferId   String?
+  processedAt        DateTime?
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+
+  recipientAccount Account  @relation(fields: [recipientAccountId], references: [id])
+  invoice          Invoice? @relation(fields: [invoiceId], references: [id])
+
+  @@index([recipientAccountId])
+  @@index([invoiceId])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────
+// DOCUMENTS
+// ─────────────────────────────────────────────────
+
+model Document {
+  id                   String                  @id @default(cuid())
+  projectId            String
+  uploadedByUserId     String
+  type                 String                  // e.g. "contract", "call_sheet", "sides", "nda"
+  fileName             String
+  storageUri           String
+  fileSize             Int
+  mimeType             String
+  confidentialityLevel DocumentConfidentiality @default(PROJECT_MEMBERS)
+  checksum             String?
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+
+  project       Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  uploadedBy    User             @relation(fields: [uploadedByUserId], references: [id])
+  accessEntries DocumentAccess[]
+
+  @@index([projectId])
+  @@index([type])
+}
+
+model DocumentAccess {
+  id            String   @id @default(cuid())
+  documentId    String
+  roleProfileId String
+  canRead       Boolean  @default(true)
+  canWrite      Boolean  @default(false)
+  canSign       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+
+  document    Document    @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  roleProfile RoleProfile @relation(fields: [roleProfileId], references: [id])
+
+  @@unique([documentId, roleProfileId])
+  @@index([documentId])
+  @@index([roleProfileId])
+}
+
+// ─────────────────────────────────────────────────
+// AUDIT
+// ─────────────────────────────────────────────────
+
+model AuditEvent {
+  id          String   @id @default(cuid())
+  actorUserId String
+  entityType  String   // e.g. "project", "offer", "invoice"
+  entityId    String
+  action      String   // e.g. "created", "updated", "approved", "deleted"
+  metadata    Json?
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  actor User @relation(fields: [actorUserId], references: [id])
+
+  @@index([actorUserId])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
