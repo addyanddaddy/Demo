@@ -248,8 +248,8 @@ export default function AdminSettingsPage() {
       <section>
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h2 className="text-lg font-light tracking-wide text-[#edebe2]">Platform Rules</h2>
-            <p className="text-sm text-[#8a8a96] mt-1">
+            <h2 className="text-lg font-light tracking-wide text-[#f0efe6]">Platform Rules</h2>
+            <p className="text-sm text-[#9e9eab] mt-1">
               Manage rules that govern user behavior and content on the platform.
             </p>
           </div>
@@ -267,60 +267,60 @@ export default function AdminSettingsPage() {
 
         {/* Add / Edit form */}
         {showForm && (
-          <div className="mb-6 rounded-2xl border border-white/[0.08] bg-[#1a1a22] p-6 space-y-4">
-            <h3 className="text-sm font-medium text-[#edebe2]">
+          <div className="mb-6 rounded-2xl border border-white/[0.08] bg-[#1f1f2a] p-6 space-y-4">
+            <h3 className="text-sm font-medium text-[#f0efe6]">
               {editingRuleId ? "Edit Rule" : "New Rule"}
             </h3>
 
             {/* Title */}
             <div>
-              <label className="block text-xs text-[#8a8a96] mb-1.5">Title</label>
+              <label className="block text-xs text-[#9e9eab] mb-1.5">Title</label>
               <input
                 type="text"
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 placeholder="Rule title..."
-                className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#edebe2] placeholder:text-[#8a8a96]/60 focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
+                className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#f0efe6] placeholder:text-[#9e9eab]/60 focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
               />
             </div>
 
             {/* Description */}
             <div>
-              <label className="block text-xs text-[#8a8a96] mb-1.5">Description</label>
+              <label className="block text-xs text-[#9e9eab] mb-1.5">Description</label>
               <textarea
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 placeholder="Describe the rule..."
                 rows={3}
-                className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#edebe2] placeholder:text-[#8a8a96]/60 focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 resize-none transition-colors"
+                className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#f0efe6] placeholder:text-[#9e9eab]/60 focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 resize-none transition-colors"
               />
             </div>
 
             {/* Category & Severity */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs text-[#8a8a96] mb-1.5">Category</label>
+                <label className="block text-xs text-[#9e9eab] mb-1.5">Category</label>
                 <select
                   value={form.category}
                   onChange={(e) => setForm({ ...form, category: e.target.value })}
-                  className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#edebe2] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
+                  className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#f0efe6] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
                 >
                   {CATEGORIES.map((cat) => (
-                    <option key={cat} value={cat} className="bg-[#1a1a22]">
+                    <option key={cat} value={cat} className="bg-[#1f1f2a]">
                       {cat.charAt(0).toUpperCase() + cat.slice(1)}
                     </option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="block text-xs text-[#8a8a96] mb-1.5">Severity</label>
+                <label className="block text-xs text-[#9e9eab] mb-1.5">Severity</label>
                 <select
                   value={form.severity}
                   onChange={(e) => setForm({ ...form, severity: e.target.value })}
-                  className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#edebe2] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
+                  className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#f0efe6] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
                 >
                   {SEVERITIES.map((sev) => (
-                    <option key={sev} value={sev} className="bg-[#1a1a22]">
+                    <option key={sev} value={sev} className="bg-[#1f1f2a]">
                       {SEVERITY_LABELS[sev]}
                     </option>
                   ))}
@@ -343,7 +343,7 @@ export default function AdminSettingsPage() {
                   }`}
                 />
               </button>
-              <span className="text-sm text-[#b8b5a8]">
+              <span className="text-sm text-[#cdc9bc]">
                 {form.isActive ? "Active" : "Inactive"}
               </span>
             </div>
@@ -359,7 +359,7 @@ export default function AdminSettingsPage() {
               </button>
               <button
                 onClick={handleCancelForm}
-                className="rounded-xl bg-white/[0.06] px-5 py-2.5 text-sm text-[#b8b5a8] hover:bg-white/[0.1] transition-colors"
+                className="rounded-xl bg-white/[0.06] px-5 py-2.5 text-sm text-[#cdc9bc] hover:bg-white/[0.1] transition-colors"
               >
                 Cancel
               </button>
@@ -371,7 +371,7 @@ export default function AdminSettingsPage() {
         {loading && (
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="rounded-2xl bg-[#1a1a22] p-5 animate-pulse">
+              <div key={i} className="rounded-2xl bg-[#1f1f2a] p-5 animate-pulse">
                 <div className="h-4 w-48 rounded bg-white/[0.06] mb-3" />
                 <div className="h-3 w-full rounded bg-white/[0.04] mb-2" />
                 <div className="h-3 w-2/3 rounded bg-white/[0.04]" />
@@ -382,10 +382,10 @@ export default function AdminSettingsPage() {
 
         {/* Empty state */}
         {!loading && rules.length === 0 && (
-          <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#1a1a22]/50 p-12 text-center">
-            <div className="text-[#8a8a96] text-4xl mb-3">&#9878;</div>
-            <p className="text-sm text-[#b8b5a8]">No platform rules defined yet.</p>
-            <p className="text-xs text-[#8a8a96] mt-1">
+          <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#1f1f2a]/50 p-12 text-center">
+            <div className="text-[#9e9eab] text-4xl mb-3">&#9878;</div>
+            <p className="text-sm text-[#cdc9bc]">No platform rules defined yet.</p>
+            <p className="text-xs text-[#9e9eab] mt-1">
               Click &quot;Add Rule&quot; to create your first rule.
             </p>
           </div>
@@ -397,32 +397,32 @@ export default function AdminSettingsPage() {
             {rules.map((rule) => (
               <div
                 key={rule.id}
-                className={`rounded-2xl bg-[#1a1a22] p-5 transition-opacity ${
+                className={`rounded-2xl bg-[#1f1f2a] p-5 transition-opacity ${
                   rule.isActive ? "opacity-100" : "opacity-50"
                 }`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2.5 mb-2">
-                      <h3 className="text-sm font-medium text-[#edebe2] truncate">
+                      <h3 className="text-sm font-medium text-[#f0efe6] truncate">
                         {rule.title}
                       </h3>
                       <span
                         className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
-                          CATEGORY_COLORS[rule.category] || "bg-white/[0.06] text-[#b8b5a8]"
+                          CATEGORY_COLORS[rule.category] || "bg-white/[0.06] text-[#cdc9bc]"
                         }`}
                       >
                         {rule.category}
                       </span>
                       <span
                         className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${
-                          SEVERITY_COLORS[rule.severity] || "bg-white/[0.06] text-[#b8b5a8]"
+                          SEVERITY_COLORS[rule.severity] || "bg-white/[0.06] text-[#cdc9bc]"
                         }`}
                       >
                         {SEVERITY_LABELS[rule.severity] || rule.severity}
                       </span>
                     </div>
-                    <p className="text-sm text-[#b8b5a8] leading-relaxed">
+                    <p className="text-sm text-[#cdc9bc] leading-relaxed">
                       {rule.description}
                     </p>
                   </div>
@@ -447,7 +447,7 @@ export default function AdminSettingsPage() {
                     {/* Edit */}
                     <button
                       onClick={() => handleEditRule(rule)}
-                      className="rounded-lg p-2 text-[#8a8a96] hover:bg-white/[0.06] hover:text-[#edebe2] transition-colors"
+                      className="rounded-lg p-2 text-[#9e9eab] hover:bg-white/[0.06] hover:text-[#f0efe6] transition-colors"
                       title="Edit rule"
                     >
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -467,7 +467,7 @@ export default function AdminSettingsPage() {
                         </button>
                         <button
                           onClick={() => setDeletingRuleId(null)}
-                          className="rounded-lg px-2.5 py-1.5 text-xs text-[#8a8a96] hover:text-[#edebe2] transition-colors"
+                          className="rounded-lg px-2.5 py-1.5 text-xs text-[#9e9eab] hover:text-[#f0efe6] transition-colors"
                         >
                           Cancel
                         </button>
@@ -475,7 +475,7 @@ export default function AdminSettingsPage() {
                     ) : (
                       <button
                         onClick={() => setDeletingRuleId(rule.id)}
-                        className="rounded-lg p-2 text-[#8a8a96] hover:bg-red-500/10 hover:text-red-400 transition-colors"
+                        className="rounded-lg p-2 text-[#9e9eab] hover:bg-red-500/10 hover:text-red-400 transition-colors"
                         title="Delete rule"
                       >
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -499,10 +499,10 @@ export default function AdminSettingsPage() {
       {/* ─────────────────────────────────────────────────── */}
       <section>
         <div className="mb-5">
-          <h2 className="text-lg font-light tracking-wide text-[#edebe2]">
+          <h2 className="text-lg font-light tracking-wide text-[#f0efe6]">
             Membership Configuration
           </h2>
-          <p className="text-sm text-[#8a8a96] mt-1">
+          <p className="text-sm text-[#9e9eab] mt-1">
             Current membership tiers and pricing. Membership pricing is configured in code. Contact
             engineering to update.
           </p>
@@ -512,29 +512,29 @@ export default function AdminSettingsPage() {
           {MEMBERSHIP_PLANS.map((plan: MembershipPlanData) => (
             <div
               key={plan.slug}
-              className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-5 space-y-3"
+              className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-5 space-y-3"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-[#edebe2]">{plan.name}</h3>
+                <h3 className="text-sm font-medium text-[#f0efe6]">{plan.name}</h3>
                 <span className="inline-flex items-center rounded-md bg-[#9d7663]/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#c4a47a]">
                   {plan.tier}
                 </span>
               </div>
 
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-light text-[#edebe2]">
+                <span className="text-2xl font-light text-[#f0efe6]">
                   ${plan.price}
                 </span>
-                <span className="text-xs text-[#8a8a96]">/{plan.interval}</span>
+                <span className="text-xs text-[#9e9eab]">/{plan.interval}</span>
               </div>
 
               <div className="space-y-1.5">
-                <p className="text-[10px] uppercase tracking-wider text-[#8a8a96] font-semibold">
+                <p className="text-[10px] uppercase tracking-wider text-[#9e9eab] font-semibold">
                   {plan.features.length} features
                 </p>
                 <ul className="space-y-1">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-xs text-[#b8b5a8]">
+                    <li key={idx} className="flex items-center gap-2 text-xs text-[#cdc9bc]">
                       <span className="h-1 w-1 rounded-full bg-[#9d7663] shrink-0" />
                       {feature}
                     </li>
@@ -545,7 +545,7 @@ export default function AdminSettingsPage() {
           ))}
         </div>
 
-        <p className="mt-4 text-xs text-[#8a8a96] italic">
+        <p className="mt-4 text-xs text-[#9e9eab] italic">
           Membership pricing is configured in code. Contact engineering to update.
         </p>
       </section>
@@ -558,8 +558,8 @@ export default function AdminSettingsPage() {
       {/* ─────────────────────────────────────────────────── */}
       <section>
         <div className="mb-5">
-          <h2 className="text-lg font-light tracking-wide text-[#edebe2]">Platform Health</h2>
-          <p className="text-sm text-[#8a8a96] mt-1">
+          <h2 className="text-lg font-light tracking-wide text-[#f0efe6]">Platform Health</h2>
+          <p className="text-sm text-[#9e9eab] mt-1">
             Service status overview for core platform dependencies.
           </p>
         </div>
@@ -597,14 +597,14 @@ export default function AdminSettingsPage() {
 
 function HealthCard({ label, status, ok }: { label: string; status: string; ok: boolean }) {
   return (
-    <div className="rounded-2xl bg-[#1a1a22] p-5">
+    <div className="rounded-2xl bg-[#1f1f2a] p-5">
       <div className="flex items-center gap-2.5 mb-2">
         <span
           className={`h-2 w-2 rounded-full ${
             ok ? "bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.4)]" : "bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.4)]"
           }`}
         />
-        <h3 className="text-sm font-medium text-[#edebe2]">{label}</h3>
+        <h3 className="text-sm font-medium text-[#f0efe6]">{label}</h3>
       </div>
       <p className={`text-xs ${ok ? "text-emerald-400" : "text-amber-400"}`}>{status}</p>
     </div>

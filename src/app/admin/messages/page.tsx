@@ -84,7 +84,7 @@ function userInitials(name: string | null): string {
 
 function MessageSkeleton() {
   return (
-    <div className="bg-[#1a1a22] rounded-xl p-4 mb-2 animate-pulse">
+    <div className="bg-[#1f1f2a] rounded-xl p-4 mb-2 animate-pulse">
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 rounded-full bg-white/[0.06]" />
         <div className="h-3 w-20 rounded bg-white/[0.06]" />
@@ -206,8 +206,8 @@ export default function AdminMessagesPage() {
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-light tracking-wide text-[#edebe2]">Messages Monitoring</h2>
-        <p className="mt-1 text-sm text-[#8a8a96]">
+        <h2 className="text-2xl font-light tracking-wide text-[#f0efe6]">Messages Monitoring</h2>
+        <p className="mt-1 text-sm text-[#9e9eab]">
           Monitor, search, and moderate platform messages.
         </p>
       </div>
@@ -216,26 +216,26 @@ export default function AdminMessagesPage() {
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Search */}
         <div className="relative flex-1">
-          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8a8a96]" />
+          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9e9eab]" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by content, sender, or recipient..."
-            className="w-full rounded-xl bg-[#1a1a22] border border-white/[0.08] py-2.5 pl-10 pr-4 text-sm text-[#edebe2] placeholder-[#8a8a96] focus:outline-none focus:border-[#9d7663]/50 focus:ring-1 focus:ring-[#9d7663]/25 transition-colors"
+            className="w-full rounded-xl bg-[#1f1f2a] border border-white/[0.08] py-2.5 pl-10 pr-4 text-sm text-[#f0efe6] placeholder-[#9e9eab] focus:outline-none focus:border-[#9d7663]/50 focus:ring-1 focus:ring-[#9d7663]/25 transition-colors"
           />
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex rounded-xl bg-[#1a1a22] border border-white/[0.08] p-1">
+        <div className="flex rounded-xl bg-[#1f1f2a] border border-white/[0.08] p-1">
           {(["all", "flagged"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
               className={`px-4 py-2 rounded-lg text-[13px] font-medium transition-colors capitalize ${
                 filter === f
-                  ? "bg-white/[0.08] text-[#edebe2]"
-                  : "text-[#8a8a96] hover:text-[#b8b5a8]"
+                  ? "bg-white/[0.08] text-[#f0efe6]"
+                  : "text-[#9e9eab] hover:text-[#cdc9bc]"
               }`}
             >
               {f === "flagged" && <FlagSolidIcon className="inline h-3.5 w-3.5 mr-1.5 text-red-400" />}
@@ -265,11 +265,11 @@ export default function AdminMessagesPage() {
           Array.from({ length: 8 }).map((_, i) => <MessageSkeleton key={i} />)
         ) : messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-[#1a1a22] flex items-center justify-center mb-4">
-              <MagnifyingGlassIcon className="h-7 w-7 text-[#8a8a96]" />
+            <div className="w-16 h-16 rounded-2xl bg-[#1f1f2a] flex items-center justify-center mb-4">
+              <MagnifyingGlassIcon className="h-7 w-7 text-[#9e9eab]" />
             </div>
-            <h3 className="text-lg font-light text-[#edebe2] mb-1">No messages found</h3>
-            <p className="text-sm text-[#8a8a96] max-w-sm">
+            <h3 className="text-lg font-light text-[#f0efe6] mb-1">No messages found</h3>
+            <p className="text-sm text-[#9e9eab] max-w-sm">
               {filter === "flagged"
                 ? "No flagged messages at this time."
                 : search
@@ -285,7 +285,7 @@ export default function AdminMessagesPage() {
             return (
               <div
                 key={msg.id}
-                className={`bg-[#1a1a22] rounded-xl p-4 mb-2 transition-all duration-200 hover:bg-[#1e1e28] ${
+                className={`bg-[#1f1f2a] rounded-xl p-4 mb-2 transition-all duration-200 hover:bg-[#1e1e28] ${
                   msg.isReported ? "border-l-2 border-red-400/50" : ""
                 }`}
               >
@@ -295,20 +295,20 @@ export default function AdminMessagesPage() {
                   <div className="flex items-center gap-2 min-w-0 shrink-0">
                     <MiniAvatar user={msg.sender} />
                     <div className="min-w-0">
-                      <p className="text-[13px] text-[#edebe2] font-medium truncate max-w-[120px]">
+                      <p className="text-[13px] text-[#f0efe6] font-medium truncate max-w-[120px]">
                         {msg.sender.name || msg.sender.email}
                       </p>
                     </div>
                   </div>
 
                   {/* Arrow */}
-                  <ArrowRightIcon className="h-4 w-4 text-[#8a8a96] shrink-0 mt-2" />
+                  <ArrowRightIcon className="h-4 w-4 text-[#9e9eab] shrink-0 mt-2" />
 
                   {/* Recipient */}
                   <div className="flex items-center gap-2 min-w-0 shrink-0">
                     <MiniAvatar user={msg.recipient} />
                     <div className="min-w-0">
-                      <p className="text-[13px] text-[#edebe2] font-medium truncate max-w-[120px]">
+                      <p className="text-[13px] text-[#f0efe6] font-medium truncate max-w-[120px]">
                         {msg.recipient.name || msg.recipient.email}
                       </p>
                     </div>
@@ -322,7 +322,7 @@ export default function AdminMessagesPage() {
                         Flagged
                       </span>
                     )}
-                    <span className="text-[11px] text-[#8a8a96] whitespace-nowrap">
+                    <span className="text-[11px] text-[#9e9eab] whitespace-nowrap">
                       {formatDate(msg.createdAt)}
                     </span>
                   </div>
@@ -330,10 +330,10 @@ export default function AdminMessagesPage() {
 
                 {/* Content Preview */}
                 <div className="mt-2.5 ml-0">
-                  <p className="text-sm text-[#b8b5a8] leading-relaxed">
+                  <p className="text-sm text-[#cdc9bc] leading-relaxed">
                     {isExpanded ? msg.content : msg.contentPreview}
                     {!isExpanded && msg.content.length > 100 && (
-                      <span className="text-[#8a8a96]">...</span>
+                      <span className="text-[#9e9eab]">...</span>
                     )}
                   </p>
                 </div>
@@ -342,7 +342,7 @@ export default function AdminMessagesPage() {
                 <div className="mt-3 flex items-center gap-2">
                   <button
                     onClick={() => setExpandedId(isExpanded ? null : msg.id)}
-                    className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                   >
                     <EyeIcon className="h-3.5 w-3.5" />
                     {isExpanded ? "Collapse" : "View Full"}
@@ -381,7 +381,7 @@ export default function AdminMessagesPage() {
       {/* Pagination */}
       {!loading && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between pt-2">
-          <p className="text-[12px] text-[#8a8a96]">
+          <p className="text-[12px] text-[#9e9eab]">
             Showing {(pagination.page - 1) * pagination.limit + 1}
             {" - "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
@@ -391,7 +391,7 @@ export default function AdminMessagesPage() {
             <button
               onClick={() => fetchMessages(pagination.page - 1)}
               disabled={pagination.page <= 1}
-              className="rounded-lg p-2 text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="rounded-lg p-2 text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronLeftIcon className="h-4 w-4" />
             </button>
@@ -413,7 +413,7 @@ export default function AdminMessagesPage() {
                   className={`min-w-[32px] rounded-lg px-2 py-1.5 text-[12px] font-medium transition-colors ${
                     pagination.page === pageNum
                       ? "bg-[#9d7663]/20 text-[#c4a47a]"
-                      : "text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2]"
+                      : "text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6]"
                   }`}
                 >
                   {pageNum}
@@ -423,7 +423,7 @@ export default function AdminMessagesPage() {
             <button
               onClick={() => fetchMessages(pagination.page + 1)}
               disabled={pagination.page >= pagination.totalPages}
-              className="rounded-lg p-2 text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="rounded-lg p-2 text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronRightIcon className="h-4 w-4" />
             </button>

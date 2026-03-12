@@ -264,7 +264,7 @@ export default function AdminUsersPage() {
   // ---------------------------------------------------------------------------
 
   const SortIcon = ({ column }: { column: string }) => {
-    if (sortBy !== column) return <ChevronUpDownIcon className="h-3.5 w-3.5 text-[#8a8a96]" />;
+    if (sortBy !== column) return <ChevronUpDownIcon className="h-3.5 w-3.5 text-[#9e9eab]" />;
     return sortOrder === "asc"
       ? <ChevronUpIcon className="h-3.5 w-3.5 text-[#c4a47a]" />
       : <ChevronDownIcon className="h-3.5 w-3.5 text-[#c4a47a]" />;
@@ -278,8 +278,8 @@ export default function AdminUsersPage() {
     <div className="space-y-8 animate-fade-in max-w-7xl mx-auto py-4 px-4">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-light tracking-tight text-[#edebe2]">Users</h1>
-        <p className="text-sm text-[#8a8a96] mt-2 leading-relaxed">
+        <h1 className="text-3xl font-light tracking-tight text-[#f0efe6]">Users</h1>
+        <p className="text-sm text-[#9e9eab] mt-2 leading-relaxed">
           Manage platform users, roles, and bans.
         </p>
       </div>
@@ -288,13 +288,13 @@ export default function AdminUsersPage() {
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Search */}
         <div className="relative flex-1 max-w-md">
-          <MagnifyingGlassIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8a8a96]" />
+          <MagnifyingGlassIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9e9eab]" />
           <input
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search by name or email..."
-            className="w-full rounded-xl bg-white/[0.04] pl-10 pr-4 py-2.5 text-sm text-[#edebe2] placeholder-[#6b6b78] border border-white/[0.08] focus:border-[#9d7663]/40 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors"
+            className="w-full rounded-xl bg-white/[0.04] pl-10 pr-4 py-2.5 text-sm text-[#f0efe6] placeholder-[#6b6b78] border border-white/[0.08] focus:border-[#9d7663]/40 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors"
           />
         </div>
 
@@ -302,10 +302,10 @@ export default function AdminUsersPage() {
         <select
           value={roleFilter}
           onChange={(e) => setRoleFilter(e.target.value)}
-          className="rounded-xl bg-white/[0.04] px-4 py-2.5 text-sm text-[#edebe2] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none appearance-none cursor-pointer min-w-[140px]"
+          className="rounded-xl bg-white/[0.04] px-4 py-2.5 text-sm text-[#f0efe6] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none appearance-none cursor-pointer min-w-[140px]"
         >
           {ROLE_OPTIONS.map((o) => (
-            <option key={o.value} value={o.value} className="bg-[#1a1a22] text-[#edebe2]">
+            <option key={o.value} value={o.value} className="bg-[#1f1f2a] text-[#f0efe6]">
               {o.label}
             </option>
           ))}
@@ -313,20 +313,20 @@ export default function AdminUsersPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-[#1a1a22] rounded-2xl overflow-hidden border border-white/[0.08]">
+      <div className="bg-[#1f1f2a] rounded-2xl overflow-hidden border border-white/[0.08]">
         {/* Header row */}
-        <div className="bg-[#242430] grid grid-cols-[1fr_120px_110px_100px_80px_44px] gap-2 px-6 py-3 items-center">
-          <button onClick={() => handleSort("name")} className="flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] hover:text-[#edebe2] transition-colors text-left">
+        <div className="bg-[#2a2a38] grid grid-cols-[1fr_120px_110px_100px_80px_44px] gap-2 px-6 py-3 items-center">
+          <button onClick={() => handleSort("name")} className="flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] hover:text-[#f0efe6] transition-colors text-left">
             User <SortIcon column="name" />
           </button>
-          <button onClick={() => handleSort("role")} className="flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] hover:text-[#edebe2] transition-colors text-left">
+          <button onClick={() => handleSort("role")} className="flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] hover:text-[#f0efe6] transition-colors text-left">
             Role <SortIcon column="role" />
           </button>
-          <span className="text-[11px] uppercase tracking-[0.15em] text-[#8a8a96]">Tier</span>
-          <button onClick={() => handleSort("createdAt")} className="flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] hover:text-[#edebe2] transition-colors text-left">
+          <span className="text-[11px] uppercase tracking-[0.15em] text-[#9e9eab]">Tier</span>
+          <button onClick={() => handleSort("createdAt")} className="flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] hover:text-[#f0efe6] transition-colors text-left">
             Joined <SortIcon column="createdAt" />
           </button>
-          <span className="text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] text-center">Status</span>
+          <span className="text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] text-center">Status</span>
           <span />
         </div>
 
@@ -344,8 +344,8 @@ export default function AdminUsersPage() {
           </div>
         ) : users.length === 0 ? (
           <div className="px-6 py-16 text-center">
-            <UserIcon className="h-10 w-10 mx-auto text-[#8a8a96] mb-3" />
-            <p className="text-sm text-[#8a8a96]">No users found</p>
+            <UserIcon className="h-10 w-10 mx-auto text-[#9e9eab] mb-3" />
+            <p className="text-sm text-[#9e9eab]">No users found</p>
           </div>
         ) : (
           <div>
@@ -360,8 +360,8 @@ export default function AdminUsersPage() {
                   <div className="flex items-center gap-3 min-w-0">
                     <Avatar name={user.name} src={user.avatarUrl} size="sm" />
                     <div className="min-w-0">
-                      <p className="text-sm text-[#edebe2] truncate">{user.name}</p>
-                      <p className="text-[11px] text-[#8a8a96] truncate">{user.email}</p>
+                      <p className="text-sm text-[#f0efe6] truncate">{user.name}</p>
+                      <p className="text-[11px] text-[#9e9eab] truncate">{user.email}</p>
                     </div>
                   </div>
 
@@ -374,14 +374,14 @@ export default function AdminUsersPage() {
 
                   {/* Membership tier */}
                   <div>
-                    <span className="text-[11px] text-[#b8b5a8]">
+                    <span className="text-[11px] text-[#cdc9bc]">
                       {TIER_LABELS[user.membershipTier] || user.membershipTier}
                     </span>
                   </div>
 
                   {/* Join date */}
                   <div>
-                    <span className="text-[11px] text-[#8a8a96]">
+                    <span className="text-[11px] text-[#9e9eab]">
                       {new Date(user.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                     </span>
                   </div>
@@ -407,21 +407,21 @@ export default function AdminUsersPage() {
                         e.stopPropagation();
                         setActionMenuUserId(actionMenuUserId === user.id ? null : user.id);
                       }}
-                      className="p-1 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] transition-colors"
+                      className="p-1 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] transition-colors"
                     >
                       <EllipsisVerticalIcon className="h-5 w-5" />
                     </button>
 
                     {/* Dropdown menu */}
                     {actionMenuUserId === user.id && (
-                      <div className="absolute right-0 top-8 z-50 w-48 rounded-xl bg-[#242430] border border-white/[0.08] shadow-2xl py-1.5 animate-fade-in">
+                      <div className="absolute right-0 top-8 z-50 w-48 rounded-xl bg-[#2a2a38] border border-white/[0.08] shadow-2xl py-1.5 animate-fade-in">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             setExpandedUserId(user.id);
                             setActionMenuUserId(null);
                           }}
-                          className="w-full flex items-center gap-2.5 px-4 py-2 text-xs text-[#b8b5a8] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors"
+                          className="w-full flex items-center gap-2.5 px-4 py-2 text-xs text-[#cdc9bc] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                         >
                           <UserIcon className="h-3.5 w-3.5" />
                           View Profile
@@ -435,7 +435,7 @@ export default function AdminUsersPage() {
                               setNewRole(user.role);
                               setActionMenuUserId(null);
                             }}
-                            className="w-full flex items-center gap-2.5 px-4 py-2 text-xs text-[#b8b5a8] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors"
+                            className="w-full flex items-center gap-2.5 px-4 py-2 text-xs text-[#cdc9bc] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                           >
                             <ShieldCheckIcon className="h-3.5 w-3.5" />
                             Change Role
@@ -476,20 +476,20 @@ export default function AdminUsersPage() {
                   <div className="px-6 py-5 bg-white/[0.01] border-b border-white/[0.04] animate-fade-in">
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Email</p>
-                        <p className="text-xs text-[#edebe2]">{user.email}</p>
+                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Email</p>
+                        <p className="text-xs text-[#f0efe6]">{user.email}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Posts</p>
-                        <p className="text-xs text-[#edebe2]">{user.postCount}</p>
+                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Posts</p>
+                        <p className="text-xs text-[#f0efe6]">{user.postCount}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Membership</p>
-                        <p className="text-xs text-[#edebe2]">{TIER_LABELS[user.membershipTier]}</p>
+                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Membership</p>
+                        <p className="text-xs text-[#f0efe6]">{TIER_LABELS[user.membershipTier]}</p>
                       </div>
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Joined</p>
-                        <p className="text-xs text-[#edebe2]">
+                        <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Joined</p>
+                        <p className="text-xs text-[#f0efe6]">
                           {new Date(user.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                         </p>
                       </div>
@@ -497,13 +497,13 @@ export default function AdminUsersPage() {
                     {user.isBanned && user.ban && (
                       <div className="mt-4 p-3 rounded-xl bg-red-500/[0.06] border border-red-500/20">
                         <p className="text-[10px] uppercase tracking-[0.15em] text-red-400 mb-1">Ban Details</p>
-                        <p className="text-xs text-[#edebe2]">
-                          <span className="text-[#8a8a96]">Reason:</span> {user.ban.reason}
+                        <p className="text-xs text-[#f0efe6]">
+                          <span className="text-[#9e9eab]">Reason:</span> {user.ban.reason}
                         </p>
-                        <p className="text-xs text-[#edebe2] mt-1">
-                          <span className="text-[#8a8a96]">Type:</span> {user.ban.type}
+                        <p className="text-xs text-[#f0efe6] mt-1">
+                          <span className="text-[#9e9eab]">Type:</span> {user.ban.type}
                           {user.ban.expiresAt && (
-                            <span className="text-[#8a8a96]"> &middot; Expires: {new Date(user.ban.expiresAt).toLocaleDateString()}</span>
+                            <span className="text-[#9e9eab]"> &middot; Expires: {new Date(user.ban.expiresAt).toLocaleDateString()}</span>
                           )}
                         </p>
                       </div>
@@ -519,7 +519,7 @@ export default function AdminUsersPage() {
       {/* Pagination */}
       {!loading && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between px-1">
-          <p className="text-[11px] text-[#8a8a96]">
+          <p className="text-[11px] text-[#9e9eab]">
             Showing {(pagination.page - 1) * pagination.limit + 1}
             &ndash;
             {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
@@ -528,18 +528,18 @@ export default function AdminUsersPage() {
             <button
               disabled={pagination.page <= 1}
               onClick={() => fetchUsers(pagination.page - 1)}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronLeftIcon className="h-3.5 w-3.5" />
               Previous
             </button>
-            <span className="text-[11px] text-[#8a8a96]">
+            <span className="text-[11px] text-[#9e9eab]">
               {pagination.page} / {pagination.totalPages}
             </span>
             <button
               disabled={pagination.page >= pagination.totalPages}
               onClick={() => fetchUsers(pagination.page + 1)}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               Next
               <ChevronRightIcon className="h-3.5 w-3.5" />
@@ -552,56 +552,56 @@ export default function AdminUsersPage() {
       {banModal.open && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setBanModal({ open: false, userId: "", userName: "" })}>
           <div
-            className="bg-[#1a1a22] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-md animate-fade-in"
+            className="bg-[#1f1f2a] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-md animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-light text-[#edebe2]">Ban User</h2>
-              <button onClick={() => setBanModal({ open: false, userId: "", userName: "" })} className="p-1 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] transition-colors">
+              <h2 className="text-lg font-light text-[#f0efe6]">Ban User</h2>
+              <button onClick={() => setBanModal({ open: false, userId: "", userName: "" })} className="p-1 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] transition-colors">
                 <XMarkIcon className="h-5 w-5" />
               </button>
             </div>
 
-            <p className="text-sm text-[#b8b5a8] mb-6">
-              Banning <span className="text-[#edebe2] font-medium">{banModal.userName}</span> will restrict their access to the platform.
+            <p className="text-sm text-[#cdc9bc] mb-6">
+              Banning <span className="text-[#f0efe6] font-medium">{banModal.userName}</span> will restrict their access to the platform.
             </p>
 
             {/* Ban type */}
             <div className="space-y-2 mb-4">
-              <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">Ban Type</label>
+              <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">Ban Type</label>
               <select
                 value={banForm.type}
                 onChange={(e) => setBanForm({ ...banForm, type: e.target.value as "temporary" | "permanent" })}
-                className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#edebe2] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none appearance-none cursor-pointer"
+                className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#f0efe6] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none appearance-none cursor-pointer"
               >
-                <option value="temporary" className="bg-[#1a1a22]">Temporary</option>
-                <option value="permanent" className="bg-[#1a1a22]">Permanent</option>
+                <option value="temporary" className="bg-[#1f1f2a]">Temporary</option>
+                <option value="permanent" className="bg-[#1f1f2a]">Permanent</option>
               </select>
             </div>
 
             {/* Expires at (only for temporary) */}
             {banForm.type === "temporary" && (
               <div className="space-y-2 mb-4">
-                <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">Expires At</label>
+                <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">Expires At</label>
                 <input
                   type="date"
                   value={banForm.expiresAt}
                   onChange={(e) => setBanForm({ ...banForm, expiresAt: e.target.value })}
                   min={new Date().toISOString().split("T")[0]}
-                  className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#edebe2] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none transition-colors [color-scheme:dark]"
+                  className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#f0efe6] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none transition-colors [color-scheme:dark]"
                 />
               </div>
             )}
 
             {/* Reason */}
             <div className="space-y-2 mb-6">
-              <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">Reason</label>
+              <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">Reason</label>
               <textarea
                 value={banForm.reason}
                 onChange={(e) => setBanForm({ ...banForm, reason: e.target.value })}
                 placeholder="Describe the reason for this ban..."
                 rows={3}
-                className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#edebe2] placeholder-[#6b6b78] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none resize-y min-h-[80px] transition-colors"
+                className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#f0efe6] placeholder-[#6b6b78] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none resize-y min-h-[80px] transition-colors"
               />
             </div>
 
@@ -636,25 +636,25 @@ export default function AdminUsersPage() {
       {roleChangeUser && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setRoleChangeUser(null)}>
           <div
-            className="bg-[#1a1a22] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-sm animate-fade-in"
+            className="bg-[#1f1f2a] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-sm animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-light text-[#edebe2]">Change Role</h2>
-              <button onClick={() => setRoleChangeUser(null)} className="p-1 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] transition-colors">
+              <h2 className="text-lg font-light text-[#f0efe6]">Change Role</h2>
+              <button onClick={() => setRoleChangeUser(null)} className="p-1 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] transition-colors">
                 <XMarkIcon className="h-5 w-5" />
               </button>
             </div>
 
             <div className="space-y-2 mb-6">
-              <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">New Role</label>
+              <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">New Role</label>
               <select
                 value={newRole}
                 onChange={(e) => setNewRole(e.target.value as UserRole)}
-                className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#edebe2] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none appearance-none cursor-pointer"
+                className="w-full rounded-xl bg-white/[0.04] px-4 py-3 text-sm text-[#f0efe6] border border-white/[0.08] focus:border-[#9d7663]/40 focus:outline-none appearance-none cursor-pointer"
               >
                 {(["USER", "MODERATOR", "ADMIN", "SUPER_ADMIN"] as UserRole[]).map((r) => (
-                  <option key={r} value={r} className="bg-[#1a1a22]">
+                  <option key={r} value={r} className="bg-[#1f1f2a]">
                     {ROLE_BADGE_MAP[r].label}
                   </option>
                 ))}

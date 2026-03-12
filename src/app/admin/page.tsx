@@ -73,12 +73,12 @@ interface AdminStats {
 // ---------------------------------------------------------------------------
 
 function SkeletonBlock({ className }: { className?: string }) {
-  return <div className={`animate-pulse rounded-lg bg-[#242430] ${className ?? ""}`} />;
+  return <div className={`animate-pulse rounded-lg bg-[#2a2a38] ${className ?? ""}`} />;
 }
 
 function KpiSkeleton() {
   return (
-    <div className="rounded-2xl bg-[#1a1a22] p-6 space-y-4">
+    <div className="rounded-2xl bg-[#1f1f2a] p-6 space-y-4">
       <SkeletonBlock className="h-5 w-5" />
       <SkeletonBlock className="h-9 w-24" />
       <SkeletonBlock className="h-4 w-32" />
@@ -221,11 +221,11 @@ export default function AdminDashboardPage() {
               return (
                 <div
                   key={kpi.label}
-                  className="rounded-2xl bg-[#1a1a22] p-6 space-y-3 border border-white/[0.04] hover:border-white/[0.08] transition-colors"
+                  className="rounded-2xl bg-[#1f1f2a] p-6 space-y-3 border border-white/[0.04] hover:border-white/[0.08] transition-colors"
                 >
-                  <Icon className="h-5 w-5 text-[#8a8a96]" />
+                  <Icon className="h-5 w-5 text-[#9e9eab]" />
                   <p className="text-3xl font-light text-[#c4a47a]">{kpi.value}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96]">{kpi.label}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab]">{kpi.label}</p>
                   <p
                     className={`flex items-center gap-1 text-xs ${
                       kpi.trend === "up" ? "text-emerald-400" : "text-red-400"
@@ -246,10 +246,10 @@ export default function AdminDashboardPage() {
       {/* ── Row 2: Activity + Alerts ── */}
       <div className="stagger-children grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Recent Activity */}
-        <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.04] overflow-hidden">
+        <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.04] overflow-hidden">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-white/[0.06]">
-            <ClockIcon className="h-4 w-4 text-[#8a8a96]" />
-            <h2 className="text-sm font-light tracking-wide text-[#edebe2]">Recent Activity</h2>
+            <ClockIcon className="h-4 w-4 text-[#9e9eab]" />
+            <h2 className="text-sm font-light tracking-wide text-[#f0efe6]">Recent Activity</h2>
           </div>
           <div className="divide-y divide-white/[0.04]">
             {loading
@@ -261,8 +261,8 @@ export default function AdminDashboardPage() {
                 ))
               : stats?.recentActivity.map((evt) => (
                   <div key={evt.id} className="px-6 py-3.5 hover:bg-white/[0.02] transition-colors">
-                    <p className="text-[13px] text-[#edebe2]">{evt.action}</p>
-                    <p className="text-xs text-[#8a8a96] mt-0.5">
+                    <p className="text-[13px] text-[#f0efe6]">{evt.action}</p>
+                    <p className="text-xs text-[#9e9eab] mt-0.5">
                       {evt.actor} &middot; {evt.time}
                     </p>
                   </div>
@@ -271,10 +271,10 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Alert Center */}
-        <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.04] overflow-hidden">
+        <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.04] overflow-hidden">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-white/[0.06]">
-            <ExclamationTriangleIcon className="h-4 w-4 text-[#8a8a96]" />
-            <h2 className="text-sm font-light tracking-wide text-[#edebe2]">Alert Center</h2>
+            <ExclamationTriangleIcon className="h-4 w-4 text-[#9e9eab]" />
+            <h2 className="text-sm font-light tracking-wide text-[#f0efe6]">Alert Center</h2>
           </div>
           <div className="p-4 space-y-3">
             {loading
@@ -304,7 +304,7 @@ export default function AdminDashboardPage() {
                       <ExclamationTriangleIcon className="h-4 w-4" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] text-[#edebe2]">{alert.title}</p>
+                      <p className="text-[13px] text-[#f0efe6]">{alert.title}</p>
                     </div>
                     {alert.count !== undefined && (
                       <span className="shrink-0 text-xs font-medium text-[#c4a47a] bg-[#c4a47a]/10 px-2 py-0.5 rounded-full">
@@ -320,10 +320,10 @@ export default function AdminDashboardPage() {
       {/* ── Row 3: AI Usage + User Growth ── */}
       <div className="stagger-children grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* AI Usage */}
-        <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.04] overflow-hidden">
+        <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.04] overflow-hidden">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-white/[0.06]">
-            <SparklesIcon className="h-4 w-4 text-[#8a8a96]" />
-            <h2 className="text-sm font-light tracking-wide text-[#edebe2]">AI Usage</h2>
+            <SparklesIcon className="h-4 w-4 text-[#9e9eab]" />
+            <h2 className="text-sm font-light tracking-wide text-[#f0efe6]">AI Usage</h2>
           </div>
           <div className="p-4 space-y-2">
             {loading
@@ -336,9 +336,9 @@ export default function AdminDashboardPage() {
                   return (
                     <div key={feat.name} className="space-y-1.5">
                       <div className="flex items-center justify-between">
-                        <span className="text-[13px] text-[#edebe2]">{feat.name}</span>
+                        <span className="text-[13px] text-[#f0efe6]">{feat.name}</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-[#8a8a96]">
+                          <span className="text-xs text-[#9e9eab]">
                             {feat.usageCount.toLocaleString()} uses
                           </span>
                           <span
@@ -361,10 +361,10 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* User Growth */}
-        <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.04] overflow-hidden">
+        <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.04] overflow-hidden">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-white/[0.06]">
-            <UserPlusIcon className="h-4 w-4 text-[#8a8a96]" />
-            <h2 className="text-sm font-light tracking-wide text-[#edebe2]">User Growth</h2>
+            <UserPlusIcon className="h-4 w-4 text-[#9e9eab]" />
+            <h2 className="text-sm font-light tracking-wide text-[#f0efe6]">User Growth</h2>
           </div>
           <div className="p-6">
             {loading ? (
@@ -381,12 +381,12 @@ export default function AdminDashboardPage() {
                   <p className="text-3xl font-light text-[#c4a47a]">
                     {stats?.userGrowth.signupsThisWeek}
                   </p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mt-1">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mt-1">
                     New signups this week
                   </p>
                 </div>
                 <div className="space-y-2.5">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a8a96] font-semibold">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#9e9eab] font-semibold">
                     Role Distribution
                   </p>
                   {stats?.userGrowth.roles.map((role) => {
@@ -396,7 +396,7 @@ export default function AdminDashboardPage() {
                     const widthPct = Math.max((role.count / maxCount) * 100, 4);
                     return (
                       <div key={role.name} className="flex items-center gap-3">
-                        <span className="w-28 shrink-0 text-[13px] text-[#b8b5a8]">
+                        <span className="w-28 shrink-0 text-[13px] text-[#cdc9bc]">
                           {role.name}
                         </span>
                         <div className="flex-1 h-1.5 rounded-full bg-white/[0.06]">
@@ -405,7 +405,7 @@ export default function AdminDashboardPage() {
                             style={{ width: `${widthPct}%` }}
                           />
                         </div>
-                        <span className="w-10 text-right text-xs text-[#8a8a96]">
+                        <span className="w-10 text-right text-xs text-[#9e9eab]">
                           {role.count}
                         </span>
                       </div>
@@ -420,10 +420,10 @@ export default function AdminDashboardPage() {
 
       {/* ── Row 4: Recent Users Table ── */}
       <div className="stagger-children">
-        <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.04] overflow-hidden">
+        <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.04] overflow-hidden">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-white/[0.06]">
-            <UsersIcon className="h-4 w-4 text-[#8a8a96]" />
-            <h2 className="text-sm font-light tracking-wide text-[#edebe2]">Recent Users</h2>
+            <UsersIcon className="h-4 w-4 text-[#9e9eab]" />
+            <h2 className="text-sm font-light tracking-wide text-[#f0efe6]">Recent Users</h2>
           </div>
           <div className="overflow-x-auto">
             {loading ? (
@@ -434,19 +434,19 @@ export default function AdminDashboardPage() {
               <table className="w-full min-w-[640px]">
                 <thead>
                   <tr className="border-b border-white/[0.06]">
-                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a8a96]">
+                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9e9eab]">
                       Name
                     </th>
-                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a8a96]">
+                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9e9eab]">
                       Email
                     </th>
-                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a8a96]">
+                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9e9eab]">
                       Role
                     </th>
-                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a8a96]">
+                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9e9eab]">
                       Membership
                     </th>
-                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a8a96]">
+                    <th className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9e9eab]">
                       Joined
                     </th>
                   </tr>
@@ -457,10 +457,10 @@ export default function AdminDashboardPage() {
                       key={u.id}
                       className="hover:bg-white/[0.02] transition-colors"
                     >
-                      <td className="px-6 py-3.5 text-[13px] text-[#edebe2] font-normal">
+                      <td className="px-6 py-3.5 text-[13px] text-[#f0efe6] font-normal">
                         {u.name}
                       </td>
-                      <td className="px-6 py-3.5 text-[13px] text-[#b8b5a8]">
+                      <td className="px-6 py-3.5 text-[13px] text-[#cdc9bc]">
                         {u.email}
                       </td>
                       <td className="px-6 py-3.5">
@@ -472,14 +472,14 @@ export default function AdminDashboardPage() {
                         <span
                           className={`inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-medium ${
                             u.membership === "FREE"
-                              ? "bg-white/[0.06] text-[#8a8a96]"
+                              ? "bg-white/[0.06] text-[#9e9eab]"
                               : "bg-[#c4a47a]/10 text-[#c4a47a]"
                           }`}
                         >
                           {u.membership.replace(/_/g, " ")}
                         </span>
                       </td>
-                      <td className="px-6 py-3.5 text-[13px] text-[#8a8a96]">
+                      <td className="px-6 py-3.5 text-[13px] text-[#9e9eab]">
                         {u.createdAt}
                       </td>
                     </tr>

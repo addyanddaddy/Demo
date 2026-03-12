@@ -78,7 +78,7 @@ const POST_TYPE_LABELS: Record<string, { label: string; variant: "default" | "pr
 
 function SkeletonCard() {
   return (
-    <div className="bg-[#1a1a22] rounded-2xl p-5 border border-white/[0.08] animate-pulse">
+    <div className="bg-[#1f1f2a] rounded-2xl p-5 border border-white/[0.08] animate-pulse">
       <div className="flex items-center gap-3 mb-4">
         <div className="h-9 w-9 rounded-full bg-white/[0.06]" />
         <div className="space-y-1.5 flex-1">
@@ -223,22 +223,22 @@ export default function AdminContentPage() {
     <div className="space-y-8 animate-fade-in max-w-5xl mx-auto py-4 px-4">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-light tracking-tight text-[#edebe2]">Content Moderation</h1>
-        <p className="text-sm text-[#8a8a96] mt-2 leading-relaxed">
+        <h1 className="text-3xl font-light tracking-tight text-[#f0efe6]">Content Moderation</h1>
+        <p className="text-sm text-[#9e9eab] mt-2 leading-relaxed">
           Review, moderate, and manage community content.
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 bg-[#1a1a22] rounded-xl p-1 border border-white/[0.08] w-fit">
+      <div className="flex items-center gap-1 bg-[#1f1f2a] rounded-xl p-1 border border-white/[0.08] w-fit">
         {TABS.map((tab) => (
           <button
             key={tab.key}
             onClick={() => { setActiveTab(tab.key); }}
             className={`px-4 py-2 text-xs font-medium rounded-lg transition-all ${
               activeTab === tab.key
-                ? "bg-white/[0.08] text-[#edebe2]"
-                : "text-[#8a8a96] hover:text-[#b8b5a8] hover:bg-white/[0.02]"
+                ? "bg-white/[0.08] text-[#f0efe6]"
+                : "text-[#9e9eab] hover:text-[#cdc9bc] hover:bg-white/[0.02]"
             }`}
           >
             {tab.label}
@@ -248,13 +248,13 @@ export default function AdminContentPage() {
 
       {/* Search */}
       <div className="relative max-w-md">
-        <MagnifyingGlassIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8a8a96]" />
+        <MagnifyingGlassIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9e9eab]" />
         <input
           type="text"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Search by content or author..."
-          className="w-full rounded-xl bg-white/[0.04] pl-10 pr-4 py-2.5 text-sm text-[#edebe2] placeholder-[#6b6b78] border border-white/[0.08] focus:border-[#9d7663]/40 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors"
+          className="w-full rounded-xl bg-white/[0.04] pl-10 pr-4 py-2.5 text-sm text-[#f0efe6] placeholder-[#6b6b78] border border-white/[0.08] focus:border-[#9d7663]/40 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors"
         />
       </div>
 
@@ -264,16 +264,16 @@ export default function AdminContentPage() {
           {Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}
         </div>
       ) : error ? (
-        <div className="bg-[#1a1a22] rounded-2xl p-16 text-center border border-white/[0.08]">
+        <div className="bg-[#1f1f2a] rounded-2xl p-16 text-center border border-white/[0.08]">
           <p className="text-sm text-red-400">{error}</p>
           <Button variant="ghost" size="sm" className="mt-4" onClick={() => fetchPosts(pagination.page)}>
             Retry
           </Button>
         </div>
       ) : posts.length === 0 ? (
-        <div className="bg-[#1a1a22] rounded-2xl p-16 text-center border border-white/[0.08]">
-          <DocumentTextIcon className="h-10 w-10 mx-auto text-[#8a8a96] mb-3" />
-          <p className="text-sm text-[#8a8a96]">
+        <div className="bg-[#1f1f2a] rounded-2xl p-16 text-center border border-white/[0.08]">
+          <DocumentTextIcon className="h-10 w-10 mx-auto text-[#9e9eab] mb-3" />
+          <p className="text-sm text-[#9e9eab]">
             {activeTab === "flagged"
               ? "No flagged content"
               : activeTab === "removed"
@@ -290,14 +290,14 @@ export default function AdminContentPage() {
             const typeInfo = POST_TYPE_LABELS[post.postType] || { label: post.postType, variant: "default" as const };
 
             return (
-              <div key={post.id} className="bg-[#1a1a22] rounded-2xl p-5 border border-white/[0.08]">
+              <div key={post.id} className="bg-[#1f1f2a] rounded-2xl p-5 border border-white/[0.08]">
                 {/* Author row */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
                     <Avatar name={post.author.name} src={post.author.avatarUrl} size="sm" />
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-[#edebe2] truncate">{post.author.name}</span>
+                        <span className="text-sm text-[#f0efe6] truncate">{post.author.name}</span>
                         <span className="text-[11px] text-[#9d7663] font-light">{post.author.displayRole}</span>
                         {post.author.role !== "USER" && (
                           <Badge
@@ -316,7 +316,7 @@ export default function AdminContentPage() {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-[11px] text-[#8a8a96]">{formatDate(post.createdAt)}</p>
+                      <p className="text-[11px] text-[#9e9eab]">{formatDate(post.createdAt)}</p>
                     </div>
                   </div>
 
@@ -328,10 +328,10 @@ export default function AdminContentPage() {
 
                 {/* Content */}
                 <div className="mt-3">
-                  <p className="text-sm text-[#edebe2] leading-relaxed whitespace-pre-wrap">
+                  <p className="text-sm text-[#f0efe6] leading-relaxed whitespace-pre-wrap">
                     {displayContent}
                     {contentTruncated && !isExpanded && (
-                      <span className="text-[#8a8a96]">...</span>
+                      <span className="text-[#9e9eab]">...</span>
                     )}
                   </p>
                   {contentTruncated && (
@@ -347,11 +347,11 @@ export default function AdminContentPage() {
                 {/* Meta row */}
                 <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/[0.04]">
                   <div className="flex items-center gap-5">
-                    <span className="flex items-center gap-1.5 text-[11px] text-[#8a8a96]">
+                    <span className="flex items-center gap-1.5 text-[11px] text-[#9e9eab]">
                       <HeartIcon className="h-3.5 w-3.5" />
                       {post.likesCount}
                     </span>
-                    <span className="flex items-center gap-1.5 text-[11px] text-[#8a8a96]">
+                    <span className="flex items-center gap-1.5 text-[11px] text-[#9e9eab]">
                       <ChatBubbleLeftIcon className="h-3.5 w-3.5" />
                       {post.commentsCount}
                     </span>
@@ -370,7 +370,7 @@ export default function AdminContentPage() {
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => setViewPost(post)}
-                      className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] transition-colors"
+                      className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] transition-colors"
                       title="View Full"
                     >
                       <EyeIcon className="h-3.5 w-3.5" />
@@ -390,7 +390,7 @@ export default function AdminContentPage() {
 
                     <button
                       onClick={() => handleBanAuthor(post.author.id)}
-                      className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] text-[#8a8a96] hover:text-red-400 hover:bg-white/[0.04] transition-colors"
+                      className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] text-[#9e9eab] hover:text-red-400 hover:bg-white/[0.04] transition-colors"
                       title="Ban Author"
                     >
                       <NoSymbolIcon className="h-3.5 w-3.5" />
@@ -407,7 +407,7 @@ export default function AdminContentPage() {
       {/* Pagination */}
       {!loading && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between px-1">
-          <p className="text-[11px] text-[#8a8a96]">
+          <p className="text-[11px] text-[#9e9eab]">
             Showing {(pagination.page - 1) * pagination.limit + 1}
             &ndash;
             {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total}
@@ -416,18 +416,18 @@ export default function AdminContentPage() {
             <button
               disabled={pagination.page <= 1}
               onClick={() => fetchPosts(pagination.page - 1)}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronLeftIcon className="h-3.5 w-3.5" />
               Previous
             </button>
-            <span className="text-[11px] text-[#8a8a96]">
+            <span className="text-[11px] text-[#9e9eab]">
               {pagination.page} / {pagination.totalPages}
             </span>
             <button
               disabled={pagination.page >= pagination.totalPages}
               onClick={() => fetchPosts(pagination.page + 1)}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               Next
               <ChevronRightIcon className="h-3.5 w-3.5" />
@@ -440,22 +440,22 @@ export default function AdminContentPage() {
       {deleteConfirm.open && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setDeleteConfirm({ open: false, postId: "", preview: "" })}>
           <div
-            className="bg-[#1a1a22] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-md animate-fade-in"
+            className="bg-[#1f1f2a] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-md animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-light text-[#edebe2]">Delete Post</h2>
-              <button onClick={() => setDeleteConfirm({ open: false, postId: "", preview: "" })} className="p-1 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] transition-colors">
+              <h2 className="text-lg font-light text-[#f0efe6]">Delete Post</h2>
+              <button onClick={() => setDeleteConfirm({ open: false, postId: "", preview: "" })} className="p-1 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] transition-colors">
                 <XMarkIcon className="h-5 w-5" />
               </button>
             </div>
 
-            <p className="text-sm text-[#b8b5a8] mb-3">
+            <p className="text-sm text-[#cdc9bc] mb-3">
               Are you sure you want to remove this post? This action will hide the post from all users.
             </p>
 
             <div className="rounded-xl bg-white/[0.04] border border-white/[0.08] p-3 mb-6">
-              <p className="text-xs text-[#8a8a96] italic leading-relaxed">
+              <p className="text-xs text-[#9e9eab] italic leading-relaxed">
                 &ldquo;{deleteConfirm.preview}{deleteConfirm.preview.length >= 80 ? "..." : ""}&rdquo;
               </p>
             </div>
@@ -490,12 +490,12 @@ export default function AdminContentPage() {
       {viewPost && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setViewPost(null)}>
           <div
-            className="bg-[#1a1a22] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto animate-fade-in"
+            className="bg-[#1f1f2a] rounded-2xl p-8 border border-white/[0.08] shadow-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-light text-[#edebe2]">Post Detail</h2>
-              <button onClick={() => setViewPost(null)} className="p-1 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] transition-colors">
+              <h2 className="text-lg font-light text-[#f0efe6]">Post Detail</h2>
+              <button onClick={() => setViewPost(null)} className="p-1 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] transition-colors">
                 <XMarkIcon className="h-5 w-5" />
               </button>
             </div>
@@ -504,14 +504,14 @@ export default function AdminContentPage() {
             <div className="flex items-center gap-3 mb-5">
               <Avatar name={viewPost.author.name} src={viewPost.author.avatarUrl} size="md" />
               <div>
-                <p className="text-sm text-[#edebe2]">{viewPost.author.name}</p>
+                <p className="text-sm text-[#f0efe6]">{viewPost.author.name}</p>
                 <p className="text-[11px] text-[#9d7663]">{viewPost.author.displayRole}</p>
-                <p className="text-[11px] text-[#8a8a96]">{formatDate(viewPost.createdAt)}</p>
+                <p className="text-[11px] text-[#9e9eab]">{formatDate(viewPost.createdAt)}</p>
               </div>
             </div>
 
             {/* Content */}
-            <p className="text-sm text-[#edebe2] leading-relaxed whitespace-pre-wrap mb-5">
+            <p className="text-sm text-[#f0efe6] leading-relaxed whitespace-pre-wrap mb-5">
               {viewPost.content}
             </p>
 
@@ -524,11 +524,11 @@ export default function AdminContentPage() {
 
             {/* Meta */}
             <div className="flex items-center gap-5 pt-4 border-t border-white/[0.04]">
-              <span className="flex items-center gap-1.5 text-[11px] text-[#8a8a96]">
+              <span className="flex items-center gap-1.5 text-[11px] text-[#9e9eab]">
                 <HeartIcon className="h-3.5 w-3.5" />
                 {viewPost.likesCount} likes
               </span>
-              <span className="flex items-center gap-1.5 text-[11px] text-[#8a8a96]">
+              <span className="flex items-center gap-1.5 text-[11px] text-[#9e9eab]">
                 <ChatBubbleLeftIcon className="h-3.5 w-3.5" />
                 {viewPost.commentsCount} comments
               </span>
@@ -543,22 +543,22 @@ export default function AdminContentPage() {
             {/* Details grid */}
             <div className="grid grid-cols-2 gap-3 mt-5 pt-4 border-t border-white/[0.04]">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Post ID</p>
-                <p className="text-[11px] text-[#edebe2] font-mono truncate">{viewPost.id}</p>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Post ID</p>
+                <p className="text-[11px] text-[#f0efe6] font-mono truncate">{viewPost.id}</p>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Type</p>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Type</p>
                 <Badge variant={POST_TYPE_LABELS[viewPost.postType]?.variant || "default"} size="sm">
                   {POST_TYPE_LABELS[viewPost.postType]?.label || viewPost.postType}
                 </Badge>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Visibility</p>
-                <p className="text-[11px] text-[#edebe2]">{viewPost.visibility}</p>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Visibility</p>
+                <p className="text-[11px] text-[#f0efe6]">{viewPost.visibility}</p>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1">Author ID</p>
-                <p className="text-[11px] text-[#edebe2] font-mono truncate">{viewPost.author.id}</p>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1">Author ID</p>
+                <p className="text-[11px] text-[#f0efe6] font-mono truncate">{viewPost.author.id}</p>
               </div>
             </div>
           </div>

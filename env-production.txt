@@ -1,0 +1,19 @@
+# Database
+DATABASE_URL="postgresql://neondb_owner:npg_C9vRHLpomVJ0@ep-silent-sound-adysi03b-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+
+# NextAuth
+NEXTAUTH_SECRET="dev-secret-change-in-production-abc123xyz"
+NEXTAUTH_URL="https://your-app.vercel.app"
+
+# App
+NEXT_PUBLIC_APP_URL="https://your-app.vercel.app"
+NEXT_PUBLIC_APP_NAME="FrameOne"
+
+# Email (Resend - sign up at resend.com for free tier)
+RESEND_API_KEY=""
+RESEND_FROM_EMAIL="FrameOne <noreply@yourdomain.com>"
+
+# Stripe (test mode)
+STRIPE_SECRET_KEY=""
+STRIPE_PUBLISHABLE_KEY=""
+STRIPE_WEBHOOK_SECRET=""

@@ -25,14 +25,14 @@ export default function ApplicationsPage() {
     <div className="max-w-4xl mx-auto space-y-10 animate-fade-in py-4">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-light text-[#edebe2] tracking-tight">My Applications</h1>
-        <p className="text-[13px] text-[#8a8a96] mt-2 tracking-wide">Track your job applications and their status.</p>
+        <h1 className="text-2xl font-light text-[#f0efe6] tracking-tight">My Applications</h1>
+        <p className="text-[13px] text-[#9e9eab] mt-2 tracking-wide">Track your job applications and their status.</p>
       </div>
 
       {sampleApplications.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#0f0f14]/50 p-16 text-center">
+        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#131318]/50 p-16 text-center">
           <BriefcaseIcon className="h-12 w-12 text-[#6b6b78] mx-auto mb-4" />
-          <h3 className="text-lg font-light text-[#edebe2] mb-2">No applications yet</h3>
+          <h3 className="text-lg font-light text-[#f0efe6] mb-2">No applications yet</h3>
           <p className="text-[13px] text-[#6b6b78] mb-8">Browse open requisitions and casting breakdowns to apply.</p>
           <Button onClick={() => window.location.href = "/discover"}>Browse Opportunities</Button>
         </div>
@@ -43,14 +43,14 @@ export default function ApplicationsPage() {
             const isTerminal = app.status === "REJECTED" || app.status === "WITHDRAWN";
 
             return (
-              <div key={app.id} className="bg-[#1a1a22] rounded-2xl border border-white/[0.08] overflow-hidden group hover:border-white/[0.12] transition-colors">
+              <div key={app.id} className="bg-[#1f1f2a] rounded-2xl border border-white/[0.08] overflow-hidden group hover:border-white/[0.12] transition-colors">
                 <div className="p-6">
                   <div className="flex items-start justify-between">
                     {/* Left: project and role info */}
                     <div className="space-y-3">
                       {/* Role + badge */}
                       <div className="flex items-center gap-3">
-                        <h3 className="text-[15px] font-light text-[#edebe2]">{app.role}</h3>
+                        <h3 className="text-[15px] font-light text-[#f0efe6]">{app.role}</h3>
                         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium tracking-wide ${config.bgClass} ${config.textClass}`}>
                           {config.label}
                         </span>
@@ -95,7 +95,7 @@ export default function ApplicationsPage() {
                                 <span
                                   className={`text-[11px] tracking-wide ${
                                     isCompleted || isCurrent
-                                      ? "text-[#b8b5a8] font-medium"
+                                      ? "text-[#cdc9bc] font-medium"
                                       : "text-[#6b6b78]"
                                   }`}
                                 >

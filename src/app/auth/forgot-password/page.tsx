@@ -29,14 +29,14 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0f0f14] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#131318] px-4">
       <div className="w-full max-w-md">
         {/* Card */}
-        <div className="bg-[#1a1a22] rounded-3xl p-10 space-y-8">
+        <div className="bg-[#1f1f2a] rounded-3xl p-10 space-y-8">
           {/* Logo & Branding */}
           <div className="flex flex-col items-center gap-5">
             <Image src="/logo.png" alt="FrameOne" width={56} height={56} className="rounded-xl" />
-            <span className="font-light tracking-wide text-2xl text-[#edebe2]">FrameOne</span>
+            <span className="font-light tracking-wide text-2xl text-[#f0efe6]">FrameOne</span>
           </div>
 
           {/* Bronze accent line */}
@@ -48,8 +48,8 @@ export default function ForgotPasswordPage() {
 
           {/* Heading */}
           <div className="text-center">
-            <h1 className="font-light text-2xl text-[#edebe2]">Reset your password</h1>
-            <p className="mt-2 text-[13px] text-[#8a8a96]">
+            <h1 className="font-light text-2xl text-[#f0efe6]">Reset your password</h1>
+            <p className="mt-2 text-[13px] text-[#9e9eab]">
               Enter your email and we&apos;ll send you a reset link
             </p>
           </div>
@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
               <div className="rounded-xl border border-[#9d7663]/20 bg-[#9d7663]/[0.06] px-4 py-3 text-sm text-[#c4a47a] text-center">
                 If an account exists with that email, we&apos;ve sent a password reset link.
               </div>
-              <p className="text-center text-[13px] text-[#8a8a96]">
+              <p className="text-center text-[13px] text-[#9e9eab]">
                 <Link
                   href="/auth/login"
                   className="font-medium text-[#9d7663] hover:text-[#c4a47a] transition-colors"
@@ -73,7 +73,7 @@ export default function ForgotPasswordPage() {
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-1.5">
-                  <label className="block text-[13px] font-medium text-[#b8b5a8]">Email address</label>
+                  <label className="block text-[13px] font-medium text-[#cdc9bc]">Email address</label>
                   <input
                     type="email"
                     placeholder="email@example.com"
@@ -82,7 +82,7 @@ export default function ForgotPasswordPage() {
                     required
                     autoFocus
                     autoComplete="email"
-                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[#edebe2] text-sm placeholder:text-[#8a8a96]/60 focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200"
+                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[#f0efe6] text-sm placeholder:text-[#9e9eab]/60 focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200"
                   />
                 </div>
 
@@ -96,7 +96,7 @@ export default function ForgotPasswordPage() {
               </form>
 
               {/* Footer link */}
-              <p className="text-center text-[13px] text-[#8a8a96]">
+              <p className="text-center text-[13px] text-[#9e9eab]">
                 Remember your password?{" "}
                 <Link
                   href="/auth/login"

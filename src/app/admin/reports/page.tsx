@@ -82,14 +82,14 @@ const CATEGORY_STYLES: Record<string, { bg: string; text: string; label: string;
   FAKE_PROFILE: { bg: "bg-purple-500/15", text: "text-purple-400", label: "Fake Profile", stripe: "bg-purple-400" },
   SCAM: { bg: "bg-red-500/15", text: "text-red-400", label: "Scam", stripe: "bg-red-500" },
   COPYRIGHT: { bg: "bg-blue-500/15", text: "text-blue-400", label: "Copyright", stripe: "bg-blue-400" },
-  OTHER: { bg: "bg-white/[0.06]", text: "text-[#b8b5a8]", label: "Other", stripe: "bg-[#8a8a96]" },
+  OTHER: { bg: "bg-white/[0.06]", text: "text-[#cdc9bc]", label: "Other", stripe: "bg-[#9e9eab]" },
 };
 
 const STATUS_STYLES: Record<string, { bg: string; text: string; label: string }> = {
   PENDING: { bg: "bg-amber-500/15", text: "text-amber-400", label: "Pending" },
   REVIEWING: { bg: "bg-blue-500/15", text: "text-blue-400", label: "Reviewing" },
   RESOLVED: { bg: "bg-emerald-500/15", text: "text-emerald-400", label: "Resolved" },
-  DISMISSED: { bg: "bg-white/[0.06]", text: "text-[#8a8a96]", label: "Dismissed" },
+  DISMISSED: { bg: "bg-white/[0.06]", text: "text-[#9e9eab]", label: "Dismissed" },
 };
 
 const CATEGORY_OPTIONS: { value: CategoryFilter; label: string }[] = [
@@ -155,7 +155,7 @@ function getTargetLabel(report: Report): string {
 
 function ReportSkeleton() {
   return (
-    <div className="bg-[#1a1a22] rounded-2xl p-6 animate-pulse">
+    <div className="bg-[#1f1f2a] rounded-2xl p-6 animate-pulse">
       <div className="flex items-center gap-3 mb-4">
         <div className="h-5 w-20 rounded-full bg-white/[0.06]" />
         <div className="h-5 w-16 rounded-full bg-white/[0.06]" />
@@ -196,14 +196,14 @@ function ResolutionModal({
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative w-full max-w-lg rounded-2xl bg-[#1a1a22] border border-white/[0.08] shadow-2xl shadow-black/60 overflow-hidden">
+      <div className="relative w-full max-w-lg rounded-2xl bg-[#1f1f2a] border border-white/[0.08] shadow-2xl shadow-black/60 overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08]">
           <div className="flex items-center gap-3">
             <ShieldExclamationIcon className="h-5 w-5 text-[#c4a47a]" />
-            <h3 className="text-base font-light tracking-wide text-[#edebe2]">Resolve Report</h3>
+            <h3 className="text-base font-light tracking-wide text-[#f0efe6]">Resolve Report</h3>
           </div>
-          <button onClick={onClose} className="rounded-lg p-1.5 text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.04] transition-colors">
+          <button onClick={onClose} className="rounded-lg p-1.5 text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.04] transition-colors">
             <XMarkIcon className="h-5 w-5" />
           </button>
         </div>
@@ -218,11 +218,11 @@ function ResolutionModal({
               {statusStyle.label}
             </span>
           </div>
-          <p className="text-sm text-[#b8b5a8]">
+          <p className="text-sm text-[#cdc9bc]">
             Reported {getTargetLabel(report)}
           </p>
           {report.description && (
-            <p className="mt-2 text-[13px] text-[#8a8a96] italic">
+            <p className="mt-2 text-[13px] text-[#9e9eab] italic">
               &ldquo;{report.description}&rdquo;
             </p>
           )}
@@ -231,7 +231,7 @@ function ResolutionModal({
         {/* Resolution Notes */}
         <div className="px-6 py-4 space-y-4">
           <div>
-            <label className="block text-[12px] font-medium text-[#8a8a96] uppercase tracking-wider mb-2">
+            <label className="block text-[12px] font-medium text-[#9e9eab] uppercase tracking-wider mb-2">
               Resolution Notes
             </label>
             <textarea
@@ -239,20 +239,20 @@ function ResolutionModal({
               onChange={(e) => setResolution(e.target.value)}
               rows={3}
               placeholder="Describe the action taken and reason..."
-              className="w-full rounded-xl bg-[#242430] border border-white/[0.08] px-4 py-3 text-sm text-[#edebe2] placeholder-[#8a8a96] focus:outline-none focus:border-[#9d7663]/50 focus:ring-1 focus:ring-[#9d7663]/25 resize-none transition-colors"
+              className="w-full rounded-xl bg-[#2a2a38] border border-white/[0.08] px-4 py-3 text-sm text-[#f0efe6] placeholder-[#9e9eab] focus:outline-none focus:border-[#9d7663]/50 focus:ring-1 focus:ring-[#9d7663]/25 resize-none transition-colors"
             />
           </div>
 
           {showBanConfirm && (
             <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4">
               <p className="text-sm text-red-400 font-medium mb-2">Confirm User Ban</p>
-              <p className="text-[13px] text-[#b8b5a8] mb-3">This will permanently ban the target user from the platform.</p>
+              <p className="text-[13px] text-[#cdc9bc] mb-3">This will permanently ban the target user from the platform.</p>
               <input
                 type="text"
                 value={banReason}
                 onChange={(e) => setBanReason(e.target.value)}
                 placeholder="Ban reason..."
-                className="w-full rounded-lg bg-[#242430] border border-red-500/20 px-3 py-2 text-sm text-[#edebe2] placeholder-[#8a8a96] focus:outline-none focus:border-red-400/50 mb-3"
+                className="w-full rounded-lg bg-[#2a2a38] border border-red-500/20 px-3 py-2 text-sm text-[#f0efe6] placeholder-[#9e9eab] focus:outline-none focus:border-red-400/50 mb-3"
               />
               <div className="flex gap-2">
                 <button
@@ -264,7 +264,7 @@ function ResolutionModal({
                 </button>
                 <button
                   onClick={() => setShowBanConfirm(false)}
-                  className="rounded-lg px-4 py-2 text-[13px] text-[#8a8a96] hover:text-[#edebe2] transition-colors"
+                  className="rounded-lg px-4 py-2 text-[13px] text-[#9e9eab] hover:text-[#f0efe6] transition-colors"
                 >
                   Cancel
                 </button>
@@ -288,7 +288,7 @@ function ResolutionModal({
               <button
                 onClick={() => onAction("dismiss", resolution)}
                 disabled={loading}
-                className="rounded-lg bg-white/[0.06] px-4 py-2 text-[13px] font-medium text-[#8a8a96] hover:bg-white/[0.1] hover:text-[#edebe2] transition-colors disabled:opacity-50"
+                className="rounded-lg bg-white/[0.06] px-4 py-2 text-[13px] font-medium text-[#9e9eab] hover:bg-white/[0.1] hover:text-[#f0efe6] transition-colors disabled:opacity-50"
               >
                 <XCircleIcon className="inline h-4 w-4 mr-1.5 -mt-0.5" />
                 Dismiss
@@ -416,16 +416,16 @@ export default function AdminReportsPage() {
     { key: "PENDING", label: "Pending", count: counts.pending, color: "text-amber-400" },
     { key: "REVIEWING", label: "Reviewing", count: counts.reviewing, color: "text-blue-400" },
     { key: "RESOLVED", label: "Resolved", count: counts.resolved, color: "text-emerald-400" },
-    { key: "DISMISSED", label: "Dismissed", count: counts.dismissed, color: "text-[#8a8a96]" },
-    { key: "all", label: "All", color: "text-[#edebe2]" },
+    { key: "DISMISSED", label: "Dismissed", count: counts.dismissed, color: "text-[#9e9eab]" },
+    { key: "all", label: "All", color: "text-[#f0efe6]" },
   ];
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-light tracking-wide text-[#edebe2]">Reports & Violations</h2>
-        <p className="mt-1 text-sm text-[#8a8a96]">
+        <h2 className="text-2xl font-light tracking-wide text-[#f0efe6]">Reports & Violations</h2>
+        <p className="mt-1 text-sm text-[#9e9eab]">
           Review and resolve user reports to maintain platform safety.
         </p>
       </div>
@@ -436,7 +436,7 @@ export default function AdminReportsPage() {
           { label: "Pending", count: counts.pending, bg: "bg-amber-500/10", border: "border-amber-500/20", text: "text-amber-400", icon: ClockIcon },
           { label: "Reviewing", count: counts.reviewing, bg: "bg-blue-500/10", border: "border-blue-500/20", text: "text-blue-400", icon: EyeIcon },
           { label: "Resolved", count: counts.resolved, bg: "bg-emerald-500/10", border: "border-emerald-500/20", text: "text-emerald-400", icon: CheckCircleIcon },
-          { label: "Dismissed", count: counts.dismissed, bg: "bg-white/[0.04]", border: "border-white/[0.08]", text: "text-[#8a8a96]", icon: XCircleIcon },
+          { label: "Dismissed", count: counts.dismissed, bg: "bg-white/[0.04]", border: "border-white/[0.08]", text: "text-[#9e9eab]", icon: XCircleIcon },
         ].map((stat) => (
           <div
             key={stat.label}
@@ -445,7 +445,7 @@ export default function AdminReportsPage() {
             <stat.icon className={`h-8 w-8 ${stat.text} opacity-60`} />
             <div>
               <p className={`text-2xl font-light ${stat.text}`}>{stat.count}</p>
-              <p className="text-[11px] text-[#8a8a96] uppercase tracking-wider">{stat.label}</p>
+              <p className="text-[11px] text-[#9e9eab] uppercase tracking-wider">{stat.label}</p>
             </div>
           </div>
         ))}
@@ -454,20 +454,20 @@ export default function AdminReportsPage() {
       {/* Tabs & Filter */}
       <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
         {/* Status Tabs */}
-        <div className="flex rounded-xl bg-[#1a1a22] border border-white/[0.08] p-1 overflow-x-auto">
+        <div className="flex rounded-xl bg-[#1f1f2a] border border-white/[0.08] p-1 overflow-x-auto">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setStatusTab(tab.key)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors whitespace-nowrap ${
                 statusTab === tab.key
-                  ? "bg-white/[0.08] text-[#edebe2]"
-                  : "text-[#8a8a96] hover:text-[#b8b5a8]"
+                  ? "bg-white/[0.08] text-[#f0efe6]"
+                  : "text-[#9e9eab] hover:text-[#cdc9bc]"
               }`}
             >
               {tab.label}
               {tab.count !== undefined && (
-                <span className={`text-[10px] font-semibold ${statusTab === tab.key ? tab.color : "text-[#8a8a96]"}`}>
+                <span className={`text-[10px] font-semibold ${statusTab === tab.key ? tab.color : "text-[#9e9eab]"}`}>
                   {tab.count}
                 </span>
               )}
@@ -479,11 +479,11 @@ export default function AdminReportsPage() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value as CategoryFilter)}
-          className="rounded-xl bg-[#1a1a22] border border-white/[0.08] px-4 py-2.5 text-[13px] text-[#edebe2] focus:outline-none focus:border-[#9d7663]/50 appearance-none cursor-pointer min-w-[180px]"
+          className="rounded-xl bg-[#1f1f2a] border border-white/[0.08] px-4 py-2.5 text-[13px] text-[#f0efe6] focus:outline-none focus:border-[#9d7663]/50 appearance-none cursor-pointer min-w-[180px]"
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%238a8a96' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`, backgroundPosition: "right 12px center", backgroundRepeat: "no-repeat", backgroundSize: "16px" }}
         >
           {CATEGORY_OPTIONS.map((opt) => (
-            <option key={opt.value} value={opt.value} className="bg-[#1a1a22] text-[#edebe2]">
+            <option key={opt.value} value={opt.value} className="bg-[#1f1f2a] text-[#f0efe6]">
               {opt.label}
             </option>
           ))}
@@ -510,11 +510,11 @@ export default function AdminReportsPage() {
           Array.from({ length: 5 }).map((_, i) => <ReportSkeleton key={i} />)
         ) : reports.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-[#1a1a22] flex items-center justify-center mb-4">
-              <ShieldExclamationIcon className="h-7 w-7 text-[#8a8a96]" />
+            <div className="w-16 h-16 rounded-2xl bg-[#1f1f2a] flex items-center justify-center mb-4">
+              <ShieldExclamationIcon className="h-7 w-7 text-[#9e9eab]" />
             </div>
-            <h3 className="text-lg font-light text-[#edebe2] mb-1">No reports found</h3>
-            <p className="text-sm text-[#8a8a96] max-w-sm">
+            <h3 className="text-lg font-light text-[#f0efe6] mb-1">No reports found</h3>
+            <p className="text-sm text-[#9e9eab] max-w-sm">
               {statusTab !== "all"
                 ? `No ${statusTab.toLowerCase()} reports at this time.`
                 : category
@@ -530,7 +530,7 @@ export default function AdminReportsPage() {
             return (
               <div
                 key={report.id}
-                className="bg-[#1a1a22] rounded-2xl overflow-hidden flex"
+                className="bg-[#1f1f2a] rounded-2xl overflow-hidden flex"
               >
                 {/* Left color stripe */}
                 <div className={`w-1 shrink-0 ${catStyle.stripe}`} />
@@ -545,27 +545,27 @@ export default function AdminReportsPage() {
                     <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${statusStyle.bg} ${statusStyle.text}`}>
                       {statusStyle.label}
                     </span>
-                    <span className="ml-auto text-[11px] text-[#8a8a96]">
+                    <span className="ml-auto text-[11px] text-[#9e9eab]">
                       {formatDate(report.createdAt)}
                     </span>
                   </div>
 
                   {/* Reporter */}
-                  <p className="text-[12px] text-[#8a8a96] mb-1">
+                  <p className="text-[12px] text-[#9e9eab] mb-1">
                     Reported by{" "}
-                    <span className="text-[#b8b5a8]">
+                    <span className="text-[#cdc9bc]">
                       {report.reporter?.name || report.reporter?.email || "Unknown user"}
                     </span>
                   </p>
 
                   {/* Target */}
-                  <p className="text-sm text-[#edebe2] mb-2">
+                  <p className="text-sm text-[#f0efe6] mb-2">
                     Reported {getTargetLabel(report)}
                   </p>
 
                   {/* Description */}
                   {report.description && (
-                    <p className="text-[13px] text-[#b8b5a8] italic mb-3 leading-relaxed">
+                    <p className="text-[13px] text-[#cdc9bc] italic mb-3 leading-relaxed">
                       &ldquo;{report.description}&rdquo;
                     </p>
                   )}
@@ -573,8 +573,8 @@ export default function AdminReportsPage() {
                   {/* Resolution (if resolved) */}
                   {report.resolution && (
                     <div className="rounded-lg bg-white/[0.04] px-3 py-2 mb-3">
-                      <p className="text-[11px] text-[#8a8a96] uppercase tracking-wider mb-1">Resolution</p>
-                      <p className="text-[13px] text-[#b8b5a8]">{report.resolution}</p>
+                      <p className="text-[11px] text-[#9e9eab] uppercase tracking-wider mb-1">Resolution</p>
+                      <p className="text-[13px] text-[#cdc9bc]">{report.resolution}</p>
                     </div>
                   )}
 
@@ -606,7 +606,7 @@ export default function AdminReportsPage() {
                         onClick={() => {
                           setResolveReport(report);
                         }}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.04] px-3 py-1.5 text-[12px] font-medium text-[#8a8a96] hover:bg-white/[0.08] hover:text-[#edebe2] transition-colors"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.04] px-3 py-1.5 text-[12px] font-medium text-[#9e9eab] hover:bg-white/[0.08] hover:text-[#f0efe6] transition-colors"
                       >
                         <XCircleIcon className="h-3.5 w-3.5" />
                         Dismiss
@@ -615,7 +615,7 @@ export default function AdminReportsPage() {
 
                     <button
                       onClick={() => setResolveReport(report)}
-                      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                     >
                       <EyeIcon className="h-3.5 w-3.5" />
                       View Details
@@ -631,7 +631,7 @@ export default function AdminReportsPage() {
       {/* Pagination */}
       {!loading && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between pt-2">
-          <p className="text-[12px] text-[#8a8a96]">
+          <p className="text-[12px] text-[#9e9eab]">
             Showing {(pagination.page - 1) * pagination.limit + 1}
             {" - "}
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
@@ -641,7 +641,7 @@ export default function AdminReportsPage() {
             <button
               onClick={() => fetchReports(pagination.page - 1)}
               disabled={pagination.page <= 1}
-              className="rounded-lg p-2 text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="rounded-lg p-2 text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronLeftIcon className="h-4 w-4" />
             </button>
@@ -663,7 +663,7 @@ export default function AdminReportsPage() {
                   className={`min-w-[32px] rounded-lg px-2 py-1.5 text-[12px] font-medium transition-colors ${
                     pagination.page === pageNum
                       ? "bg-[#9d7663]/20 text-[#c4a47a]"
-                      : "text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2]"
+                      : "text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6]"
                   }`}
                 >
                   {pageNum}
@@ -673,7 +673,7 @@ export default function AdminReportsPage() {
             <button
               onClick={() => fetchReports(pagination.page + 1)}
               disabled={pagination.page >= pagination.totalPages}
-              className="rounded-lg p-2 text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="rounded-lg p-2 text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronRightIcon className="h-4 w-4" />
             </button>

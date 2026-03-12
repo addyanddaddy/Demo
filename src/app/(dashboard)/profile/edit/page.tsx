@@ -37,15 +37,15 @@ export default function ProfileEditPage() {
     <div className="max-w-4xl mx-auto space-y-10 animate-fade-in py-4">
       {/* Page header */}
       <div>
-        <h1 className="text-2xl font-light text-[#edebe2] tracking-tight">My Profiles</h1>
-        <p className="text-[13px] text-[#8a8a96] mt-2 tracking-wide">Manage your professional profiles across different roles.</p>
+        <h1 className="text-2xl font-light text-[#f0efe6] tracking-tight">My Profiles</h1>
+        <p className="text-[13px] text-[#9e9eab] mt-2 tracking-wide">Manage your professional profiles across different roles.</p>
       </div>
 
       {/* User identity card */}
-      <div className="bg-[#1a1a22] rounded-2xl border border-white/[0.08] p-8">
+      <div className="bg-[#1f1f2a] rounded-2xl border border-white/[0.08] p-8">
         <div className="flex items-center gap-8">
           <div className="relative">
-            <div className="rounded-full ring-2 ring-[#9d7663]/40 ring-offset-2 ring-offset-[#1a1a22]">
+            <div className="rounded-full ring-2 ring-[#9d7663]/40 ring-offset-2 ring-offset-[#1f1f2a]">
               <AvatarUpload
                 name={session?.user?.name || "User"}
                 currentUrl={session?.user?.image}
@@ -61,8 +61,8 @@ export default function ProfileEditPage() {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="text-xl font-light text-[#edebe2] tracking-tight">{session?.user?.name}</h2>
-            <p className="text-[13px] text-[#8a8a96]">{session?.user?.email}</p>
+            <h2 className="text-xl font-light text-[#f0efe6] tracking-tight">{session?.user?.name}</h2>
+            <p className="text-[13px] text-[#9e9eab]">{session?.user?.email}</p>
             <div className="flex gap-2 mt-3">
               {profiles.map((p: any) => (
                 <span key={p.id} className="inline-flex items-center rounded-full bg-[#9d7663]/15 px-3 py-1 text-[12px] font-medium text-[#c4a47a] tracking-wide">
@@ -76,24 +76,24 @@ export default function ProfileEditPage() {
 
       {/* Role profiles */}
       {profiles.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#0f0f14]/50 p-16 text-center">
+        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#131318]/50 p-16 text-center">
           <UserCircleIcon className="h-12 w-12 text-[#6b6b78] mx-auto mb-4" />
-          <h3 className="text-lg font-light text-[#edebe2] mb-2">No role profiles yet</h3>
+          <h3 className="text-lg font-light text-[#f0efe6] mb-2">No role profiles yet</h3>
           <p className="text-[13px] text-[#6b6b78] mb-8">Complete your onboarding to set up your professional profiles.</p>
           <Button onClick={() => window.location.href = "/onboarding"}>Complete Onboarding</Button>
         </div>
       ) : (
         <div className="space-y-8">
           {profiles.map((profile: any) => (
-            <div key={profile.id} className="bg-[#1a1a22] rounded-2xl border border-white/[0.08] overflow-hidden">
+            <div key={profile.id} className="bg-[#1f1f2a] rounded-2xl border border-white/[0.08] overflow-hidden">
               {/* Profile section header */}
               <div className="px-8 py-5 border-b border-white/[0.08] flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <h3 className="text-lg font-light text-[#edebe2]">{profile.role?.name}</h3>
+                  <h3 className="text-lg font-light text-[#f0efe6]">{profile.role?.name}</h3>
                   <span className="inline-flex items-center rounded-full bg-[#c4a47a]/15 px-2.5 py-0.5 text-[11px] font-medium text-[#c4a47a] tracking-wide">
                     {profile.role?.level}
                   </span>
-                  <span className="inline-flex items-center rounded-full bg-white/[0.06] px-2.5 py-0.5 text-[11px] font-medium text-[#8a8a96] tracking-wide">
+                  <span className="inline-flex items-center rounded-full bg-white/[0.06] px-2.5 py-0.5 text-[11px] font-medium text-[#9e9eab] tracking-wide">
                     {profile.role?.taxonomyGroup?.name}
                   </span>
                 </div>
@@ -108,10 +108,10 @@ export default function ProfileEditPage() {
               <div className="px-8 py-8 space-y-8">
                 {/* Basic info section */}
                 <div>
-                  <h4 className="text-lg font-light text-[#edebe2] mb-5">Basic Information</h4>
+                  <h4 className="text-lg font-light text-[#f0efe6] mb-5">Basic Information</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-1.5">
-                      <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">Display Name</label>
+                      <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">Display Name</label>
                       <input
                         type="text"
                         defaultValue={profile.displayName}
@@ -119,7 +119,7 @@ export default function ProfileEditPage() {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">City</label>
+                      <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">City</label>
                       <input
                         type="text"
                         defaultValue={profile.city || ""}
@@ -128,7 +128,7 @@ export default function ProfileEditPage() {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">Region / State</label>
+                      <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">Region / State</label>
                       <input
                         type="text"
                         defaultValue={profile.region || ""}
@@ -137,7 +137,7 @@ export default function ProfileEditPage() {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">Country</label>
+                      <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">Country</label>
                       <input
                         type="text"
                         defaultValue={profile.country || ""}
@@ -151,11 +151,11 @@ export default function ProfileEditPage() {
                 {/* Bio section with AI label */}
                 <div>
                   <div className="flex items-center gap-3 mb-5">
-                    <h4 className="text-lg font-light text-[#edebe2]">Bio</h4>
+                    <h4 className="text-lg font-light text-[#f0efe6]">Bio</h4>
                     <span className="text-[11px] font-medium text-[#c4a47a] tracking-wide">&#10022; AI-Enhanced</span>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="block text-[13px] font-medium text-[#b8b5a8] tracking-wide">About You</label>
+                    <label className="block text-[13px] font-medium text-[#cdc9bc] tracking-wide">About You</label>
                     <textarea
                       defaultValue={profile.bio || ""}
                       placeholder="Describe your experience, specialties, and what you bring to a production..."
@@ -168,7 +168,7 @@ export default function ProfileEditPage() {
 
                 {/* Media uploads */}
                 <div>
-                  <h4 className="text-lg font-light text-[#edebe2] mb-5">Media & Documents</h4>
+                  <h4 className="text-lg font-light text-[#f0efe6] mb-5">Media & Documents</h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <FileUpload
                       type="image"

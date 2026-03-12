@@ -84,12 +84,12 @@ function truncateId(id: string): string {
 // ---------------------------------------------------------------------------
 
 const invoiceStatusStyles: Record<InvoiceStatus, string> = {
-  DRAFT: "bg-white/[0.06] text-[#8a8a96]",
+  DRAFT: "bg-white/[0.06] text-[#9e9eab]",
   SUBMITTED: "bg-amber-500/10 text-amber-400/80",
   APPROVED: "bg-blue-500/10 text-blue-400/80",
   PAID: "bg-emerald-500/10 text-emerald-400/80",
   DISPUTED: "bg-red-500/10 text-red-400/80",
-  CANCELLED: "bg-white/[0.06] text-[#8a8a96]",
+  CANCELLED: "bg-white/[0.06] text-[#9e9eab]",
 };
 
 const payoutStatusStyles: Record<PayoutStatus, string> = {
@@ -105,7 +105,7 @@ const payoutStatusStyles: Record<PayoutStatus, string> = {
 
 function KpiSkeleton() {
   return (
-    <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-7 animate-pulse">
+    <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-7 animate-pulse">
       <div className="h-3 w-24 rounded bg-white/[0.06] mb-4" />
       <div className="h-8 w-32 rounded bg-white/[0.06] mb-3" />
       <div className="h-3 w-20 rounded bg-white/[0.04]" />
@@ -199,7 +199,7 @@ export default function AdminPaymentsPage() {
     <div className="space-y-10 animate-fade-in">
       {/* Toast */}
       {toast && (
-        <div className="fixed top-6 right-6 z-50 rounded-xl bg-[#242430] border border-white/[0.08] px-5 py-3 text-sm text-[#edebe2] shadow-2xl shadow-black/40 animate-fade-in">
+        <div className="fixed top-6 right-6 z-50 rounded-xl bg-[#2a2a38] border border-white/[0.08] px-5 py-3 text-sm text-[#f0efe6] shadow-2xl shadow-black/40 animate-fade-in">
           {toast}
         </div>
       )}
@@ -207,8 +207,8 @@ export default function AdminPaymentsPage() {
       {/* Header + Date Range */}
       <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-light tracking-tight text-[#edebe2]">Payments</h1>
-          <p className="text-sm text-[#8a8a96] mt-2 tracking-wide">
+          <h1 className="text-3xl font-light tracking-tight text-[#f0efe6]">Payments</h1>
+          <p className="text-sm text-[#9e9eab] mt-2 tracking-wide">
             Monitor revenue, invoices, and payouts across the platform.
           </p>
         </div>
@@ -220,7 +220,7 @@ export default function AdminPaymentsPage() {
               className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
                 range === r.value
                   ? "bg-[#9d7663] text-white"
-                  : "text-[#8a8a96] hover:text-[#b8b5a8] hover:bg-white/[0.04]"
+                  : "text-[#9e9eab] hover:text-[#cdc9bc] hover:bg-white/[0.04]"
               }`}
             >
               {r.label}
@@ -246,48 +246,48 @@ export default function AdminPaymentsPage() {
           Array.from({ length: 4 }).map((_, i) => <KpiSkeleton key={i} />)
         ) : data ? (
           <>
-            <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-7">
+            <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-7">
               <div className="flex items-center gap-2 mb-3">
-                <CurrencyDollarIcon className="h-4 w-4 text-[#8a8a96]" />
-                <p className="text-[11px] uppercase tracking-[0.15em] text-[#8a8a96]">Total Revenue</p>
+                <CurrencyDollarIcon className="h-4 w-4 text-[#9e9eab]" />
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#9e9eab]">Total Revenue</p>
               </div>
               <p className="text-3xl font-light text-[#c4a47a] tracking-tight font-mono">
                 {formatCurrency(data.kpis.totalRevenue)}
               </p>
-              <p className="text-[11px] text-[#8a8a96] mt-3 tracking-wide">From paid invoices</p>
+              <p className="text-[11px] text-[#9e9eab] mt-3 tracking-wide">From paid invoices</p>
             </div>
 
-            <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-7">
+            <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-7">
               <div className="flex items-center gap-2 mb-3">
-                <ClockIcon className="h-4 w-4 text-[#8a8a96]" />
-                <p className="text-[11px] uppercase tracking-[0.15em] text-[#8a8a96]">Pending Payments</p>
+                <ClockIcon className="h-4 w-4 text-[#9e9eab]" />
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#9e9eab]">Pending Payments</p>
               </div>
-              <p className="text-3xl font-light text-[#edebe2] tracking-tight font-mono">
+              <p className="text-3xl font-light text-[#f0efe6] tracking-tight font-mono">
                 {formatCurrency(data.kpis.pendingPayments)}
               </p>
-              <p className="text-[11px] text-[#8a8a96] mt-3 tracking-wide">Submitted + approved</p>
+              <p className="text-[11px] text-[#9e9eab] mt-3 tracking-wide">Submitted + approved</p>
             </div>
 
-            <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-7">
+            <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-7">
               <div className="flex items-center gap-2 mb-3">
-                <BanknotesIcon className="h-4 w-4 text-[#8a8a96]" />
-                <p className="text-[11px] uppercase tracking-[0.15em] text-[#8a8a96]">Total Payouts</p>
+                <BanknotesIcon className="h-4 w-4 text-[#9e9eab]" />
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#9e9eab]">Total Payouts</p>
               </div>
-              <p className="text-3xl font-light text-[#edebe2] tracking-tight font-mono">
+              <p className="text-3xl font-light text-[#f0efe6] tracking-tight font-mono">
                 {formatCurrency(data.kpis.totalPayouts)}
               </p>
-              <p className="text-[11px] text-[#8a8a96] mt-3 tracking-wide">Completed payouts</p>
+              <p className="text-[11px] text-[#9e9eab] mt-3 tracking-wide">Completed payouts</p>
             </div>
 
-            <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-7">
+            <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-7">
               <div className="flex items-center gap-2 mb-3">
-                <ExclamationCircleIcon className="h-4 w-4 text-[#8a8a96]" />
-                <p className="text-[11px] uppercase tracking-[0.15em] text-[#8a8a96]">Outstanding</p>
+                <ExclamationCircleIcon className="h-4 w-4 text-[#9e9eab]" />
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#9e9eab]">Outstanding</p>
               </div>
-              <p className="text-3xl font-light text-[#edebe2] tracking-tight font-mono">
+              <p className="text-3xl font-light text-[#f0efe6] tracking-tight font-mono">
                 {formatCurrency(data.kpis.outstanding)}
               </p>
-              <p className="text-[11px] text-[#8a8a96] mt-3 tracking-wide">Approved but unpaid</p>
+              <p className="text-[11px] text-[#9e9eab] mt-3 tracking-wide">Approved but unpaid</p>
             </div>
           </>
         ) : null}
@@ -295,31 +295,31 @@ export default function AdminPaymentsPage() {
 
       {/* Invoice Table */}
       <div>
-        <h2 className="text-lg font-light text-[#edebe2] mb-5 tracking-wide">Invoices</h2>
-        <div className="rounded-2xl bg-[#1a1a22] overflow-hidden">
+        <h2 className="text-lg font-light text-[#f0efe6] mb-5 tracking-wide">Invoices</h2>
+        <div className="rounded-2xl bg-[#1f1f2a] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-[#242430]">
-                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] font-medium">
+                <tr className="bg-[#2a2a38]">
+                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] font-medium">
                     Invoice ID
                   </th>
-                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] font-medium">
+                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] font-medium">
                     Project
                   </th>
-                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] font-medium">
+                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] font-medium">
                     Vendor
                   </th>
-                  <th className="px-5 py-3 text-right text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] font-medium">
+                  <th className="px-5 py-3 text-right text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] font-medium">
                     Amount
                   </th>
-                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] font-medium">
+                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] font-medium">
                     Status
                   </th>
-                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] font-medium">
+                  <th className="px-5 py-3 text-left text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] font-medium">
                     Date
                   </th>
-                  <th className="px-5 py-3 text-right text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] font-medium">
+                  <th className="px-5 py-3 text-right text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] font-medium">
                     Actions
                   </th>
                 </tr>
@@ -334,18 +334,18 @@ export default function AdminPaymentsPage() {
                       className="border-b border-white/[0.04] hover:bg-white/[0.02] transition-colors duration-200"
                     >
                       <td className="px-5 py-4">
-                        <span className="text-sm font-mono text-[#b8b5a8]" title={inv.id}>
+                        <span className="text-sm font-mono text-[#cdc9bc]" title={inv.id}>
                           {truncateId(inv.id)}
                         </span>
                       </td>
                       <td className="px-5 py-4">
-                        <span className="text-sm text-[#edebe2]">{inv.projectName}</span>
+                        <span className="text-sm text-[#f0efe6]">{inv.projectName}</span>
                       </td>
                       <td className="px-5 py-4">
-                        <span className="text-sm text-[#b8b5a8]">{inv.vendorName}</span>
+                        <span className="text-sm text-[#cdc9bc]">{inv.vendorName}</span>
                       </td>
                       <td className="px-5 py-4 text-right">
-                        <span className="text-sm text-[#edebe2] font-mono">
+                        <span className="text-sm text-[#f0efe6] font-mono">
                           {formatCurrency(inv.amount)}
                         </span>
                       </td>
@@ -359,12 +359,12 @@ export default function AdminPaymentsPage() {
                         </span>
                       </td>
                       <td className="px-5 py-4">
-                        <span className="text-sm text-[#8a8a96]">{formatDate(inv.createdAt)}</span>
+                        <span className="text-sm text-[#9e9eab]">{formatDate(inv.createdAt)}</span>
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex items-center justify-end gap-2">
                           <button
-                            className="p-1.5 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.06] transition-colors"
+                            className="p-1.5 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.06] transition-colors"
                             title="View"
                           >
                             <EyeIcon className="h-4 w-4" />
@@ -398,8 +398,8 @@ export default function AdminPaymentsPage() {
                 ) : (
                   <tr>
                     <td colSpan={7} className="px-5 py-16 text-center">
-                      <CurrencyDollarIcon className="h-10 w-10 text-[#8a8a96]/30 mx-auto mb-3" />
-                      <p className="text-sm text-[#8a8a96]">No invoices found for this period.</p>
+                      <CurrencyDollarIcon className="h-10 w-10 text-[#9e9eab]/30 mx-auto mb-3" />
+                      <p className="text-sm text-[#9e9eab]">No invoices found for this period.</p>
                     </td>
                   </tr>
                 )}
@@ -410,7 +410,7 @@ export default function AdminPaymentsPage() {
           {/* Pagination */}
           {data && data.invoiceCount > PAGE_SIZE && (
             <div className="flex items-center justify-between px-5 py-4 border-t border-white/[0.04]">
-              <p className="text-[11px] text-[#8a8a96]">
+              <p className="text-[11px] text-[#9e9eab]">
                 Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, data.invoiceCount)} of{" "}
                 {data.invoiceCount}
               </p>
@@ -418,7 +418,7 @@ export default function AdminPaymentsPage() {
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page <= 1}
-                  className="p-1.5 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.06] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="p-1.5 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.06] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 >
                   <ChevronLeftIcon className="h-4 w-4" />
                 </button>
@@ -431,7 +431,7 @@ export default function AdminPaymentsPage() {
                       className={`h-8 w-8 rounded-lg text-xs font-medium transition-colors ${
                         page === pageNum
                           ? "bg-[#9d7663] text-white"
-                          : "text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.06]"
+                          : "text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.06]"
                       }`}
                     >
                       {pageNum}
@@ -439,12 +439,12 @@ export default function AdminPaymentsPage() {
                   );
                 })}
                 {totalPages > 5 && (
-                  <span className="px-1 text-[#8a8a96]">...</span>
+                  <span className="px-1 text-[#9e9eab]">...</span>
                 )}
                 <button
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page >= totalPages}
-                  className="p-1.5 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.06] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="p-1.5 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.06] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 >
                   <ChevronRightIcon className="h-4 w-4" />
                 </button>
@@ -456,9 +456,9 @@ export default function AdminPaymentsPage() {
 
       {/* Payouts Section */}
       <div>
-        <h2 className="text-lg font-light text-[#edebe2] mb-5 tracking-wide">Recent Payouts</h2>
+        <h2 className="text-lg font-light text-[#f0efe6] mb-5 tracking-wide">Recent Payouts</h2>
         {loading ? (
-          <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-6 space-y-4">
+          <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-6 space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="flex items-center justify-between animate-pulse">
                 <div className="space-y-2">
@@ -470,7 +470,7 @@ export default function AdminPaymentsPage() {
             ))}
           </div>
         ) : data && data.payouts.length > 0 ? (
-          <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] overflow-hidden divide-y divide-white/[0.04]">
+          <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] overflow-hidden divide-y divide-white/[0.04]">
             {data.payouts.map((payout) => (
               <div
                 key={payout.id}
@@ -478,15 +478,15 @@ export default function AdminPaymentsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.04]">
-                    <BanknotesIcon className="h-4 w-4 text-[#8a8a96]" />
+                    <BanknotesIcon className="h-4 w-4 text-[#9e9eab]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#edebe2]">{payout.recipientName}</p>
-                    <p className="text-xs text-[#8a8a96] mt-0.5">{formatDate(payout.createdAt)}</p>
+                    <p className="text-sm text-[#f0efe6]">{payout.recipientName}</p>
+                    <p className="text-xs text-[#9e9eab] mt-0.5">{formatDate(payout.createdAt)}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <p className="text-sm text-[#edebe2] font-mono">{formatCurrency(payout.amount)}</p>
+                  <p className="text-sm text-[#f0efe6] font-mono">{formatCurrency(payout.amount)}</p>
                   <span
                     className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] uppercase tracking-[0.15em] font-medium ${
                       payoutStatusStyles[payout.status]
@@ -499,9 +499,9 @@ export default function AdminPaymentsPage() {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.08] p-12 text-center">
-            <BanknotesIcon className="h-10 w-10 text-[#8a8a96]/30 mx-auto mb-3" />
-            <p className="text-sm text-[#8a8a96]">No payouts to display.</p>
+          <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.08] p-12 text-center">
+            <BanknotesIcon className="h-10 w-10 text-[#9e9eab]/30 mx-auto mb-3" />
+            <p className="text-sm text-[#9e9eab]">No payouts to display.</p>
           </div>
         )}
       </div>

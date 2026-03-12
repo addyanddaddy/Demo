@@ -46,7 +46,7 @@ const ACTION_BADGE_COLORS: Record<string, string> = {
   ban_user: "bg-red-500/15 text-red-400",
   unban_user: "bg-emerald-500/15 text-emerald-400",
   resolve_report: "bg-blue-500/15 text-blue-400",
-  dismiss_report: "bg-white/[0.06] text-[#b8b5a8]",
+  dismiss_report: "bg-white/[0.06] text-[#cdc9bc]",
   update_ai_config: "bg-purple-500/15 text-purple-400",
   delete_post: "bg-orange-500/15 text-orange-400",
   delete_message: "bg-orange-500/15 text-orange-400",
@@ -60,7 +60,7 @@ const ACTION_DOT_COLORS: Record<string, string> = {
   ban_user: "bg-red-400",
   unban_user: "bg-emerald-400",
   resolve_report: "bg-blue-400",
-  dismiss_report: "bg-[#8a8a96]",
+  dismiss_report: "bg-[#9e9eab]",
   update_ai_config: "bg-purple-400",
   delete_post: "bg-orange-400",
   delete_message: "bg-orange-400",
@@ -241,8 +241,8 @@ export default function AdminActivityPage() {
     <div className="space-y-6 max-w-4xl">
       {/* Header */}
       <div>
-        <h2 className="text-lg font-light tracking-wide text-[#edebe2]">Activity Log</h2>
-        <p className="text-sm text-[#8a8a96] mt-1">
+        <h2 className="text-lg font-light tracking-wide text-[#f0efe6]">Activity Log</h2>
+        <p className="text-sm text-[#9e9eab] mt-1">
           Audit trail of all admin actions on the platform.
         </p>
       </div>
@@ -268,13 +268,13 @@ export default function AdminActivityPage() {
         <select
           value={actionFilter}
           onChange={(e) => setActionFilter(e.target.value)}
-          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#edebe2] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
+          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#f0efe6] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
         >
-          <option value="" className="bg-[#1a1a22]">
+          <option value="" className="bg-[#1f1f2a]">
             All Actions
           </option>
           {ACTION_TYPES.map((action) => (
-            <option key={action} value={action} className="bg-[#1a1a22]">
+            <option key={action} value={action} className="bg-[#1f1f2a]">
               {ACTION_LABELS[action] || action}
             </option>
           ))}
@@ -284,13 +284,13 @@ export default function AdminActivityPage() {
         <select
           value={adminFilter}
           onChange={(e) => setAdminFilter(e.target.value)}
-          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#edebe2] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
+          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#f0efe6] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors"
         >
-          <option value="" className="bg-[#1a1a22]">
+          <option value="" className="bg-[#1f1f2a]">
             All Admins
           </option>
           {knownAdmins.map((id) => (
-            <option key={id} value={id} className="bg-[#1a1a22]">
+            <option key={id} value={id} className="bg-[#1f1f2a]">
               {id.slice(0, 12)}...
             </option>
           ))}
@@ -302,7 +302,7 @@ export default function AdminActivityPage() {
           value={dateFrom}
           onChange={(e) => setDateFrom(e.target.value)}
           placeholder="From"
-          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#edebe2] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors [color-scheme:dark]"
+          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#f0efe6] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors [color-scheme:dark]"
         />
 
         {/* Date to */}
@@ -311,7 +311,7 @@ export default function AdminActivityPage() {
           value={dateTo}
           onChange={(e) => setDateTo(e.target.value)}
           placeholder="To"
-          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#edebe2] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors [color-scheme:dark]"
+          className="rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-[#f0efe6] focus:outline-none focus:ring-1 focus:ring-[#9d7663]/50 transition-colors [color-scheme:dark]"
         />
 
         {/* Clear filters */}
@@ -323,7 +323,7 @@ export default function AdminActivityPage() {
               setDateFrom("");
               setDateTo("");
             }}
-            className="rounded-xl bg-white/[0.06] px-3 py-2 text-sm text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.1] transition-colors"
+            className="rounded-xl bg-white/[0.06] px-3 py-2 text-sm text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.1] transition-colors"
           >
             Clear filters
           </button>
@@ -342,7 +342,7 @@ export default function AdminActivityPage() {
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="relative ml-6 animate-pulse">
                 <div className="absolute -left-[27px] top-4 h-2 w-2 rounded-full bg-white/[0.1]" />
-                <div className="rounded-xl bg-[#1a1a22] p-4">
+                <div className="rounded-xl bg-[#1f1f2a] p-4">
                   <div className="h-3 w-32 rounded bg-white/[0.06] mb-3" />
                   <div className="h-3 w-full rounded bg-white/[0.04] mb-2" />
                   <div className="h-3 w-48 rounded bg-white/[0.04]" />
@@ -355,10 +355,10 @@ export default function AdminActivityPage() {
 
       {/* Empty state */}
       {!loading && logs.length === 0 && (
-        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#1a1a22]/50 p-12 text-center">
-          <div className="text-[#8a8a96] text-4xl mb-3">&#128221;</div>
-          <p className="text-sm text-[#b8b5a8]">No activity found.</p>
-          <p className="text-xs text-[#8a8a96] mt-1">
+        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#1f1f2a]/50 p-12 text-center">
+          <div className="text-[#9e9eab] text-4xl mb-3">&#128221;</div>
+          <p className="text-sm text-[#cdc9bc]">No activity found.</p>
+          <p className="text-xs text-[#9e9eab] mt-1">
             {actionFilter || adminFilter || dateFrom || dateTo
               ? "Try adjusting your filters."
               : "Admin actions will appear here once performed."}
@@ -375,9 +375,9 @@ export default function AdminActivityPage() {
           <div className="space-y-3">
             {logs.map((log) => {
               const targetLink = getTargetLink(log);
-              const dotColor = ACTION_DOT_COLORS[log.action] || "bg-[#8a8a96]";
+              const dotColor = ACTION_DOT_COLORS[log.action] || "bg-[#9e9eab]";
               const badgeColor =
-                ACTION_BADGE_COLORS[log.action] || "bg-white/[0.06] text-[#b8b5a8]";
+                ACTION_BADGE_COLORS[log.action] || "bg-white/[0.06] text-[#cdc9bc]";
 
               return (
                 <div key={log.id} className="relative ml-6 group">
@@ -387,11 +387,11 @@ export default function AdminActivityPage() {
                   />
 
                   {/* Entry card */}
-                  <div className="rounded-xl bg-[#1a1a22] p-4 hover:bg-[#1a1a22]/80 transition-colors group-hover:bg-white/[0.02]">
+                  <div className="rounded-xl bg-[#1f1f2a] p-4 hover:bg-[#1f1f2a]/80 transition-colors group-hover:bg-white/[0.02]">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         {/* Action description */}
-                        <p className="text-sm text-[#edebe2] leading-relaxed">
+                        <p className="text-sm text-[#f0efe6] leading-relaxed">
                           {formatAction(log)}
                         </p>
 
@@ -405,7 +405,7 @@ export default function AdminActivityPage() {
                           </span>
 
                           {/* Admin ID */}
-                          <span className="text-xs text-[#8a8a96]">
+                          <span className="text-xs text-[#9e9eab]">
                             by {log.adminUserId.slice(0, 10)}...
                           </span>
 
@@ -424,7 +424,7 @@ export default function AdminActivityPage() {
                       {/* Timestamp */}
                       <div className="shrink-0 text-right">
                         <span
-                          className="text-xs text-[#8a8a96] cursor-default"
+                          className="text-xs text-[#9e9eab] cursor-default"
                           title={fullDate(log.createdAt)}
                         >
                           {relativeTime(log.createdAt)}
@@ -444,7 +444,7 @@ export default function AdminActivityPage() {
       {/* ─────────────────────────────────────────────────── */}
       {!loading && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between pt-2">
-          <p className="text-xs text-[#8a8a96]">
+          <p className="text-xs text-[#9e9eab]">
             Showing {(pagination.page - 1) * pagination.limit + 1}
             &ndash;
             {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
@@ -455,7 +455,7 @@ export default function AdminActivityPage() {
             <button
               onClick={() => handlePageChange(pagination.page - 1)}
               disabled={pagination.page <= 1}
-              className="rounded-lg px-3 py-1.5 text-xs text-[#8a8a96] hover:bg-white/[0.06] hover:text-[#edebe2] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="rounded-lg px-3 py-1.5 text-xs text-[#9e9eab] hover:bg-white/[0.06] hover:text-[#f0efe6] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               Previous
             </button>
@@ -478,8 +478,8 @@ export default function AdminActivityPage() {
                   onClick={() => handlePageChange(pageNum)}
                   className={`rounded-lg px-3 py-1.5 text-xs transition-colors ${
                     pageNum === pagination.page
-                      ? "bg-white/[0.08] text-[#edebe2]"
-                      : "text-[#8a8a96] hover:bg-white/[0.06] hover:text-[#edebe2]"
+                      ? "bg-white/[0.08] text-[#f0efe6]"
+                      : "text-[#9e9eab] hover:bg-white/[0.06] hover:text-[#f0efe6]"
                   }`}
                 >
                   {pageNum}
@@ -490,7 +490,7 @@ export default function AdminActivityPage() {
             <button
               onClick={() => handlePageChange(pagination.page + 1)}
               disabled={pagination.page >= pagination.totalPages}
-              className="rounded-lg px-3 py-1.5 text-xs text-[#8a8a96] hover:bg-white/[0.06] hover:text-[#edebe2] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="rounded-lg px-3 py-1.5 text-xs text-[#9e9eab] hover:bg-white/[0.06] hover:text-[#f0efe6] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               Next
             </button>

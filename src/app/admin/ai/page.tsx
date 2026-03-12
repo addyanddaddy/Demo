@@ -53,7 +53,7 @@ const MODEL_OPTIONS = [
 
 function FeatureCardSkeleton() {
   return (
-    <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.06] p-6 animate-pulse">
+    <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.06] p-6 animate-pulse">
       <div className="flex items-start justify-between mb-4">
         <div className="space-y-2">
           <div className="h-5 w-44 rounded bg-white/[0.06]" />
@@ -72,7 +72,7 @@ function FeatureCardSkeleton() {
 
 function UsageSkeleton() {
   return (
-    <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.06] p-8 animate-pulse">
+    <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.06] p-8 animate-pulse">
       <div className="h-5 w-40 rounded bg-white/[0.06] mb-6" />
       <div className="space-y-4">
         {Array.from({ length: 4 }).map((_, i) => (
@@ -103,7 +103,7 @@ function Toggle({
       aria-checked={checked}
       onClick={() => onChange(!checked)}
       className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9d7663]/40 ${
-        checked ? "bg-[#9d7663]" : "bg-[#3d3d4a]"
+        checked ? "bg-[#9d7663]" : "bg-[#474756]"
       }`}
     >
       <span
@@ -177,7 +177,7 @@ function FeatureCard({
 
   return (
     <div
-      className={`rounded-2xl bg-[#1a1a22] p-6 border transition-all duration-300 ${
+      className={`rounded-2xl bg-[#1f1f2a] p-6 border transition-all duration-300 ${
         local.enabled
           ? "border-white/[0.06] border-l-2 border-l-[#9d7663]"
           : "border-white/[0.06] opacity-60"
@@ -186,8 +186,8 @@ function FeatureCard({
       {/* Header: Name + toggle */}
       <div className="flex items-start justify-between mb-1">
         <div className="flex-1 min-w-0 pr-4">
-          <h3 className="text-base font-normal text-[#edebe2] tracking-wide">{local.name}</h3>
-          <p className="text-sm text-[#b8b5a8] mt-1 leading-relaxed">{local.description}</p>
+          <h3 className="text-base font-normal text-[#f0efe6] tracking-wide">{local.name}</h3>
+          <p className="text-sm text-[#cdc9bc] mt-1 leading-relaxed">{local.description}</p>
         </div>
         <Toggle checked={local.enabled} onChange={(v) => setLocal({ ...local, enabled: v })} />
       </div>
@@ -196,28 +196,28 @@ function FeatureCard({
       <div className="mt-5 space-y-4">
         {/* Model selector */}
         <div>
-          <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1.5">
+          <label className="block text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1.5">
             Model
           </label>
           <div className="relative">
             <select
               value={local.model}
               onChange={(e) => setLocal({ ...local, model: e.target.value })}
-              className="w-full appearance-none rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#edebe2] focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200 pr-10"
+              className="w-full appearance-none rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#f0efe6] focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200 pr-10"
             >
               {MODEL_OPTIONS.map((m) => (
-                <option key={m.value} value={m.value} className="bg-[#1a1a22] text-[#edebe2]">
+                <option key={m.value} value={m.value} className="bg-[#1f1f2a] text-[#f0efe6]">
                   {m.label}
                 </option>
               ))}
             </select>
-            <ChevronDownIcon className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#8a8a96] pointer-events-none" />
+            <ChevronDownIcon className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9e9eab] pointer-events-none" />
           </div>
         </div>
 
         {/* Max tokens */}
         <div>
-          <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1.5">
+          <label className="block text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1.5">
             Max Tokens
           </label>
           <input
@@ -228,17 +228,17 @@ function FeatureCard({
             onChange={(e) =>
               setLocal({ ...local, maxTokens: Math.max(1, parseInt(e.target.value) || 1) })
             }
-            className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#edebe2] font-mono focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200"
+            className="w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-2.5 text-sm text-[#f0efe6] font-mono focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200"
           />
         </div>
 
         {/* Temperature slider */}
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <label className="text-[11px] uppercase tracking-[0.15em] text-[#8a8a96]">
+            <label className="text-[11px] uppercase tracking-[0.15em] text-[#9e9eab]">
               Temperature
             </label>
-            <span className="text-[11px] font-mono text-[#b8b5a8]">
+            <span className="text-[11px] font-mono text-[#cdc9bc]">
               {local.temperature.toFixed(2)}
             </span>
           </div>
@@ -249,29 +249,29 @@ function FeatureCard({
             step={0.01}
             value={local.temperature}
             onChange={(e) => setLocal({ ...local, temperature: parseFloat(e.target.value) })}
-            className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-[#3d3d4a] accent-[#9d7663] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#c4a47a] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#1a1a22] [&::-webkit-slider-thumb]:shadow-md"
+            className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-[#474756] accent-[#9d7663] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#c4a47a] [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#1f1f2a] [&::-webkit-slider-thumb]:shadow-md"
           />
           <div className="flex justify-between mt-1">
-            <span className="text-[10px] text-[#8a8a96]">Precise</span>
-            <span className="text-[10px] text-[#8a8a96]">Creative</span>
+            <span className="text-[10px] text-[#9e9eab]">Precise</span>
+            <span className="text-[10px] text-[#9e9eab]">Creative</span>
           </div>
         </div>
 
         {/* Attached paths */}
         <div>
-          <label className="block text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] mb-1.5">
+          <label className="block text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] mb-1.5">
             Attached to
           </label>
           <div className="flex flex-wrap gap-1.5 mb-2">
             {local.attachedPaths.map((path) => (
               <span
                 key={path}
-                className="inline-flex items-center gap-1 bg-white/[0.06] rounded-full px-2.5 py-1 text-[11px] text-[#b8b5a8]"
+                className="inline-flex items-center gap-1 bg-white/[0.06] rounded-full px-2.5 py-1 text-[11px] text-[#cdc9bc]"
               >
                 {path}
                 <button
                   onClick={() => removePath(path)}
-                  className="text-[#8a8a96] hover:text-red-400/80 transition-colors"
+                  className="text-[#9e9eab] hover:text-red-400/80 transition-colors"
                 >
                   <XMarkIcon className="h-3 w-3" />
                 </button>
@@ -285,11 +285,11 @@ function FeatureCard({
               onChange={(e) => setNewPath(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addPath()}
               placeholder="/path/to/page"
-              className="flex-1 rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-xs text-[#edebe2] placeholder:text-[#8a8a96]/50 focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200"
+              className="flex-1 rounded-xl bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-xs text-[#f0efe6] placeholder:text-[#9e9eab]/50 focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none transition-colors duration-200"
             />
             <button
               onClick={addPath}
-              className="p-2 rounded-lg text-[#8a8a96] hover:text-[#edebe2] hover:bg-white/[0.06] transition-colors"
+              className="p-2 rounded-lg text-[#9e9eab] hover:text-[#f0efe6] hover:bg-white/[0.06] transition-colors"
             >
               <PlusIcon className="h-4 w-4" />
             </button>
@@ -300,7 +300,7 @@ function FeatureCard({
         <div>
           <button
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.15em] text-[#8a8a96] hover:text-[#b8b5a8] transition-colors"
+            className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.15em] text-[#9e9eab] hover:text-[#cdc9bc] transition-colors"
           >
             <ChevronDownIcon
               className={`h-3 w-3 transition-transform duration-200 ${
@@ -315,20 +315,20 @@ function FeatureCard({
               onChange={(e) => setLocal({ ...local, customPrompt: e.target.value || null })}
               placeholder="Override the default system prompt for this feature..."
               rows={4}
-              className="mt-2 w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-[#edebe2] placeholder:text-[#8a8a96]/50 focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none resize-y min-h-[80px] transition-colors duration-200"
+              className="mt-2 w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-4 py-3 text-sm text-[#f0efe6] placeholder:text-[#9e9eab]/50 focus:border-[#9d7663]/50 focus:ring-2 focus:ring-[#9d7663]/20 focus:outline-none resize-y min-h-[80px] transition-colors duration-200"
             />
           )}
         </div>
 
         {/* Usage stats */}
         <div className="flex items-center gap-4 pt-2 border-t border-white/[0.04]">
-          <span className="text-[11px] text-[#8a8a96]">
+          <span className="text-[11px] text-[#9e9eab]">
             {local.usageCount.toLocaleString()} API calls
           </span>
           {local.lastUsedAt && (
             <>
-              <span className="text-[11px] text-[#8a8a96]/40">|</span>
-              <span className="text-[11px] text-[#8a8a96]">
+              <span className="text-[11px] text-[#9e9eab]/40">|</span>
+              <span className="text-[11px] text-[#9e9eab]">
                 Last used{" "}
                 {new Date(local.lastUsedAt).toLocaleDateString("en-US", {
                   month: "short",
@@ -351,7 +351,7 @@ function FeatureCard({
               ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/20"
               : hasChanges
               ? "bg-[#9d7663] text-white hover:bg-[#c4a47a]"
-              : "bg-white/[0.04] text-[#8a8a96] border border-white/[0.06]"
+              : "bg-white/[0.04] text-[#9e9eab] border border-white/[0.06]"
           }`}
         >
           {saved ? "Saved" : "Save Changes"}
@@ -427,7 +427,7 @@ export default function AdminAIPage() {
     <div className="space-y-10 animate-fade-in">
       {/* Toast */}
       {toast && (
-        <div className="fixed top-6 right-6 z-50 rounded-xl bg-[#242430] border border-white/[0.08] px-5 py-3 text-sm text-[#edebe2] shadow-2xl shadow-black/40 animate-fade-in">
+        <div className="fixed top-6 right-6 z-50 rounded-xl bg-[#2a2a38] border border-white/[0.08] px-5 py-3 text-sm text-[#f0efe6] shadow-2xl shadow-black/40 animate-fade-in">
           {toast}
         </div>
       )}
@@ -436,11 +436,11 @@ export default function AdminAIPage() {
       <div>
         <div className="flex items-center gap-2.5 mb-2">
           <SparklesIcon className="h-6 w-6 text-[#c4a47a]" />
-          <h1 className="text-3xl font-light tracking-tight text-[#edebe2]">
+          <h1 className="text-3xl font-light tracking-tight text-[#f0efe6]">
             AI Intelligence Layer
           </h1>
         </div>
-        <p className="text-sm text-[#8a8a96] tracking-wide">
+        <p className="text-sm text-[#9e9eab] tracking-wide">
           Configure and monitor all AI-powered features across the platform.
         </p>
       </div>
@@ -469,17 +469,17 @@ export default function AdminAIPage() {
 
       {/* AI Usage Overview */}
       <div>
-        <h2 className="text-lg font-light text-[#edebe2] mb-5 tracking-wide">AI Usage Overview</h2>
+        <h2 className="text-lg font-light text-[#f0efe6] mb-5 tracking-wide">AI Usage Overview</h2>
         {loading ? (
           <UsageSkeleton />
         ) : data ? (
-          <div className="rounded-2xl bg-[#1a1a22] border border-white/[0.06] p-8">
+          <div className="rounded-2xl bg-[#1f1f2a] border border-white/[0.06] p-8">
             {/* Total */}
             <div className="flex items-baseline gap-3 mb-8">
               <span className="text-3xl font-light text-[#c4a47a] font-mono tracking-tight">
                 {data.usage.totalApiCalls.toLocaleString()}
               </span>
-              <span className="text-sm text-[#8a8a96]">total API calls</span>
+              <span className="text-sm text-[#9e9eab]">total API calls</span>
             </div>
 
             {/* Per-feature breakdown */}
@@ -487,8 +487,8 @@ export default function AdminAIPage() {
               {data.usage.featureBreakdown.map((item) => (
                 <div key={item.name}>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-sm text-[#edebe2]">{item.name}</span>
-                    <span className="text-[11px] font-mono text-[#b8b5a8]">
+                    <span className="text-sm text-[#f0efe6]">{item.name}</span>
+                    <span className="text-[11px] font-mono text-[#cdc9bc]">
                       {item.calls.toLocaleString()}
                     </span>
                   </div>
@@ -504,7 +504,7 @@ export default function AdminAIPage() {
 
             {/* Cost note */}
             <div className="mt-8 pt-6 border-t border-white/[0.04]">
-              <p className="text-[11px] text-[#8a8a96] tracking-wide">
+              <p className="text-[11px] text-[#9e9eab] tracking-wide">
                 AI costs are absorbed by the platform. Usage is monitored for optimization purposes.
               </p>
             </div>

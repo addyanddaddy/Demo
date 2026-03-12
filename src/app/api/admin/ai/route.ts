@@ -11,7 +11,31 @@ export async function GET() {
       orderBy: { createdAt: "asc" },
     });
 
-    return NextResponse.json({ success: true, data: configs });
+    // Transform to match frontend AIData interface
+    const features = configs.map((c) => ({
+      id: c.id,
+      name: c.displayName,
+      description: c.description,
+      enabled: c.isEnabled,
+      model: c.model,
+      maxTokens: c.maxTokens,
+      temperature: c.temperature,
+      attachedPaths: (c.attachedTo as string[]) || [],
+      usageCount: c.usageCount,
+      lastUsedAt: c.lastUsedAt?.toISOString() || null,
+      customPrompt: c.customPrompt,
+    }));
+
+    const totalApiCalls = configs.reduce((sum, c) => sum + c.usageCount, 0);
+    const featureBreakdown = configs.map((c) => ({
+      name: c.displayName,
+      calls: c.usageCount,
+    }));
+
+    return NextResponse.json({
+      features,
+      usage: { totalApiCalls, featureBreakdown },
+    });
   } catch (e) {
     console.error("Admin AI config list error:", e);
     return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });

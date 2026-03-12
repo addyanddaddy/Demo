@@ -34,9 +34,9 @@ export default async function DashboardPage() {
     <div className="space-y-10 px-2 py-4 animate-fade-in">
       {/* Welcome */}
       <div className="pt-4">
-        <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mb-3">Dashboard</p>
-        <h1 className="text-3xl font-light text-[#edebe2]">Welcome back, {userName}</h1>
-        <p className="text-sm text-[#8a8a96] mt-2 font-light">Here&apos;s what&apos;s happening across your productions.</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mb-3">Dashboard</p>
+        <h1 className="text-3xl font-light text-[#f0efe6]">Welcome back, {userName}</h1>
+        <p className="text-sm text-[#9e9eab] mt-2 font-light">Here&apos;s what&apos;s happening across your productions.</p>
         {roles.length > 0 && (
           <div className="flex gap-2 mt-5 flex-wrap">
             {roles.map((rp: any) => (
@@ -51,12 +51,12 @@ export default async function DashboardPage() {
 
       {/* Stats */}
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mb-5">Overview</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mb-5">Overview</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-children">
           {statCards.map((stat) => (
-            <div key={stat.label} className="rounded-2xl bg-[#1a1a22] p-6">
+            <div key={stat.label} className="rounded-2xl bg-[#1f1f2a] p-6">
               <div className="flex items-center justify-between">
-                <p className="text-xs uppercase tracking-[0.15em] text-[#8a8a96] font-medium">{stat.label}</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-[#9e9eab] font-medium">{stat.label}</p>
                 <stat.icon className={`h-4 w-4 ${stat.accent} opacity-60`} strokeWidth={1.5} />
               </div>
               <p className="mt-4 text-3xl font-semibold bg-gradient-to-r from-[#9d7663] to-[#c4a47a] bg-clip-text text-transparent">{stat.value}</p>
@@ -67,16 +67,16 @@ export default async function DashboardPage() {
 
       {/* Quick Actions */}
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mb-5">Quick Actions</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mb-5">Quick Actions</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-children">
           {quickActions.map((action) => (
             <Link
               key={action.label}
               href={action.href}
-              className="group rounded-2xl bg-[#1a1a22] p-6 hover:bg-[#242430] transition-all duration-300"
+              className="group rounded-2xl bg-[#1f1f2a] p-6 hover:bg-[#2a2a38] transition-all duration-300"
             >
-              <action.icon className="h-5 w-5 text-[#8a8a96] group-hover:text-[#9d7663] transition-colors duration-300 mb-4" strokeWidth={1.5} />
-              <h3 className="text-sm font-normal text-[#edebe2] group-hover:text-[#c4a47a] transition-colors duration-300">{action.label}</h3>
+              <action.icon className="h-5 w-5 text-[#9e9eab] group-hover:text-[#9d7663] transition-colors duration-300 mb-4" strokeWidth={1.5} />
+              <h3 className="text-sm font-normal text-[#f0efe6] group-hover:text-[#c4a47a] transition-colors duration-300">{action.label}</h3>
               <p className="text-xs text-[#6b6b78] mt-1.5 font-light leading-relaxed">{action.description}</p>
             </Link>
           ))}
@@ -85,8 +85,8 @@ export default async function DashboardPage() {
 
       {/* Recent Activity */}
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mb-5">Recent Activity</p>
-        <div className="rounded-2xl bg-[#1a1a22] p-10 text-center">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mb-5">Recent Activity</p>
+        <div className="rounded-2xl bg-[#1f1f2a] p-10 text-center">
           <p className="text-sm text-[#6b6b78] font-light">No recent activity yet. Start by completing your profile or browsing projects.</p>
         </div>
       </div>

@@ -56,20 +56,20 @@ export default function NewProjectPage() {
   };
 
   const selectClasses =
-    "w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-[#edebe2] focus:border-[#9d7663]/50 focus:outline-none focus:ring-2 focus:ring-[#9d7663]/20 transition-colors";
+    "w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-[#f0efe6] focus:border-[#9d7663]/50 focus:outline-none focus:ring-2 focus:ring-[#9d7663]/20 transition-colors";
 
   return (
     <div className="space-y-10 animate-fade-in max-w-2xl">
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mb-2">New Production</p>
-        <h1 className="text-3xl font-light tracking-tight text-[#edebe2]">Create New Project</h1>
+        <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mb-2">New Production</p>
+        <h1 className="text-3xl font-light tracking-tight text-[#f0efe6]">Create New Project</h1>
         <p className="text-sm text-[#6b6b78] mt-2">Set up a new production and start building your team.</p>
       </div>
 
-      <Card className="p-8 bg-[#1a1a22] rounded-2xl border-white/[0.08]">
+      <Card className="p-8 bg-[#1f1f2a] rounded-2xl border-white/[0.08]">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label className="block text-[13px] font-medium text-[#b8b5a8]">Project Title</label>
+            <label className="block text-[13px] font-medium text-[#cdc9bc]">Project Title</label>
             <input
               type="text"
               placeholder="e.g., Midnight Runner"
@@ -81,7 +81,7 @@ export default function NewProjectPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-[13px] font-medium text-[#b8b5a8]">Logline</label>
+            <label className="block text-[13px] font-medium text-[#cdc9bc]">Logline</label>
             <textarea
               placeholder="A brief summary of the project..."
               value={form.logline}
@@ -93,7 +93,7 @@ export default function NewProjectPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="block text-[13px] font-medium text-[#b8b5a8]">Format</label>
+              <label className="block text-[13px] font-medium text-[#cdc9bc]">Format</label>
               <select
                 value={form.format}
                 onChange={(e) => setForm({ ...form, format: e.target.value })}
@@ -106,7 +106,7 @@ export default function NewProjectPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-[13px] font-medium text-[#b8b5a8]">Stage</label>
+              <label className="block text-[13px] font-medium text-[#cdc9bc]">Stage</label>
               <select
                 value={form.stage}
                 onChange={(e) => setForm({ ...form, stage: e.target.value })}
@@ -120,7 +120,7 @@ export default function NewProjectPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-[13px] font-medium text-[#b8b5a8]">Visibility</label>
+            <label className="block text-[13px] font-medium text-[#cdc9bc]">Visibility</label>
             <select
               value={form.visibility}
               onChange={(e) => setForm({ ...form, visibility: e.target.value })}
@@ -133,7 +133,7 @@ export default function NewProjectPage() {
           </div>
 
           <div className="flex justify-end gap-3 pt-6 border-t border-white/[0.08]">
-            <Button type="button" variant="ghost" onClick={() => router.push("/projects")} className="rounded-lg text-[#8a8a96] hover:text-[#edebe2]">Cancel</Button>
+            <Button type="button" variant="ghost" onClick={() => router.push("/projects")} className="rounded-lg text-[#9e9eab] hover:text-[#f0efe6]">Cancel</Button>
             <Button type="submit" loading={loading} className="rounded-full bg-[#9d7663] hover:bg-[#9d7663]/90 text-white px-6">Create Project</Button>
           </div>
         </form>

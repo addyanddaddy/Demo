@@ -25,9 +25,9 @@ export default function DiscoverPage() {
     <div className="space-y-10 px-2 py-4 animate-fade-in">
       {/* Header + Search */}
       <div className="pt-4 max-w-2xl mx-auto text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mb-3">Discover</p>
-        <h1 className="text-3xl font-light text-[#edebe2]">Find Talent &amp; Crew</h1>
-        <p className="text-sm text-[#8a8a96] mt-2 font-light">Search across {TAXONOMY_GROUPS.length} departments and 40+ specialized roles.</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mb-3">Discover</p>
+        <h1 className="text-3xl font-light text-[#f0efe6]">Find Talent &amp; Crew</h1>
+        <p className="text-sm text-[#9e9eab] mt-2 font-light">Search across {TAXONOMY_GROUPS.length} departments and 40+ specialized roles.</p>
 
         {/* Search input */}
         <div className="mt-8 relative">
@@ -37,9 +37,9 @@ export default function DiscoverPage() {
             placeholder="Search by name, role, or skill..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-full bg-[#1a1a22] pl-13 pr-6 py-4 text-sm text-[#edebe2] placeholder-[#6b6b78] focus:ring-2 focus:ring-[#9d7663]/30 focus:outline-none transition-all duration-300"
+            className="w-full rounded-full bg-[#1f1f2a] pl-13 pr-6 py-4 text-sm text-[#f0efe6] placeholder-[#6b6b78] focus:ring-2 focus:ring-[#9d7663]/30 focus:outline-none transition-all duration-300"
           />
-          <span className="text-[11px] text-[#b8b5a8] font-medium tracking-wide inline-flex items-center gap-1.5 absolute right-5 top-1/2 -translate-y-1/2">
+          <span className="text-[11px] text-[#cdc9bc] font-medium tracking-wide inline-flex items-center gap-1.5 absolute right-5 top-1/2 -translate-y-1/2">
             <span className="text-[#9d7663]">✦</span> AI-Enhanced
           </span>
         </div>
@@ -50,30 +50,30 @@ export default function DiscoverPage() {
         <select
           value={selectedDepartment}
           onChange={(e) => setSelectedDepartment(e.target.value)}
-          className="rounded-full bg-[#1a1a22] px-5 py-2.5 text-sm text-[#b8b5a8] focus:ring-2 focus:ring-[#9d7663]/30 focus:outline-none appearance-none cursor-pointer transition-all duration-300 hover:bg-[#242430] border-0"
+          className="rounded-full bg-[#1f1f2a] px-5 py-2.5 text-sm text-[#cdc9bc] focus:ring-2 focus:ring-[#9d7663]/30 focus:outline-none appearance-none cursor-pointer transition-all duration-300 hover:bg-[#2a2a38] border-0"
         >
           <option value="">All Departments</option>
           {TAXONOMY_GROUPS.map((g) => (
             <option key={g.slug} value={g.slug}>{g.name}</option>
           ))}
         </select>
-        <Button variant="secondary" className="gap-2 rounded-full bg-[#1a1a22] border-0 text-[#b8b5a8] hover:bg-[#242430] transition-all duration-300 px-5">
-          <AdjustmentsHorizontalIcon className="h-4 w-4 text-[#8a8a96]" strokeWidth={1.5} />
+        <Button variant="secondary" className="gap-2 rounded-full bg-[#1f1f2a] border-0 text-[#cdc9bc] hover:bg-[#2a2a38] transition-all duration-300 px-5">
+          <AdjustmentsHorizontalIcon className="h-4 w-4 text-[#9e9eab]" strokeWidth={1.5} />
           Filters
         </Button>
       </div>
 
       {/* Results */}
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-[#8a8a96] mb-5">Results</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-[#9e9eab] mb-5">Results</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
           {placeholderResults.map((person) => (
-            <Card key={person.name} variant="interactive" className="rounded-2xl bg-[#1a1a22] border-0 p-6 hover:bg-[#242430] transition-all duration-300">
+            <Card key={person.name} variant="interactive" className="rounded-2xl bg-[#1f1f2a] border-0 p-6 hover:bg-[#2a2a38] transition-all duration-300">
               <div className="flex items-start gap-4">
                 <Avatar name={person.name} size="lg" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-normal text-[#edebe2] truncate">{person.name}</h3>
+                    <h3 className="text-sm font-normal text-[#f0efe6] truncate">{person.name}</h3>
                     <StatusDot status={person.status} />
                   </div>
                   <p className="text-xs text-[#9d7663] font-medium mt-1">{person.role}</p>
@@ -86,8 +86,8 @@ export default function DiscoverPage() {
                 <Badge variant="default" size="sm">8 endorsements</Badge>
               </div>
               <div className="flex gap-3 mt-5">
-                <Button variant="primary" size="sm" className="flex-1 rounded-full bg-[#9d7663] hover:bg-[#c4a47a] text-[#0f0f14] border-0 transition-all duration-300">View Profile</Button>
-                <Button variant="outline" size="sm" className="flex-1 rounded-full border-white/[0.08] text-[#b8b5a8] hover:border-[#9d7663]/40 hover:text-[#c4a47a] transition-all duration-300">Message</Button>
+                <Button variant="primary" size="sm" className="flex-1 rounded-full bg-[#9d7663] hover:bg-[#c4a47a] text-[#131318] border-0 transition-all duration-300">View Profile</Button>
+                <Button variant="outline" size="sm" className="flex-1 rounded-full border-white/[0.08] text-[#cdc9bc] hover:border-[#9d7663]/40 hover:text-[#c4a47a] transition-all duration-300">Message</Button>
               </div>
             </Card>
           ))}

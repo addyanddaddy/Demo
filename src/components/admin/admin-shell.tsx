@@ -147,7 +147,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
       <div className="flex h-16 items-center gap-3 px-4 py-5 border-b border-white/[0.06]">
         <Link href="/admin" className="flex items-center gap-2.5">
           <Image src="/logo.png" alt="FrameOne" width={28} height={28} className="rounded-md" />
-          <span className="text-base font-light tracking-wide text-[#edebe2]">FrameOne</span>
+          <span className="text-base font-light tracking-wide text-[#f0efe6]">FrameOne</span>
           <span className="ml-1 inline-flex items-center rounded-md bg-[#9d7663]/20 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#c4a47a]">
             Admin
           </span>
@@ -158,7 +158,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
       <nav className="flex-1 space-y-5 overflow-y-auto p-3 pt-4 scrollbar-thin">
         {sections.map((section, idx) => (
           <div key={section.label}>
-            <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8a8a96] mb-1.5">
+            <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9e9eab] mb-1.5">
               {section.label}
             </p>
             <div className="space-y-0.5">
@@ -174,8 +174,8 @@ export function AdminShell({ children, user }: AdminShellProps) {
                     className={cn(
                       "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-normal transition-colors",
                       isActive
-                        ? "bg-white/[0.06] text-[#edebe2]"
-                        : "text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#b8b5a8]"
+                        ? "bg-white/[0.06] text-[#f0efe6]"
+                        : "text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#cdc9bc]"
                     )}
                   >
                     <item.icon className="h-[18px] w-[18px] shrink-0 stroke-[1.5]" />
@@ -195,7 +195,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
       <div className="border-t border-white/[0.06] p-3">
         <Link
           href="/dashboard"
-          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-normal text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#b8b5a8] transition-colors"
+          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-normal text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#cdc9bc] transition-colors"
         >
           <ArrowLeftIcon className="h-[18px] w-[18px] shrink-0 stroke-[1.5]" />
           <span>Back to App</span>
@@ -216,7 +216,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
       {/* Mobile toggle */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed top-3.5 left-3 z-50 rounded-lg bg-[#0f0f14] p-2 text-[#8a8a96] hover:text-[#edebe2] lg:hidden"
+        className="fixed top-3.5 left-3 z-50 rounded-lg bg-[#131318] p-2 text-[#9e9eab] hover:text-[#f0efe6] lg:hidden"
       >
         {mobileOpen ? <XMarkIcon className="h-5 w-5" /> : <Bars3Icon className="h-5 w-5" />}
       </button>
@@ -232,7 +232,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 flex w-60 flex-col border-r border-white/[0.08] bg-[#0f0f14]",
+          "fixed inset-y-0 left-0 z-40 flex w-60 flex-col border-r border-white/[0.08] bg-[#131318]",
           "transition-transform duration-200 lg:translate-x-0 lg:static",
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         )}
@@ -243,8 +243,8 @@ export function AdminShell({ children, user }: AdminShellProps) {
       {/* Main area */}
       <div className="flex flex-1 flex-col min-w-0">
         {/* Header */}
-        <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-white/[0.08] bg-[#0f0f14]/80 backdrop-blur-xl px-4 lg:px-8">
-          <h1 className="text-lg font-light tracking-wide text-[#edebe2] pl-10 lg:pl-0">
+        <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-white/[0.08] bg-[#131318]/80 backdrop-blur-xl px-4 lg:px-8">
+          <h1 className="text-lg font-light tracking-wide text-[#f0efe6] pl-10 lg:pl-0">
             {pageTitle}
           </h1>
 
@@ -253,7 +253,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
             <div className="relative" ref={notifRef}>
               <button
                 onClick={() => { setShowNotif(!showNotif); setShowUserMenu(false); }}
-                className="relative rounded-lg p-2 text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors"
+                className="relative rounded-lg p-2 text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
               >
                 <BellIcon className="h-5 w-5" />
                 <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500/90 text-[10px] font-bold text-white">
@@ -262,18 +262,18 @@ export function AdminShell({ children, user }: AdminShellProps) {
               </button>
 
               {showNotif && (
-                <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-white/[0.08] bg-[#1a1a22] shadow-2xl shadow-black/40 overflow-hidden">
+                <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-white/[0.08] bg-[#1f1f2a] shadow-2xl shadow-black/40 overflow-hidden">
                   <div className="px-4 py-3 border-b border-white/[0.08]">
-                    <h3 className="text-sm font-light tracking-wide text-[#edebe2]">Admin Alerts</h3>
+                    <h3 className="text-sm font-light tracking-wide text-[#f0efe6]">Admin Alerts</h3>
                   </div>
                   <div className="p-3 space-y-2">
                     <div className="rounded-lg bg-white/[0.04] p-3">
-                      <p className="text-[13px] text-[#edebe2]">3 pending reports need review</p>
-                      <p className="text-xs text-[#8a8a96] mt-1">Just now</p>
+                      <p className="text-[13px] text-[#f0efe6]">3 pending reports need review</p>
+                      <p className="text-xs text-[#9e9eab] mt-1">Just now</p>
                     </div>
                     <div className="rounded-lg bg-white/[0.04] p-3">
-                      <p className="text-[13px] text-[#edebe2]">Flagged content detected</p>
-                      <p className="text-xs text-[#8a8a96] mt-1">12 min ago</p>
+                      <p className="text-[13px] text-[#f0efe6]">Flagged content detected</p>
+                      <p className="text-xs text-[#9e9eab] mt-1">12 min ago</p>
                     </div>
                   </div>
                   <Link
@@ -295,29 +295,29 @@ export function AdminShell({ children, user }: AdminShellProps) {
               >
                 <Avatar name={user.name || "Admin"} src={user.avatarUrl} size="sm" />
                 <div className="hidden md:flex items-center gap-2">
-                  <span className="text-[13px] text-[#edebe2]">{user.name}</span>
+                  <span className="text-[13px] text-[#f0efe6]">{user.name}</span>
                   {roleBadge}
                 </div>
               </button>
 
               {showUserMenu && (
-                <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-white/[0.08] bg-[#1a1a22] shadow-2xl shadow-black/40 overflow-hidden">
+                <div className="absolute right-0 top-full mt-2 w-56 rounded-xl border border-white/[0.08] bg-[#1f1f2a] shadow-2xl shadow-black/40 overflow-hidden">
                   <div className="px-4 py-3 border-b border-white/[0.08]">
-                    <p className="text-sm font-light tracking-wide text-[#edebe2]">{user.name}</p>
-                    <p className="text-xs text-[#8a8a96] mt-0.5">{user.email}</p>
+                    <p className="text-sm font-light tracking-wide text-[#f0efe6]">{user.name}</p>
+                    <p className="text-xs text-[#9e9eab] mt-0.5">{user.email}</p>
                   </div>
                   <div className="py-1">
                     <Link
                       href="/dashboard"
                       onClick={() => setShowUserMenu(false)}
-                      className="block px-4 py-2.5 text-[13px] text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors"
+                      className="block px-4 py-2.5 text-[13px] text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                     >
                       Back to App
                     </Link>
                     <Link
                       href="/settings"
                       onClick={() => setShowUserMenu(false)}
-                      className="block px-4 py-2.5 text-[13px] text-[#8a8a96] hover:bg-white/[0.04] hover:text-[#edebe2] transition-colors"
+                      className="block px-4 py-2.5 text-[13px] text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                     >
                       Settings
                     </Link>

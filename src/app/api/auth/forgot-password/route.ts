@@ -43,16 +43,16 @@ export async function POST(req: NextRequest) {
           to: user.email,
           subject: "Reset your FrameOne password",
           html: `
-            <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px 24px; background: #0f0f14; color: #edebe2;">
-              <h1 style="font-size: 24px; font-weight: 300; margin-bottom: 24px; color: #edebe2;">Password Reset</h1>
-              <p style="font-size: 14px; line-height: 1.6; color: #b8b5a8; margin-bottom: 24px;">
+            <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 40px 24px; background: #131318; color: #f0efe6;">
+              <h1 style="font-size: 24px; font-weight: 300; margin-bottom: 24px; color: #f0efe6;">Password Reset</h1>
+              <p style="font-size: 14px; line-height: 1.6; color: #cdc9bc; margin-bottom: 24px;">
                 Hi ${user.name || "there"},<br><br>
                 We received a request to reset your FrameOne password. Click the button below to set a new password. This link expires in 1 hour.
               </p>
               <a href="${resetUrl}" style="display: inline-block; background: #9d7663; color: #ffffff; text-decoration: none; padding: 12px 32px; border-radius: 999px; font-size: 14px; font-weight: 500;">
                 Reset Password
               </a>
-              <p style="font-size: 12px; color: #8a8a96; margin-top: 32px; line-height: 1.5;">
+              <p style="font-size: 12px; color: #9e9eab; margin-top: 32px; line-height: 1.5;">
                 If you didn't request this, you can safely ignore this email.<br>
                 — The FrameOne Team
               </p>

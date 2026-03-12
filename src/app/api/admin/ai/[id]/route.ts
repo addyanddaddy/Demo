@@ -26,20 +26,22 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     if (error) return error;
 
     const body = await req.json();
-    const { isEnabled, model, maxTokens, temperature, customPrompt, attachedTo } = body;
 
     const existing = await prisma.aIConfig.findUnique({ where: { id: params.id } });
     if (!existing) {
       return NextResponse.json({ success: false, error: "AI config not found" }, { status: 404 });
     }
 
+    // Accept both frontend names (enabled, attachedPaths) and Prisma names (isEnabled, attachedTo)
     const updateData: Record<string, unknown> = {};
-    if (isEnabled !== undefined) updateData.isEnabled = isEnabled;
-    if (model !== undefined) updateData.model = model;
-    if (maxTokens !== undefined) updateData.maxTokens = maxTokens;
-    if (temperature !== undefined) updateData.temperature = temperature;
-    if (customPrompt !== undefined) updateData.customPrompt = customPrompt;
-    if (attachedTo !== undefined) updateData.attachedTo = attachedTo;
+    if (body.enabled !== undefined) updateData.isEnabled = body.enabled;
+    if (body.isEnabled !== undefined) updateData.isEnabled = body.isEnabled;
+    if (body.model !== undefined) updateData.model = body.model;
+    if (body.maxTokens !== undefined) updateData.maxTokens = body.maxTokens;
+    if (body.temperature !== undefined) updateData.temperature = body.temperature;
+    if (body.customPrompt !== undefined) updateData.customPrompt = body.customPrompt;
+    if (body.attachedPaths !== undefined) updateData.attachedTo = body.attachedPaths;
+    if (body.attachedTo !== undefined) updateData.attachedTo = body.attachedTo;
 
     const config = await prisma.aIConfig.update({
       where: { id: params.id },

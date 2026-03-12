@@ -15,7 +15,7 @@ const statusColors: Record<string, "default" | "primary" | "success" | "warning"
 };
 
 const statusStyles: Record<string, string> = {
-  DRAFT: "bg-white/[0.06] text-[#8a8a96]",
+  DRAFT: "bg-white/[0.06] text-[#9e9eab]",
   SUBMITTED: "bg-[#9d7663]/15 text-[#c4a47a]",
   APPROVED: "bg-emerald-500/10 text-emerald-400/80",
   PAID: "bg-emerald-500/10 text-emerald-400/80",
@@ -34,8 +34,8 @@ export default function InvoicesPage() {
       {/* Header */}
       <div className="flex items-end justify-between">
         <div>
-          <h1 className="text-3xl font-light tracking-tight text-[#edebe2]">Invoices</h1>
-          <p className="text-sm text-[#8a8a96] mt-2 tracking-wide">Submit and manage invoices for your services.</p>
+          <h1 className="text-3xl font-light tracking-tight text-[#f0efe6]">Invoices</h1>
+          <p className="text-sm text-[#9e9eab] mt-2 tracking-wide">Submit and manage invoices for your services.</p>
         </div>
         <Button className="gap-2 rounded-xl bg-[#9d7663] text-white hover:bg-[#c4a47a] transition-all duration-300">
           <PlusIcon className="h-4 w-4" />
@@ -44,15 +44,15 @@ export default function InvoicesPage() {
       </div>
 
       {sampleInvoices.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#0f0f14]/50 p-20 text-center">
-          <DocumentTextIcon className="h-12 w-12 text-[#8a8a96]/40 mx-auto mb-5" />
-          <h3 className="text-lg font-light text-[#edebe2] mb-2">No invoices yet</h3>
-          <p className="text-sm text-[#8a8a96] mb-6">Create an invoice to bill a production for your services.</p>
+        <div className="rounded-2xl border border-dashed border-white/[0.08] bg-[#131318]/50 p-20 text-center">
+          <DocumentTextIcon className="h-12 w-12 text-[#9e9eab]/40 mx-auto mb-5" />
+          <h3 className="text-lg font-light text-[#f0efe6] mb-2">No invoices yet</h3>
+          <p className="text-sm text-[#9e9eab] mb-6">Create an invoice to bill a production for your services.</p>
         </div>
       ) : (
         <>
           {/* Table Header */}
-          <div className="grid grid-cols-12 px-7 text-xs uppercase tracking-[0.2em] text-[#8a8a96]">
+          <div className="grid grid-cols-12 px-7 text-xs uppercase tracking-[0.2em] text-[#9e9eab]">
             <div className="col-span-4">Vendor</div>
             <div className="col-span-3">Project</div>
             <div className="col-span-2">Date</div>
@@ -65,24 +65,24 @@ export default function InvoicesPage() {
             {sampleInvoices.map((inv) => (
               <div
                 key={inv.id}
-                className="group grid grid-cols-12 items-center rounded-2xl bg-[#1a1a22] border border-white/[0.08] px-7 py-5 hover:bg-[#242430] hover:border-white/[0.12] transition-all duration-300 cursor-pointer"
+                className="group grid grid-cols-12 items-center rounded-2xl bg-[#1f1f2a] border border-white/[0.08] px-7 py-5 hover:bg-[#2a2a38] hover:border-white/[0.12] transition-all duration-300 cursor-pointer"
               >
                 <div className="col-span-4">
-                  <h3 className="text-sm font-normal text-[#edebe2] group-hover:text-white transition-colors">{inv.vendor}</h3>
+                  <h3 className="text-sm font-normal text-[#f0efe6] group-hover:text-white transition-colors">{inv.vendor}</h3>
                 </div>
                 <div className="col-span-3">
                   <p className="text-sm text-[#9d7663]">{inv.project}</p>
                 </div>
                 <div className="col-span-2">
-                  <p className="text-xs text-[#8a8a96]">{inv.date}</p>
+                  <p className="text-xs text-[#9e9eab]">{inv.date}</p>
                 </div>
                 <div className="col-span-1">
-                  <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] uppercase tracking-[0.15em] ${statusStyles[inv.status] || "bg-white/[0.06] text-[#8a8a96]"}`}>
+                  <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] uppercase tracking-[0.15em] ${statusStyles[inv.status] || "bg-white/[0.06] text-[#9e9eab]"}`}>
                     {inv.status}
                   </span>
                 </div>
                 <div className="col-span-2 text-right">
-                  <p className="text-lg font-light text-[#edebe2] tabular-nums">{inv.amount}</p>
+                  <p className="text-lg font-light text-[#f0efe6] tabular-nums">{inv.amount}</p>
                 </div>
               </div>
             ))}

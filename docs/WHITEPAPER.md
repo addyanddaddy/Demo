@@ -12,8 +12,8 @@
 > **Version 2.0** — The following updates have been made to this white paper:
 >
 > **AI-Powered Intelligence Layer (New Section 9)**
-> - Documented all 5 built-in AI features: Smart Match, Natural Language Search, Auto-Categorization, Crew Recommendations, and Role Suggestions
-> - All 5 AI features are fully built and functional, powered by Anthropic's Claude (claude-sonnet-4)
+> - Documented all 6 built-in AI features: Smart Match, Natural Language Search, Auto-Categorization, Crew Recommendations, Role Suggestions, and Pre-Screen Questions
+> - All 6 AI features are fully built and functional, powered by Anthropic's Claude (claude-sonnet-4)
 > - AI costs are absorbed by the platform — not passed to users
 >
 > **✦ AI-Enhanced Markers Throughout**
@@ -45,10 +45,15 @@
 > - New color system: deep charcoal, marble/cream text, bronze accents
 > - All 17 pages and 8 UI components restyled
 >
+> **Admin Portal (New Section 10)**
+> - Full admin dashboard with KPIs, user management, content moderation, message monitoring, financial overview, reports & violations, AI intelligence settings, platform rules, and activity audit log
+> - Role-based access: ADMIN and SUPER_ADMIN levels
+>
 > **New Backend Infrastructure**
 > - 6 new database models added (SavedSearch, SelfTapeRequest, PreScreenQuestion, PreScreenAnswer, Collaborator, ListingBoost)
 > - 8 new API endpoints deployed
 > - 1 new AI function (AI-suggested pre-screen questions)
+> - Resend added as transactional email provider (free tier, 100 emails/day)
 
 ---
 
@@ -63,20 +68,21 @@
 7. [Membership & Pricing](#7-membership--pricing)
 8. [Core Features Breakdown](#8-core-features-breakdown)
 9. [AI-Powered Intelligence Layer](#9-ai-powered-intelligence-layer)
-10. [User Journeys](#10-user-journeys)
-11. [Payment System](#11-payment-system)
-12. [Trust & Reputation System](#12-trust--reputation-system)
-13. [Technical Architecture Overview](#13-technical-architecture-overview)
-14. [Site Map & Page Structure](#14-site-map--page-structure)
-15. [API Endpoints](#15-api-endpoints)
-16. [Database Structure](#16-database-structure)
-17. [Security & Privacy](#17-security--privacy)
-18. [Development Roadmap](#18-development-roadmap)
-19. [Access & Login Information](#19-access--login-information)
-20. [How to Deploy & Run](#20-how-to-deploy--run)
-21. [Competitive Landscape](#21-competitive-landscape)
-22. [Revenue Projections](#22-revenue-projections)
-23. [AI Integration (Technical Detail)](#23-ai-integration-technical-detail)
+10. [Admin Portal](#10-admin-portal)
+11. [User Journeys](#11-user-journeys)
+12. [Payment System](#12-payment-system)
+13. [Trust & Reputation System](#13-trust--reputation-system)
+14. [Technical Architecture Overview](#14-technical-architecture-overview)
+15. [Site Map & Page Structure](#15-site-map--page-structure)
+16. [API Endpoints](#16-api-endpoints)
+17. [Database Structure](#17-database-structure)
+18. [Security & Privacy](#18-security--privacy)
+19. [Development Roadmap](#19-development-roadmap)
+20. [Access & Login Information](#20-access--login-information)
+21. [How to Deploy & Run](#21-how-to-deploy--run)
+22. [Competitive Landscape](#22-competitive-landscape)
+23. [Revenue Projections](#23-revenue-projections)
+24. [AI Integration (Technical Detail)](#24-ai-integration-technical-detail)
 
 ---
 
@@ -113,12 +119,12 @@ The platform's embedded AI intelligence layer — powered by Anthropic's Claude 
 | API endpoints | 24 |
 | User-facing pages | 7 |
 | UI components | 9 |
-| AI features (built & functional) | 5 |
+| AI features (built & functional) | 6 |
 | Industry roles supported | 43 |
 | Department categories | 9 |
 | Membership tiers | 5 |
 
-The platform is built with **Next.js 14** (React), **TypeScript**, **PostgreSQL** (database), **Stripe Connect** (payments), **Anthropic Claude** (AI intelligence layer), and **Tailwind CSS** (styling). It is designed to scale to **30,000+ concurrent users**.
+The platform is built with **Next.js 14** (React), **TypeScript**, **PostgreSQL** (database), **Stripe Connect** (payments), **Anthropic Claude** (AI intelligence layer), **Resend** (transactional email), and **Tailwind CSS** (styling). It is designed to scale to **30,000+ concurrent users**.
 
 ---
 
@@ -559,13 +565,13 @@ Documents have confidentiality levels: Public, Project Members, Restricted, Top 
 
 ## 9. AI-Powered Intelligence Layer
 
-FrameOne is the first entertainment industry platform with production-aware artificial intelligence built directly into its core workflows. The AI intelligence layer is not a roadmap item — it is **built and functional today**, powering five distinct features across hiring, search, profiles, networking, and onboarding.
+FrameOne is the first entertainment industry platform with production-aware artificial intelligence built directly into its core workflows. The AI intelligence layer is not a roadmap item — it is **built and functional today**, powering six distinct features across hiring, search, profiles, networking, onboarding, and casting.
 
 All AI features use **Anthropic's Claude** (model: `claude-sonnet-4-20250514`) via the standard Anthropic API. Cost is included in platform operating expenses and is not passed to users. At current API pricing, each AI call costs approximately $0.003 to $0.01, making the entire AI layer negligible relative to subscription revenue.
 
 ---
 
-### 9.1 Smart Match — AI-Powered Candidate Ranking
+### 9.1 Smart Match — AI-Powered Candidate Ranking ✦ AI-Enhanced
 
 > **Status:** BUILT AND FUNCTIONAL | **Backend API:** `/api/ai/smart-match` | **AI Provider:** Anthropic Claude (`claude-sonnet-4-20250514`) | **Subscription:** Anthropic standard API pricing (pay-per-use, cost absorbed by platform) | **Tier:** Free tier deployed
 
@@ -582,7 +588,7 @@ When a Producer or Department Head posts a job requisition, they can click **"Fi
 
 ---
 
-### 9.2 Natural Language Search
+### 9.2 Natural Language Search ✦ AI-Enhanced
 
 > **Status:** BUILT AND FUNCTIONAL | **Backend API:** `/api/ai/natural-search` | **AI Provider:** Anthropic Claude (`claude-sonnet-4-20250514`) | **Subscription:** Anthropic standard API pricing (pay-per-use, cost absorbed by platform) | **Tier:** Free tier deployed
 
@@ -601,7 +607,7 @@ This makes the Discover page feel like talking to an assistant rather than filli
 
 ---
 
-### 9.3 Auto-Categorization — Intelligent Profile Tagging
+### 9.3 Auto-Categorization — Intelligent Profile Tagging ✦ AI-Enhanced
 
 > **Status:** BUILT AND FUNCTIONAL | **Backend API:** `/api/ai/categorize` | **AI Provider:** Anthropic Claude (`claude-sonnet-4-20250514`) | **Subscription:** Anthropic standard API pricing (pay-per-use, cost absorbed by platform) | **Tier:** Free tier deployed
 
@@ -617,7 +623,7 @@ These are saved as searchable profile tags, making every member's profile automa
 
 ---
 
-### 9.4 Crew Recommendations — Network-Aware Matching
+### 9.4 Crew Recommendations — Network-Aware Matching ✦ AI-Enhanced
 
 > **Status:** BUILT AND FUNCTIONAL | **Backend API:** `/api/ai/crew-recommendations` | **AI Provider:** Anthropic Claude (`claude-sonnet-4-20250514`) | **Subscription:** Anthropic standard API pricing (pay-per-use, cost absorbed by platform) | **Tier:** Free tier deployed
 
@@ -633,13 +639,32 @@ This mirrors how the industry actually works: people hire people they know. The 
 
 ---
 
-### 9.5 Role Suggestions — Onboarding Intelligence
+### 9.5 Role Suggestions — Onboarding Intelligence ✦ AI-Enhanced
 
 > **Status:** BUILT AND FUNCTIONAL | **Backend API:** `/api/ai/role-suggestions` | **AI Provider:** Anthropic Claude (`claude-sonnet-4-20250514`) | **Subscription:** Anthropic standard API pricing (pay-per-use, cost absorbed by platform) | **Tier:** Free tier deployed
 
 During onboarding, new members can describe what they do in their own words — like **"I work in camera departments, mostly pulling focus and operating on commercials, but I also do some DIT work on smaller shoots"** — and the AI suggests the top 3-5 matching roles from the 40+ role taxonomy.
 
 Each suggestion includes a confidence level (high, medium, low) and a brief explanation of why that role fits. This removes the friction of navigating 43 roles across 9 departments, especially for people earlier in their careers who may not know the formal industry terminology.
+
+---
+
+### 9.6 Pre-Screen Questions — Casting Intelligence ✦ AI-Enhanced
+
+> **Status:** BUILT AND FUNCTIONAL | **Backend API:** `/api/ai/pre-screen-questions` | **AI Provider:** Anthropic Claude (`claude-sonnet-4-20250514`) | **Subscription:** Anthropic standard API pricing (pay-per-use, cost absorbed by platform) | **Tier:** Free tier deployed
+
+When a Casting Director or Producer creates a casting breakdown, they can generate AI-suggested pre-screen questions tailored to the specific role requirements. The `suggestPreScreenQuestions` function analyzes the breakdown details — character description, role type, age range, compensation, and production context — and generates relevant screening questions that help filter candidates before the audition stage.
+
+**What the AI considers:**
+- **Role requirements** — physical attributes, skills, or experience specified in the breakdown
+- **Production context** — format (feature, episodic, commercial), genre, and tone
+- **Practical logistics** — availability, travel willingness, union status, special skills
+- **Character-specific needs** — accent requirements, stunt work, dialect, or technical abilities mentioned in the description
+- **Industry standards** — common pre-screen questions used by professional casting directors
+
+**Example output:** For a breakdown seeking a lead actress for an action thriller, the AI might suggest: "Do you have experience with choreographed fight sequences or stunt work?", "Are you comfortable performing your own stunts with a stunt coordinator?", "Do you have a valid passport for potential international shoots?", "Can you provide a self-tape within 48 hours of request?", and "Are you available for a 6-week continuous shoot?"
+
+This saves Casting Directors significant time crafting screening questionnaires from scratch and ensures that important logistical and creative questions are not overlooked during the early filtering stage.
 
 ---
 
@@ -654,10 +679,120 @@ The AI is not a bolt-on feature. It is woven into existing workflows:
 | **Project dashboard** | Crew Recommendations | "Recommended Crew" section from your network |
 | **Profile edit page** | Auto-Categorization | "Auto-tag my profile" extracts skills from bio |
 | **Onboarding wizard** | Role Suggestions | "Describe what you do" suggests matching roles |
+| **Casting breakdown editor** | Pre-Screen Questions | "Suggest Questions" generates screening questions for the role |
 
 ---
 
-## 10. User Journeys
+## 10. Admin Portal
+
+FrameOne includes a full-featured admin portal for platform management, content moderation, and operational oversight. The admin portal is accessible only to users with elevated roles and provides comprehensive tools for managing every aspect of the platform.
+
+### 10.1 Admin Dashboard
+
+The admin dashboard provides a real-time overview of platform health and key performance indicators (KPIs):
+
+- **Total users** — registered accounts, active users, new signups (daily/weekly/monthly)
+- **Platform activity** — projects created, requisitions posted, applications submitted, offers made
+- **Revenue metrics** — MRR, subscription breakdown by tier, transaction volume
+- **AI usage** — total AI calls, calls per feature, average response time, cost tracking
+- **System health** — error rates, API response times, uptime
+
+### 10.2 User Management
+
+Admins can search, view, and manage all platform users:
+
+- **Search and filter** — by name, email, role, subscription tier, registration date, status
+- **User detail view** — full profile information, subscription history, activity log, linked projects
+- **Ban / suspend users** — temporarily suspend or permanently ban accounts with reason tracking
+- **Role assignment** — assign or revoke platform-level roles (USER, ADMIN, SUPER_ADMIN)
+- **Impersonation** — SUPER_ADMIN can view the platform as any user for debugging and support (all impersonation actions are audit-logged)
+
+### 10.3 Content Moderation
+
+Tools for reviewing and moderating user-generated content:
+
+- **Profile review queue** — flagged bios, photos, and portfolio content
+- **Project moderation** — review reported projects and requisitions
+- **Casting breakdown review** — ensure breakdowns comply with platform guidelines and anti-discrimination policies
+- **Bulk actions** — approve, reject, or flag multiple items at once
+- **Moderation history** — full log of all moderation decisions with moderator attribution
+
+### 10.4 Message Monitoring
+
+Oversight tools for platform communications:
+
+- **Flagged messages** — automatically flagged messages containing prohibited content, spam, or harassment indicators
+- **Reported conversations** — user-reported message threads for review
+- **Message search** — search messages by keyword, sender, recipient, or date range (restricted to SUPER_ADMIN)
+- **Action tools** — warn users, delete messages, suspend messaging privileges
+
+### 10.5 Financial Overview / Payments
+
+Comprehensive view of all platform financial activity:
+
+- **Transaction history** — all Stripe transactions with status, amount, parties, and timestamps
+- **Invoice tracking** — pending, approved, disputed, and paid invoices across all projects
+- **Subscription analytics** — active subscriptions by tier, churn rate, upgrade/downgrade trends
+- **Payout monitoring** — vendor payout status and Stripe Connect account health
+- **Revenue reports** — exportable reports by date range, tier, and transaction type
+
+### 10.6 Reports & Violations
+
+Centralized system for handling platform reports and policy violations:
+
+- **Report queue** — all user-submitted reports (harassment, fraud, impersonation, spam) with priority levels
+- **Violation tracking** — per-user violation history with escalation status
+- **Resolution workflow** — assign reports to admins, add internal notes, resolve with documented outcomes
+- **Strike system** — configurable warning/strike thresholds before automatic suspension
+- **Appeal management** — users can appeal moderation decisions; admins review and resolve
+
+### 10.7 AI Intelligence Settings
+
+Full control over the platform's AI intelligence layer:
+
+- **Feature toggles** — enable or disable individual AI features (Smart Match, Natural Language Search, Auto-Categorization, Crew Recommendations, Role Suggestions, Pre-Screen Questions)
+- **Model selection** — change the AI model (e.g., switch between Claude Sonnet and Claude Haiku for cost optimization)
+- **Token limits** — set maximum input and output token limits per AI feature
+- **Temperature control** — adjust AI response creativity/determinism per feature (0.0 to 1.0)
+- **Page attachment** — configure which platform pages and surfaces each AI feature is active on
+- **Custom prompts** — edit and version the system prompts used by each AI feature, with rollback capability
+- **Usage dashboard** — real-time and historical AI usage metrics, cost per feature, error rates
+
+### 10.8 Platform Rules & Settings
+
+Global platform configuration:
+
+- **Membership tier settings** — adjust pricing, feature limits, and tier descriptions
+- **Platform policies** — manage terms of service, community guidelines, and privacy policy content
+- **Feature flags** — toggle platform-wide features on/off for staged rollouts
+- **Rate limits** — configure API rate limits per tier and per endpoint
+- **Notification templates** — manage email and in-app notification templates
+- **Taxonomy management** — add, edit, or deprecate roles and department groups
+
+### 10.9 Activity Audit Log
+
+Immutable record of all administrative and sensitive platform actions:
+
+- **Full audit trail** — every admin action is logged with actor, action, target, timestamp, and metadata
+- **Filterable views** — filter by admin user, action type, date range, and target entity
+- **Export capability** — export audit logs as CSV for compliance and external review
+- **Retention policy** — audit logs are retained indefinitely and cannot be modified or deleted
+- **Covers all domains** — user management actions, moderation decisions, financial operations, AI setting changes, role assignments, and system configuration changes
+
+### 10.10 Role-Based Access Control
+
+The admin portal enforces two levels of administrative access:
+
+| Role | Access Level | Capabilities |
+|------|-------------|-------------|
+| **ADMIN** | Standard admin | User management (search, view, suspend), content moderation, report handling, financial overview (read-only), audit log viewing |
+| **SUPER_ADMIN** | Full platform control | Everything ADMIN can do, plus: user banning, role assignment, AI intelligence settings, platform rules & settings, message monitoring (full search), user impersonation, audit log export, taxonomy management |
+
+All admin actions are logged in the audit trail regardless of role level. SUPER_ADMIN access is restricted to founding team members and designated technical leads.
+
+---
+
+## 11. User Journeys
 
 ### Journey 1: Actor Looking for Work
 
@@ -703,7 +838,7 @@ The AI is not a bolt-on feature. It is woven into existing workflows:
 
 ---
 
-## 11. Payment System
+## 12. Payment System
 
 ### Two-Lane Architecture
 
@@ -754,7 +889,7 @@ This is significantly more complex due to employment law, tax withholding, union
 
 ---
 
-## 12. Trust & Reputation System
+## 13. Trust & Reputation System
 
 ### The Problem with Self-Reported Resumes
 
@@ -794,7 +929,7 @@ As more productions run through FrameOne:
 
 ---
 
-## 13. Technical Architecture Overview
+## 14. Technical Architecture Overview
 
 ### Tech Stack (for non-engineers)
 
@@ -805,7 +940,8 @@ As more productions run through FrameOne:
 | **Database** | PostgreSQL | Stores all data — users, roles, projects, applications, payments, etc. |
 | **Authentication** | NextAuth | Manages login sessions. Encrypts passwords. Handles "remember me." |
 | **Payments** | Stripe Connect | Processes vendor payouts. Handles bank account connections. |
-| **AI Layer** | Anthropic Claude | Powers Smart Match, natural language search, auto-categorization, crew recommendations, and role suggestions. |
+| **AI Layer** | Anthropic Claude | Powers Smart Match, natural language search, auto-categorization, crew recommendations, role suggestions, and pre-screen questions. |
+| **Email** | Resend | Transactional email service for password resets, notifications, and system communications. Free tier (100 emails/day). |
 | **Styling** | Tailwind CSS | Makes everything look good. Dark theme with indigo/gold brand colors. |
 | **Validation** | Zod | Checks that data is correct before saving. Prevents invalid inputs. |
 | **Language** | TypeScript | JavaScript with type safety. Catches bugs before they reach users. |
@@ -833,7 +969,7 @@ Ralph's original site was built with Laravel (PHP). Here's why we moved to Next.
 
 ---
 
-## 14. Site Map & Page Structure
+## 15. Site Map & Page Structure
 
 ### Public Pages (No Login Required)
 
@@ -842,6 +978,8 @@ Ralph's original site was built with Laravel (PHP). Here's why we moved to Next.
 | **Landing Page** | `/` | Marketing page. Hero, features, role showcase, pricing, CTAs. |
 | **Login** | `/auth/login` | Email + password login form. |
 | **Register** | `/auth/register` | Account creation form. |
+| **Forgot Password** | `/auth/forgot-password` | Request a password reset link via email. |
+| **Reset Password** | `/auth/reset-password` | Set a new password using a secure reset token. |
 
 ### Onboarding (Requires Login, Before Dashboard Access)
 
@@ -868,7 +1006,7 @@ Ralph's original site was built with Laravel (PHP). Here's why we moved to Next.
 
 ---
 
-## 15. API Endpoints
+## 16. API Endpoints
 
 The backend exposes 24 API endpoints that handle all data operations:
 
@@ -934,7 +1072,7 @@ The backend exposes 24 API endpoints that handle all data operations:
 
 ---
 
-## 16. Database Structure
+## 17. Database Structure
 
 The platform stores data in **25 interconnected tables** across 7 domains:
 
@@ -984,7 +1122,7 @@ SYSTEM
 
 ---
 
-## 17. Security & Privacy
+## 18. Security & Privacy
 
 ### Authentication
 - Passwords are hashed with **bcrypt** (12 rounds) — even if the database is breached, passwords cannot be recovered
@@ -1020,7 +1158,7 @@ SYSTEM
 
 ---
 
-## 18. Development Roadmap
+## 19. Development Roadmap
 
 ### Phase 1: MVP (Current — What's Built)
 
@@ -1040,7 +1178,7 @@ SYSTEM
 - Vendor invoice/payout system (Stripe Connect)
 - Document vault with confidentiality levels
 - Audit event logging
-- AI intelligence layer: Smart Match, Natural Language Search, Auto-Categorization, Crew Recommendations, Role Suggestions
+- AI intelligence layer: Smart Match, Natural Language Search, Auto-Categorization, Crew Recommendations, Role Suggestions, Pre-Screen Questions
 - Landing page, dashboard, discover, projects pages
 - Dark theme with indigo/gold brand
 
@@ -1079,7 +1217,7 @@ SYSTEM
 
 ### Phase 4: Advanced Intelligence (6-12 months)
 
-> **Note:** Core AI features (Smart Match, Natural Language Search, Auto-Categorization, Crew Recommendations, Role Suggestions) are already built and deployed. Phase 4 extends the intelligence layer with deeper capabilities.
+> **Note:** Core AI features (Smart Match, Natural Language Search, Auto-Categorization, Crew Recommendations, Role Suggestions, Pre-Screen Questions) are already built and deployed. Phase 4 extends the intelligence layer with deeper capabilities.
 
 - **Predictive availability** — forecast who will be free based on project timelines
 - **Market rate intelligence** — anonymous rate benchmarking by role and region
@@ -1092,7 +1230,7 @@ SYSTEM
 
 ---
 
-## 19. Access & Login Information
+## 20. Access & Login Information
 
 ### GitHub Repository
 
@@ -1146,7 +1284,7 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 ---
 
-## 20. How to Deploy & Run
+## 21. How to Deploy & Run
 
 ### Local Development
 
@@ -1201,7 +1339,7 @@ npm run db:reset
 
 ---
 
-## 21. Competitive Landscape
+## 22. Competitive Landscape
 
 | Platform | What It Does | Limitation vs FrameOne |
 |----------|-------------|----------------------|
@@ -1221,7 +1359,7 @@ npm run db:reset
 
 ---
 
-## 22. Revenue Projections
+## 23. Revenue Projections
 
 ### Conservative Model (Year 1)
 
@@ -1249,9 +1387,9 @@ npm run db:reset
 
 ---
 
-## 23. AI Integration (Technical Detail)
+## 24. AI Integration (Technical Detail)
 
-FrameOne integrates Claude AI (by Anthropic) directly into the platform. The AI handles five core functions: matching talent to jobs, understanding natural language searches, automatically categorizing member profiles, recommending crew from your network, and suggesting roles during signup. All of these work together to make the platform smarter than any job board or directory.
+FrameOne integrates Claude AI (by Anthropic) directly into the platform. The AI handles six core functions: matching talent to jobs, understanding natural language searches, automatically categorizing member profiles, recommending crew from your network, suggesting roles during signup, and generating pre-screen questions for casting breakdowns. All of these work together to make the platform smarter than any job board or directory.
 
 ### Feature 1: Smart Match
 
@@ -1293,6 +1431,14 @@ The user types something like "I work in camera departments, mostly pulling focu
 
 A new user looking at 43 roles across 9 departments can feel overwhelming. Not everyone knows the industry terminology, especially people earlier in their careers. This removes the friction from signup and makes sure people select the right roles so they show up in the right searches.
 
+### Feature 6: Pre-Screen Question Generation
+
+When a Casting Director creates a casting breakdown, the AI can generate a set of relevant pre-screen questions tailored to the specific role requirements. The `suggestPreScreenQuestions` function analyzes the breakdown details and produces targeted screening questions.
+
+The AI reads the breakdown — character description, role type, age range, compensation, format, and any special requirements — and generates questions that help filter candidates early. For an action thriller lead, it might suggest questions about stunt experience, passport availability, schedule flexibility, and self-tape turnaround. For a period drama, it might ask about dialect skills, horseback riding, or comfort with corsetry.
+
+This saves casting professionals significant time. Instead of writing screening questions from scratch for every breakdown, they get an intelligent starting point that covers the practical, logistical, and creative dimensions of the role. The questions can be edited, reordered, or supplemented before being attached to the breakdown.
+
 ### How the AI Connects to the Platform
 
 The AI is not a separate product. It is woven into the existing features:
@@ -1306,6 +1452,8 @@ The Project dashboard has a "Recommended Crew" section that pulls from the user'
 The Profile edit page has an "Auto-tag my profile" button that runs Auto-Categorization on the bio.
 
 The Onboarding wizard has an optional "Describe what you do" text field that runs Role Suggestion before showing the department and role picker.
+
+The Casting breakdown editor has a "Suggest Questions" button that runs Pre-Screen Question generation and populates screening questions for the role.
 
 ### AI Cost Analysis
 
