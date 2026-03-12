@@ -307,6 +307,9 @@ export default function LandingPage() {
             <a href="#" className="hover:text-marble transition-colors">Contact</a>
           </div>
         </div>
+        <p className="text-[11px] text-[#6b6b78] tracking-wide mt-3 text-center">
+          Website built by Adaptation Living LLC — A Brandon Bible Project
+        </p>
       </footer>
     </div>
   );

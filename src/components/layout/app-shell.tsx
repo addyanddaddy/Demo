@@ -22,6 +22,9 @@ export function AppShell({ children, title, user }: AppShellProps) {
         <main className="flex-1 overflow-y-auto p-6 lg:p-10 transition-all duration-300 ease-out">
           {children}
         </main>
+        <p className="text-[11px] text-[#6b6b78] tracking-wide text-center py-6">
+          Website built by Adaptation Living LLC — A Brandon Bible Project
+        </p>
       </div>
     </div>
   );

@@ -430,6 +430,9 @@ export default function OnboardingPage() {
           </div>
         )}
       </div>
+      <p className="text-[11px] text-[#6b6b78] tracking-wide text-center py-6">
+        Website built by Adaptation Living LLC — A Brandon Bible Project
+      </p>
     </div>
   );
 }
