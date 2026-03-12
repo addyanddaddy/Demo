@@ -195,6 +195,7 @@ model User {
   name          String
   avatarUrl     String?
   phone         String?
+  role          UserRole  @default(USER)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -946,4 +947,112 @@ model ListingBoost {
   @@index([requisitionId])
   @@index([breakdownId])
   @@index([endDate])
+}
+
+// ─────────────────────────────────────────────────
+// ADMIN PORTAL
+// ─────────────────────────────────────────────────
+
+enum UserRole {
+  USER
+  MODERATOR
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum ReportStatus {
+  PENDING
+  REVIEWING
+  RESOLVED
+  DISMISSED
+}
+
+enum ReportCategory {
+  SPAM
+  HARASSMENT
+  INAPPROPRIATE_CONTENT
+  FAKE_PROFILE
+  SCAM
+  COPYRIGHT
+  OTHER
+}
+
+model Report {
+  id            String         @id @default(cuid())
+  reporterId    String
+  targetType    String         // "user", "post", "comment", "message", "profile"
+  targetId      String
+  category      ReportCategory
+  description   String?
+  status        ReportStatus   @default(PENDING)
+  resolvedById  String?
+  resolvedAt    DateTime?
+  resolution    String?        // notes from admin
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([status])
+  @@index([targetType, targetId])
+  @@index([reporterId])
+  @@index([createdAt])
+}
+
+model PlatformRule {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String   // "content", "behavior", "payment", "profile"
+  isActive    Boolean  @default(true)
+  severity    String   @default("warning") // "warning", "temp_ban", "permanent_ban"
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AIConfig {
+  id          String   @id @default(cuid())
+  featureKey  String   @unique // "smart_match", "nl_search", "categorize", "recommend", "suggest_roles", "pre_screen"
+  displayName String
+  description String
+  isEnabled   Boolean  @default(true)
+  model       String   @default("claude-sonnet-4-20250514")
+  maxTokens   Int      @default(1000)
+  temperature Float    @default(0)
+  customPrompt String? // Optional prompt override
+  attachedTo  Json?    // Array of page/feature paths this is attached to
+  usageCount  Int      @default(0)
+  lastUsedAt  DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([featureKey])
+  @@index([isEnabled])
+}
+
+model AdminActionLog {
+  id          String   @id @default(cuid())
+  adminUserId String
+  action      String   // "ban_user", "resolve_report", "update_ai_config", "delete_post", etc.
+  targetType  String
+  targetId    String
+  details     Json?
+  createdAt   DateTime @default(now())
+
+  @@index([adminUserId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model UserBan {
+  id          String    @id @default(cuid())
+  userId      String
+  bannedById  String
+  reason      String
+  type        String    @default("temporary") // "temporary", "permanent"
+  expiresAt   DateTime?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+
+  @@index([userId, isActive])
+  @@index([expiresAt])
 }
