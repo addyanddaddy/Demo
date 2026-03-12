@@ -5,7 +5,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 import { Avatar } from "@/components/ui/avatar";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   ChartBarSquareIcon,
   UsersIcon,
@@ -40,77 +43,65 @@ interface AdminShellProps {
 }
 
 // ---------------------------------------------------------------------------
-// Navigation structure
+// Navigation structure (translation keys)
 // ---------------------------------------------------------------------------
 
-const sections = [
+const sectionDefs = [
   {
-    label: "Overview",
+    labelKey: "admin.overview",
     items: [
-      { name: "Dashboard", href: "/admin", icon: ChartBarSquareIcon },
+      { nameKey: "nav.dashboard", href: "/admin", icon: ChartBarSquareIcon },
     ],
   },
   {
-    label: "Users & Access",
+    labelKey: "admin.usersAndAccess",
     items: [
-      { name: "Users", href: "/admin/users", icon: UsersIcon },
+      { nameKey: "admin.users", href: "/admin/users", icon: UsersIcon },
     ],
   },
   {
-    label: "Content",
+    labelKey: "admin.content",
     items: [
-      { name: "Content Moderation", href: "/admin/content", icon: DocumentMagnifyingGlassIcon },
+      { nameKey: "admin.contentModeration", href: "/admin/content", icon: DocumentMagnifyingGlassIcon },
     ],
   },
   {
-    label: "Communication",
+    labelKey: "admin.communication",
     items: [
-      { name: "Messages", href: "/admin/messages", icon: ChatBubbleLeftEllipsisIcon },
+      { nameKey: "nav.messages", href: "/admin/messages", icon: ChatBubbleLeftEllipsisIcon },
     ],
   },
   {
-    label: "Finance",
+    labelKey: "nav.finance",
     items: [
-      { name: "Payments", href: "/admin/payments", icon: CurrencyDollarIcon },
+      { nameKey: "nav.payments", href: "/admin/payments", icon: CurrencyDollarIcon },
     ],
   },
   {
-    label: "Safety",
+    labelKey: "admin.safety",
     items: [
-      { name: "Reports & Violations", href: "/admin/reports", icon: ShieldExclamationIcon },
+      { nameKey: "admin.reportsAndViolations", href: "/admin/reports", icon: ShieldExclamationIcon },
     ],
   },
   {
-    label: "Intelligence",
+    labelKey: "admin.intelligence",
     items: [
-      { name: "AI Settings", href: "/admin/ai", icon: SparklesIcon },
+      { nameKey: "admin.aiSettings", href: "/admin/ai", icon: SparklesIcon },
     ],
   },
   {
-    label: "Platform",
+    labelKey: "nav.platform",
     items: [
-      { name: "Rules & Settings", href: "/admin/settings", icon: Cog6ToothIcon },
+      { nameKey: "admin.rulesAndSettings", href: "/admin/settings", icon: Cog6ToothIcon },
     ],
   },
   {
-    label: "Logs",
+    labelKey: "admin.logs",
     items: [
-      { name: "Activity Log", href: "/admin/activity", icon: ClipboardDocumentListIcon },
+      { nameKey: "admin.activityLog", href: "/admin/activity", icon: ClipboardDocumentListIcon },
     ],
   },
 ];
-
-// Map pathname to page title
-function pageTitleFromPath(pathname: string): string {
-  for (const section of sections) {
-    for (const item of section.items) {
-      if (pathname === item.href || pathname.startsWith(item.href + "/")) {
-        return item.name;
-      }
-    }
-  }
-  return "Admin";
-}
 
 // ---------------------------------------------------------------------------
 // Component
@@ -123,6 +114,29 @@ export function AdminShell({ children, user }: AdminShellProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const notifRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+
+  // Resolve translated sections
+  const sections = sectionDefs.map((s) => ({
+    label: t(s.labelKey),
+    items: s.items.map((item) => ({
+      name: t(item.nameKey),
+      href: item.href,
+      icon: item.icon,
+    })),
+  }));
+
+  // Map pathname to page title
+  function pageTitleFromPath(p: string): string {
+    for (const section of sections) {
+      for (const item of section.items) {
+        if (p === item.href || p.startsWith(item.href + "/")) {
+          return item.name;
+        }
+      }
+    }
+    return t("admin.admin");
+  }
 
   const pageTitle = pageTitleFromPath(pathname);
 
@@ -149,7 +163,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
           <Image src="/logo.png" alt="FrameOne" width={28} height={28} className="rounded-md" />
           <span className="text-base font-light tracking-wide text-[#f0efe6]">FrameOne</span>
           <span className="ml-1 inline-flex items-center rounded-md bg-[#9d7663]/20 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.15em] text-[#c4a47a]">
-            Admin
+            {t("admin.admin")}
           </span>
         </Link>
       </div>
@@ -191,14 +205,16 @@ export function AdminShell({ children, user }: AdminShellProps) {
         ))}
       </nav>
 
-      {/* Bottom: Back to App */}
-      <div className="border-t border-white/[0.06] p-3">
+      {/* Bottom: Theme + Language + Back to App */}
+      <div className="border-t border-white/[0.06] p-3 space-y-1">
+        <ThemeToggle />
+        <LanguageSwitcher />
         <Link
           href="/dashboard"
           className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-normal text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#cdc9bc] transition-colors"
         >
           <ArrowLeftIcon className="h-[18px] w-[18px] shrink-0 stroke-[1.5]" />
-          <span>Back to App</span>
+          <span>{t("admin.backToApp")}</span>
         </Link>
       </div>
     </>
@@ -264,7 +280,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
               {showNotif && (
                 <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-white/[0.08] bg-[#1f1f2a] shadow-2xl shadow-black/40 overflow-hidden">
                   <div className="px-4 py-3 border-b border-white/[0.08]">
-                    <h3 className="text-sm font-light tracking-wide text-[#f0efe6]">Admin Alerts</h3>
+                    <h3 className="text-sm font-light tracking-wide text-[#f0efe6]">{t("admin.adminAlerts")}</h3>
                   </div>
                   <div className="p-3 space-y-2">
                     <div className="rounded-lg bg-white/[0.04] p-3">
@@ -281,7 +297,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
                     onClick={() => setShowNotif(false)}
                     className="block text-center px-4 py-3 text-xs font-normal text-[#c4a47a] hover:text-[#9d7663] border-t border-white/[0.08] transition-colors"
                   >
-                    View all reports
+                    {t("admin.viewAllReports")}
                   </Link>
                 </div>
               )}
@@ -312,14 +328,14 @@ export function AdminShell({ children, user }: AdminShellProps) {
                       onClick={() => setShowUserMenu(false)}
                       className="block px-4 py-2.5 text-[13px] text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                     >
-                      Back to App
+                      {t("admin.backToApp")}
                     </Link>
                     <Link
                       href="/settings"
                       onClick={() => setShowUserMenu(false)}
                       className="block px-4 py-2.5 text-[13px] text-[#9e9eab] hover:bg-white/[0.04] hover:text-[#f0efe6] transition-colors"
                     >
-                      Settings
+                      {t("nav.settings")}
                     </Link>
                   </div>
                   <div className="border-t border-white/[0.08] py-1">
@@ -328,7 +344,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
                       onClick={() => setShowUserMenu(false)}
                       className="block px-4 py-2.5 text-[13px] text-red-400/80 hover:bg-white/[0.04] hover:text-red-400 transition-colors"
                     >
-                      Sign Out
+                      {t("auth.signOut")}
                     </Link>
                   </div>
                 </div>

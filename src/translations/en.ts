@@ -1,0 +1,83 @@
+export const en = {
+  nav: {
+    dashboard: "Dashboard",
+    community: "Community",
+    discover: "Discover",
+    projects: "Projects",
+    casting: "Casting",
+    messages: "Messages",
+    myProfiles: "My Profiles",
+    availability: "Availability",
+    applications: "Applications",
+    payments: "Payments",
+    invoices: "Invoices",
+    settings: "Settings",
+    platform: "Platform",
+    myWork: "My Work",
+    finance: "Finance",
+  },
+  common: {
+    save: "Save",
+    cancel: "Cancel",
+    delete: "Delete",
+    edit: "Edit",
+    create: "Create",
+    search: "Search",
+    filter: "Filter",
+    submit: "Submit",
+    back: "Back",
+    loading: "Loading...",
+    noResults: "No results found",
+    confirm: "Confirm",
+    close: "Close",
+    next: "Next",
+    previous: "Previous",
+    viewAll: "View all",
+  },
+  auth: {
+    signIn: "Sign In",
+    signUp: "Sign Up",
+    forgotPassword: "Forgot Password",
+    resetPassword: "Reset Password",
+    email: "Email",
+    password: "Password",
+    logOut: "Log Out",
+    signOut: "Sign Out",
+  },
+  dashboard: {
+    welcomeBack: "Welcome back",
+    activeProjects: "Active Projects",
+    openApplications: "Open Applications",
+    profileViews: "Profile Views",
+    endorsements: "Endorsements",
+  },
+  admin: {
+    admin: "Admin",
+    overview: "Overview",
+    usersAndAccess: "Users & Access",
+    users: "Users",
+    content: "Content",
+    contentModeration: "Content Moderation",
+    communication: "Communication",
+    safety: "Safety",
+    reportsAndViolations: "Reports & Violations",
+    intelligence: "Intelligence",
+    aiSettings: "AI Settings",
+    rulesAndSettings: "Rules & Settings",
+    logs: "Logs",
+    activityLog: "Activity Log",
+    backToApp: "Back to App",
+    adminAlerts: "Admin Alerts",
+    viewAllReports: "View all reports",
+  },
+  language: {
+    label: "Language",
+  },
+};
+
+// Deep type that maps every leaf to `string`
+type DeepStringify<T> = {
+  [K in keyof T]: T[K] extends Record<string, unknown> ? DeepStringify<T[K]> : string;
+};
+
+export type TranslationKeys = DeepStringify<typeof en>;

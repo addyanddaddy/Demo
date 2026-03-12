@@ -4,7 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 import { Avatar } from "@/components/ui/avatar";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   HomeIcon,
   MagnifyingGlassIcon,
@@ -21,40 +24,43 @@ import {
   Bars3Icon,
   XMarkIcon,
   UserGroupIcon,
+  ShieldCheckIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-
-const platformNav = [
-  { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
-  { name: "Community", href: "/community", icon: UserGroupIcon },
-  { name: "Discover", href: "/discover", icon: MagnifyingGlassIcon },
-  { name: "Projects", href: "/projects", icon: FilmIcon },
-  { name: "Casting", href: "/casting", icon: StarIcon },
-  { name: "Messages", href: "/messages", icon: ChatBubbleLeftRightIcon },
-];
-
-const workNav = [
-  { name: "My Profiles", href: "/profile/edit", icon: UserCircleIcon },
-  { name: "Availability", href: "/availability", icon: CalendarDaysIcon },
-  { name: "Applications", href: "/applications", icon: BriefcaseIcon },
-];
-
-const financeNav = [
-  { name: "Payments", href: "/payments", icon: CurrencyDollarIcon },
-  { name: "Invoices", href: "/invoices", icon: DocumentTextIcon },
-];
 
 interface SidebarProps {
   user?: {
     name?: string | null;
     email?: string | null;
     image?: string | null;
+    role?: string;
   };
 }
 
 export function Sidebar({ user }: SidebarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const platformNav = [
+    { name: t("nav.dashboard"), href: "/dashboard", icon: HomeIcon },
+    { name: t("nav.community"), href: "/community", icon: UserGroupIcon },
+    { name: t("nav.discover"), href: "/discover", icon: MagnifyingGlassIcon },
+    { name: t("nav.projects"), href: "/projects", icon: FilmIcon },
+    { name: t("nav.casting"), href: "/casting", icon: StarIcon },
+    { name: t("nav.messages"), href: "/messages", icon: ChatBubbleLeftRightIcon },
+  ];
+
+  const workNav = [
+    { name: t("nav.myProfiles"), href: "/profile/edit", icon: UserCircleIcon },
+    { name: t("nav.availability"), href: "/availability", icon: CalendarDaysIcon },
+    { name: t("nav.applications"), href: "/applications", icon: BriefcaseIcon },
+  ];
+
+  const financeNav = [
+    { name: t("nav.payments"), href: "/payments", icon: CurrencyDollarIcon },
+    { name: t("nav.invoices"), href: "/invoices", icon: DocumentTextIcon },
+  ];
 
   const NavSection = ({ label, items }: { label: string; items: typeof platformNav }) => (
     <div className="space-y-0.5">
@@ -93,14 +99,28 @@ export function Sidebar({ user }: SidebarProps) {
       </div>
 
       <nav className="flex-1 space-y-6 overflow-y-auto p-3 pt-4">
-        <NavSection label="Platform" items={platformNav} />
+        <NavSection label={t("nav.platform")} items={platformNav} />
         <div className="border-t border-white/[0.06]" />
-        <NavSection label="My Work" items={workNav} />
+        <NavSection label={t("nav.myWork")} items={workNav} />
         <div className="border-t border-white/[0.06]" />
-        <NavSection label="Finance" items={financeNav} />
+        <NavSection label={t("nav.finance")} items={financeNav} />
       </nav>
 
       <div className="border-t border-white/[0.06] p-3 space-y-1">
+        {(user?.role === "ADMIN" || user?.role === "SUPER_ADMIN") && (
+          <Link
+            href="/admin"
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-normal transition-colors",
+              pathname?.startsWith("/admin")
+                ? "bg-bronze/10 text-bronze"
+                : "text-[#c4a47a] hover:bg-[#9d7663]/10 hover:text-[#c4a47a]"
+            )}
+          >
+            <ShieldCheckIcon className="h-[18px] w-[18px] stroke-[1.5]" />
+            <span>Admin Portal</span>
+          </Link>
+        )}
         <Link
           href="/settings"
           className={cn(
@@ -111,8 +131,11 @@ export function Sidebar({ user }: SidebarProps) {
           )}
         >
           <Cog6ToothIcon className="h-[18px] w-[18px] stroke-[1.5]" />
-          <span>Settings</span>
+          <span>{t("nav.settings")}</span>
         </Link>
+
+        <ThemeToggle />
+        <LanguageSwitcher />
 
         {user && (
           <div className="flex items-center gap-3 rounded-lg px-3 py-3 mt-2">

@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${plusJakartaSans.variable}`}>
+    <html lang="en" data-theme="dark" className={`dark ${plusJakartaSans.variable}`}>
       <body className={`${plusJakartaSans.className} bg-surface-900 text-marble antialiased`}>
         <Providers>{children}</Providers>
         <Analytics />
